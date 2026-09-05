@@ -1,0 +1,29 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <!--
+    No reference to Extinguish Refuelables, to Medieval Overhaul or to Vanilla Expanded Framework.
+    The one class here derives from vanilla's CompFireOverlay, and every other comp this mod uses
+    is named from XML, which RimWorld resolves at load. That is what lets the assembly load
+    cleanly whatever the player has installed.
+  -->
+  <PropertyGroup>
+    <OutputType>Library</OutputType>
+    <TargetFramework>net48</TargetFramework>
+    <RootNamespace>ExtinguishRefuelablesPatch</RootNamespace>
+    <AssemblyName>ExtinguishRefuelablesPatch</AssemblyName>
+    <LangVersion>latest</LangVersion>
+    <Deterministic>true</Deterministic>
+    <Optimize>true</Optimize>
+    <DebugType>none</DebugType>
+    <AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
+    <OutputPath>..\Mod\Assemblies\</OutputPath>
+    <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
+    <EnableDefaultCompileItems>true</EnableDefaultCompileItems>
+    <NoWarn>$(NoWarn);CS1591</NoWarn>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Krafs.Rimworld.Ref" Version="1.6.*-*" />
+  </ItemGroup>
+
+</Project>

@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  Vanilla Factions Expanded - Medieval 2: the hearth, and its darklight twin.
+
+  This file replaces the two the 1.4 mod carried. It patched VFEM_Candle and VFEM_WallTorchLamp
+  in *Vanilla Factions Expanded - Medieval*, and VFEV_Hearth and VFEV_FuneralPyre in *Vanilla
+  Factions Expanded - Vikings*. Both of those mods stop at RimWorld 1.4 and cannot load here;
+  their content was folded into Medieval 2, where the hearth survives as VFEM2_Hearth with the
+  same comps it had as VFEV_Hearth. The candle, the wall torch lamp and the funeral pyre did not
+  make the move and have nothing left to patch.
+
+  The name below was read out of Medieval 2's own About.xml, byte for byte: PatchOperationFindMod
+  compares the mod's name, not its packageId, and a mismatch is silent.
+
+  The darklight hearth is behind Medieval 2's Ideology load folder, so its two operations carry
+  MayRequire. MayRequire is only honoured on list elements - a top-level <Operation> is built by
+  LoadPatches without ever looking at it - which is why those two sit inside a sequence while the
+  rest of this mod's operations stand alone.
+-->
+<Patch>
+
+  <Operation Class="PatchOperationFindMod">
+    <mods>
+      <li>Vanilla Factions Expanded - Medieval 2</li>
+    </mods>
+    <match Class="PatchOperationAdd">
+      <order>Prepend</order>
+      <xpath>Defs/ThingDef[defName="VFEM2_Hearth"]/comps</xpath>
+      <value>
+        <li Class="CompProperties_Flickable" />
+      </value>
+    </match>
+  </Operation>
+
+  <Operation Class="PatchOperationFindMod">
+    <mods>
+      <li>Vanilla Factions Expanded - Medieval 2</li>
+    </mods>
+    <match Class="PatchOperationAttributeSet">
+      <xpath>Defs/ThingDef[defName="VFEM2_Hearth"]/comps/li[@Class="CompProperties_FireOverlay"]</xpath>
+      <attribute>Class</attribute>
+      <value>ExtinguishRefuelables.CompProperties_FireOverlayExtinguishable</value>
+    </match>
+  </Operation>
+
+  <Operation Class="PatchOperationFindMod">
+    <mods>
+      <li>Vanilla Factions Expanded - Medieval 2</li>
+    </mods>
+    <match Class="PatchOperationSequence">
+      <operations>
+        <li Class="PatchOperationAdd" MayRequire="Ludeon.RimWorld.Ideology">
+          <order>Prepend</order>
+          <xpath>Defs/ThingDef[defName="VFEM2_HearthDarklight"]/comps</xpath>
+          <value>
+            <li Class="CompProperties_Flickable" />
+          </value>
+        </li>
+        <li Class="PatchOperationAttributeSet" MayRequire="Ludeon.RimWorld.Ideology">
+          <xpath>Defs/ThingDef[defName="VFEM2_HearthDarklight"]/comps/li[@Class="CompProperties_DarklightOverlay"]</xpath>
+          <attribute>Class</attribute>
+          <value>ExtinguishRefuelables.CompProperties_DarklightOverlayExtinguishable</value>
+        </li>
+      </operations>
+    </match>
+  </Operation>
+
+</Patch>

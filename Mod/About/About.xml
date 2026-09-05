@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ModMetaData>
+  <name>Extinguish Refuelables Compatibility Patch 1.6</name>
+  <author>Keshash - 1.6 port: nelim</author>
+  <packageId>nelim.extinguishrefuelablespatch</packageId>
+  <supportedVersions>
+    <li>1.6</li>
+  </supportedVersions>
+  <url>https://github.com/vbardales/Rimworld-Extinguish-Refuelables-Patch</url>
+  <description>A 1.6 port of Keshash's Extinguish Refuelables Compatibilty Patch. I am not the author of this mod; the work here is what it took to make it run on 1.6, and to repair what the port turned up.
+
+Extinguish Refuelables gives a torch or a campfire an on/off switch, so a colony can put one out instead of letting it burn wood all night. Extinguish Refuelables Continued covers the base game, Vanilla Furniture Expanded, Medieval Lighting and Heat and Smoked meat. This adds the buildings it does not reach, with no def in common between the two.
+
+WHAT IT COVERS
+
+Medieval Overhaul: the 1x1 and 2x2 braziers, plain candles, beeswax candles, the candle stand, the lamp post, the wall lamp, the wall torch, the wood burning stove and the rustic hearth.
+
+Vanilla Factions Expanded - Classical: the heat stones.
+
+Vanilla Factions Expanded - Medieval 2: the hearth, and the darklight hearth with Ideology.
+
+Each mod's patch is guarded, so having none of them installed does nothing and errors at nothing.
+
+WHAT CHANGED IN THE 1.6 PORT
+
+The original patched Vanilla Factions Expanded - Medieval and Vanilla Factions Expanded - Vikings. Both stop at RimWorld 1.4 and cannot load here. Their content moved into Medieval 2, where the Vikings hearth survives as VFEM2_Hearth with the same comps, so the patch follows it there. The Vikings funeral pyre, the Medieval candle and the Medieval wall torch lamp did not make the move.
+
+Extinguish Refuelables changed its namespace when it was continued, and Medieval Overhaul changed its own; every class name in the four patch files pointed at a type that no longer exists. The patches were also written as one long sequence per mod, which stops at the first operation that fails rather than skipping it, so one defName going away silenced everything after it. Each group is now its own operation.
+
+The mod no longer needs Vanilla Expanded Framework. The one place it did was a wall torch that Medieval Overhaul has since moved to the base game's own fire overlay.
+
+Safe to add to a save. Removing it mid-save leaves an off switch on a few buildings that no longer has code behind it; switch them back on first.
+
+IF I GO QUIET
+
+If I do not answer within a reasonable time after being contacted, anyone may freely update this or any other of my mods, including publishing a continuation of it. All credit must be preserved.
+
+AI-GENERATED
+
+This port was done with Claude Code (Anthropic) under human direction, review and testing. Stated openly: working with these tools is my job.
+
+THANKS
+
+Keshash, who wrote the original patch. Mali for Extinguish Refuelables and Blacktriple for continuing it. SirLalaPyon for Medieval Overhaul, Oskar Potocki and the Vanilla Expanded team for Classical and Medieval 2.</description>
+  <modDependencies>
+    <li>
+      <packageId>blacktriple.extinguishrefuelablescontinued</packageId>
+      <displayName>Extinguish Refuelables Continued</displayName>
+      <steamWorkshopUrl>steam://url/CommunityFilePage/3772905265</steamWorkshopUrl>
+    </li>
+  </modDependencies>
+  <loadAfter>
+    <li>Ludeon.RimWorld</li>
+    <li>blacktriple.extinguishrefuelablescontinued</li>
+    <li>DankPyon.Medieval.Overhaul</li>
+    <li>OskarPotocki.VFE.Classical</li>
+    <li>OskarPotocki.VFE.Medieval2</li>
+  </loadAfter>
+  <incompatibleWith>
+    <li>Keshash.ExtinguishRefuelablesPatch</li>
+  </incompatibleWith>
+</ModMetaData>

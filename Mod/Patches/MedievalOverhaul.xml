@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  Medieval Overhaul's fires, made extinguishable.
+
+  Two things about the shape of this file, both learned the hard way.
+
+  PatchOperationFindMod compares the mod's NAME, not its packageId. The name below was read out
+  of Medieval Overhaul's own About.xml, byte for byte - a mod name is free text and an em dash or
+  a non-breaking space would look right on screen and never match. When it does not match, the
+  patch simply does nothing and says nothing.
+
+  Each group is its own top-level Operation rather than one PatchOperationSequence. A sequence
+  STOPS at the first operation that fails instead of skipping it, so a single defName going away
+  upstream silences every operation after it. Putting <success>Always</success> on the sequence
+  hides that failure without restoring the run. Separate operations are independent, and each
+  still reports its own failure by name and file.
+-->
+<Patch>
+
+  <!-- The switch itself. Vanilla's CompRefuelable, CompGlower and CompHeatPusher all consult
+       CompFlickable, so this alone stops the fuel burning, the light and the heat. -->
+  <Operation Class="PatchOperationFindMod">
+    <mods>
+      <li>Medieval Overhaul</li>
+    </mods>
+    <match Class="PatchOperationAdd">
+      <order>Prepend</order>
+      <xpath>Defs/ThingDef[defName="DankPyon_Brazier2x2c" or defName="DankPyon_Brazier1x1c" or defName="DankPyon_Candles" or defName="DankPyon_Candles_Beeswax" or defName="DankPyon_CandleStand" or defName="DankPyon_WallLamp" or defName="DankPyon_LampPost" or defName="DankPyon_WoodBurningStove" or defName="DankPyon_RusticHearth" or defName="DankPyon_WallTorch"]/comps</xpath>
+      <value>
+        <li Class="CompProperties_Flickable" />
+      </value>
+    </match>
+  </Operation>
+
+  <!-- Fires drawn by vanilla's own CompFireOverlay. The extinguishable class declares exactly the
+       same fields, so fireSize and the offsets carry over untouched by the attribute swap. -->
+  <Operation Class="PatchOperationFindMod">
+    <mods>
+      <li>Medieval Overhaul</li>
+    </mods>
+    <match Class="PatchOperationAttributeSet">
+      <xpath>Defs/ThingDef[defName="DankPyon_Brazier2x2c" or defName="DankPyon_Brazier1x1c" or defName="DankPyon_WallTorch"]/comps/li[@Class="CompProperties_FireOverlay"]</xpath>
+      <attribute>Class</attribute>
+      <value>ExtinguishRefuelables.CompProperties_FireOverlayExtinguishable</value>
+    </match>
+  </Operation>
+
+  <!-- Fires drawn by Medieval Overhaul's own comp, which only shows the flame when the building
+       faces north. That behaviour is not vanilla's, so it is reimplemented in this mod's
+       assembly rather than replaced by the extinguishable comp from Extinguish Refuelables. -->
+  <Operation Class="PatchOperationFindMod">
+    <mods>
+      <li>Medieval Overhaul</li>
+    </mods>
+    <match Class="PatchOperationAttributeSet">
+      <xpath>Defs/ThingDef[defName="DankPyon_WoodBurningStove" or defName="DankPyon_RusticHearth"]/comps/li[@Class="MedievalOverhaul.CompProperties_FireOverlaySouth"]</xpath>
+      <attribute>Class</attribute>
+      <value>ExtinguishRefuelablesPatch.CompProperties_FireOverlaySouthExtinguishable</value>
+    </match>
+  </Operation>
+
+</Patch>

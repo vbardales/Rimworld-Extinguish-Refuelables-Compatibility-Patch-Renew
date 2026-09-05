@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  Vanilla Factions Expanded - Classical: the heat stones.
+
+  The name below was read out of that mod's own About.xml, byte for byte. PatchOperationFindMod
+  compares the mod's name and not its packageId, and a mismatch is silent.
+
+  The heat stones have no fire overlay of any kind - they are a heated slab, not a flame - so
+  there is nothing to swap for an extinguishable comp. The switch alone does the whole job:
+  vanilla's CompRefuelable, CompGlower and CompHeatPusher all consult CompFlickable.
+-->
+<Patch>
+
+  <Operation Class="PatchOperationFindMod">
+    <mods>
+      <li>Vanilla Factions Expanded - Classical</li>
+    </mods>
+    <match Class="PatchOperationAdd">
+      <order>Prepend</order>
+      <xpath>Defs/ThingDef[defName="VFEC_HeatStones"]/comps</xpath>
+      <value>
+        <li Class="CompProperties_Flickable" />
+      </value>
+    </match>
+  </Operation>
+
+</Patch>
