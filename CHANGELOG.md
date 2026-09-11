@@ -10,6 +10,9 @@ All notable changes to this mod are documented here.
   `nelim.extinguishrefuelablescompatibilitypatchrenew`, and the mod folder renamed to match. Both
   now spell out the name the mod displays. The id had never shipped — no Workshop item, and no
   save or `ModsConfig.xml` names it — so there was nothing to migrate.
+- The GitHub repository renamed from `Rimworld-Extinguish-Refuelables-Patch-Renew`, the last
+  identifier still short of the displayed name, and the `<url>` in `About.xml` with it. GitHub
+  redirects from the old name, so the link that shipped with 1.0.0 still resolves.
 
 ## [1.0.0] — 2026-09-05
 
