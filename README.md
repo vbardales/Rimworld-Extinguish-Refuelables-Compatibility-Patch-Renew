@@ -165,6 +165,14 @@ Reference assemblies come from NuGet (`Krafs.Rimworld.Ref`), so this builds with
 installed. Intermediates go to `.build/`, outside the published folder — `Mod/` is what Steam
 uploads, and it uploads it whole.
 
+## Testing
+
+[`_tools/FUNCTIONAL-SCENARIOS.md`](_tools/FUNCTIONAL-SCENARIOS.md) — seventeen scenarios to play in
+game, one thing to watch each, and what the failure looks like in `Player.log`. There is no
+out-of-game suite here and there is not much one could say: a patch that does not apply is silent
+by construction, and the only thing the C# does is draw a flame or not draw it. The mod has not yet
+been through those scenarios.
+
 ## Licence and credit
 
 MIT for what the port added; nothing is granted over Keshash's original, which declares no
