@@ -1,4 +1,4 @@
-# Extinguish Refuelables Compatibility Patch 1.6
+# Extinguish Refuelables Compatibility Patch Renew
 
 Port of **Keshash's Extinguish Refuelables Compatibilty Patch** to RimWorld 1.6.
 
