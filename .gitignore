@@ -1,7 +1,8 @@
 # Two separate reasons to have this file, and only the first is about git:
 #
-#   - The monorepo's own .gitignore covers all of this, but `git subtree split` exports this
-#     folder alone. The root's rules do not travel with it.
+#   - This folder is the repository root, so these are the only rules covering it. They were
+#     written when the mod lived in a monorepo, whose root rules `git subtree split` did not
+#     carry across; now they stand on their own.
 #   - Steam does not read .gitignore at all. SteamUGC.SetItemContent takes the junction's target
 #     directory as it stands on disk, with no filtering, so anything sitting in the published
 #     folder is published. That is what `Mod/` is for: the junction points there, and everything
@@ -13,8 +14,8 @@
 Source/obj/
 Source/bin/
 
-# Claude Code session worktrees and local settings: each worktree is a full copy of the monorepo,
-# hundreds of megabytes, and one has already landed inside a mod folder.
+# Claude Code session worktrees and local settings. A worktree is a full copy of the repository,
+# and one has already landed inside a mod folder.
 .claude/
 
 # Showcase notes: French working notes, deleted once Preview.png and ModIcon.png are done.

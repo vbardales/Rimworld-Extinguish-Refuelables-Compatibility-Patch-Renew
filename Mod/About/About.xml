@@ -2,7 +2,7 @@
 <ModMetaData>
   <name>Extinguish Refuelables Compatibility Patch Renew</name>
   <author>Keshash - 1.6 port: nelim</author>
-  <packageId>nelim.extinguishrefuelablespatch</packageId>
+  <packageId>nelim.extinguishrefuelablescompatibilitypatchrenew</packageId>
   <supportedVersions>
     <li>1.6</li>
   </supportedVersions>

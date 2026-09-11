@@ -8,8 +8,8 @@
       code. This has to live in a Directory.Build.props: NuGet restore reads the property before
       the csproj.
     -->
-    <BaseIntermediateOutputPath>$(MSBuildThisFileDirectory)..\..\.build\obj\ExtinguishRefuelablesPatch\</BaseIntermediateOutputPath>
-    <BaseOutputPath>$(MSBuildThisFileDirectory)..\..\.build\bin\ExtinguishRefuelablesPatch\</BaseOutputPath>
+    <BaseIntermediateOutputPath>$(MSBuildThisFileDirectory)..\.build\obj\ExtinguishRefuelablesPatch\</BaseIntermediateOutputPath>
+    <BaseOutputPath>$(MSBuildThisFileDirectory)..\.build\bin\ExtinguishRefuelablesPatch\</BaseOutputPath>
   </PropertyGroup>
 
 </Project>

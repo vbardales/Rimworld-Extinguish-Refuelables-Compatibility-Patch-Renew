@@ -2,6 +2,15 @@
 
 All notable changes to this mod are documented here.
 
+## [Unreleased]
+
+### Changed
+
+- `packageId` from `nelim.extinguishrefuelablespatch` to
+  `nelim.extinguishrefuelablescompatibilitypatchrenew`, and the mod folder renamed to match. Both
+  now spell out the name the mod displays. The id had never shipped — no Workshop item, and no
+  save or `ModsConfig.xml` names it — so there was nothing to migrate.
+
 ## [1.0.0] — 2026-09-05
 
 First release. Port of Keshash's **Extinguish Refuelables Compatibilty Patch** to RimWorld 1.6.
