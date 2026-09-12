@@ -1,13 +1,14 @@
 ---
-mod:        Extinguish Refuelables Compatibility Patch Renew
-packageId:  nelim.extinguishrefuelablescompatibilitypatchrenew
-repo:       Rimworld-Extinguish-Refuelables-Compatibility-Patch-Renew
-visibility: public
-detached:   yes
-stage:      done
-licence:    silent
-licence_at: none, looked for at the four places it could have been, see ATTRIBUTION.md
-showcase:   complete
+mod:          Extinguish Refuelables Compatibility Patch Renew
+packageId:    nelim.extinguishrefuelablescompatibilitypatchrenew
+repo:         Rimworld-Extinguish-Refuelables-Compatibility-Patch-Renew
+visibility:   public
+detached:     yes
+stage:        done
+licence:      silent
+licence_at:   none, looked for at the four places it could have been, see ATTRIBUTION.md
+dependencies: declared
+showcase:     complete
 tested_on:
 workshop:
 remaining:
@@ -16,8 +17,8 @@ remaining:
     patch operation that misses its target is silent by construction.
   - feature: the showcase is engraved in black, from before the 2026-09-12 instruction on the veil
     taking a colour from the image
-session:    local_52a44608-2383-4e78-b72e-789405b47e80
-updated:    2026-09-12, automatic sweep, then the mod's session, then turned to English
+session:      local_52a44608-2383-4e78-b72e-789405b47e80
+updated:      2026-09-12, automatic sweep, the mod's session, English, then the dependencies field
 ---
 
 # Extinguish Refuelables Compatibility Patch Renew — status
@@ -47,6 +48,17 @@ it could have — no `LICENSE` file, nothing in its `About.xml`, no linked repos
 no `<url>` at all, nothing in the body of its Steam description — and it stopped at 1.4. What the
 port added is MIT. The detail is in `ATTRIBUTION.md`.
 
+`dependencies` reads `declared`, and the word was checked rather than assumed. The one mod this
+cannot run without is Extinguish Refuelables Continued, which supplies two of the three comp
+classes the patches inject, and it is named in `modDependencies`. The three target mods sit in
+`loadAfter` and deliberately nowhere else: every operation is guarded by `PatchOperationFindMod`,
+so the mod does nothing and errors at nothing when they are absent, and what it injects into their
+defs comes either from Extinguish Refuelables or from this mod's own assembly. The other values
+are `to check`, when a non-vanilla `loadAfter` suggests a dependency that is not declared, and
+`none`, when the mod needs nothing. An undeclared dependency is not cosmetic: on 2026-09-11
+Reequilibrage animaux took 47 vanilla animals down with it, Muffalo included, because the class it
+injects belongs to a mod that was not declared and not loaded.
+
 `workshop` stays empty: nothing has ever been published under this name, and the mod carries no
 `About/PublishedFileId.txt`. Keshash's own was dropped in the port, since it names their item.
 
@@ -56,5 +68,6 @@ known fault left unfixed, `unverified` for what could not be checked.
 The `session` field is untouched: it comes from the sweep and names the session group, not this
 conversation.
 
-`licence` vocabulary: `open` an explicit licence, `silent` no licence and a dead source, `alive`
-no licence but a living source, `forbidden` a written refusal, `original` nothing reused.
+`licence` vocabulary: `open` an explicit licence, `silent` no licence and a dead source,
+`alive` no licence but a living source, `forbidden` a written refusal, `original` owing nothing
+to anyone — not a name, not an idea traceable to one mod, not a value derived from its assets.
