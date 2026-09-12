@@ -1,4 +1,6 @@
-# Extinguish Refuelables Compatibility Patch Renew
+# Extinguish Refuelables Compatibility Patch Renew (unofficial)
+
+UNOFFICIAL. This mod is published without the original author's explicit consent. If the original author contacts me to request its removal, I undertake to take it down promptly.
 
 Port of **Keshash's Extinguish Refuelables Compatibilty Patch** to RimWorld 1.6.
 
@@ -7,7 +9,7 @@ Keshash's — all I did was the work needed to make it run on 1.6 and repair wha
 up. Credit goes to them; mistakes in the port are mine.
 
 Original mod: https://steamcommunity.com/sharedfiles/filedetails/?id=3109675320 — declares 1.4
-and nothing further. The page is still online; the mod is abandoned, not withdrawn. Keshash
+and nothing further. The description remains accessible; abandonment is not established. Keshash
 shipped `Source/`, so nothing here was decompiled.
 
 ## What the mod does
@@ -168,10 +170,11 @@ uploads, and it uploads it whole.
 ## Testing
 
 [`_tools/FUNCTIONAL-SCENARIOS.md`](_tools/FUNCTIONAL-SCENARIOS.md) — seventeen scenarios to play in
-game, one thing to watch each, and what the failure looks like in `Player.log`. There is no
-out-of-game suite here and there is not much one could say: a patch that does not apply is silent
-by construction, and the only thing the C# does is draw a flame or not draw it. The mod has not yet
-been through those scenarios.
+game, one thing to watch each, and what the failure looks like in `Player.log`. Run `pwsh -NoProfile -File _tools/Test-Xml.ps1` for metadata and XML contract tests across
+16 combinations of target mods and Ideology. The fixtures check switches, overlay replacement,
+property preservation and guards; they are not current upstream definitions or RimWorld's loader.
+The Release build checks C# compilation. Rendering, ticks and save behaviour still need the
+manual scenarios, which have no recorded game execution.
 
 ## Licence and credit
 

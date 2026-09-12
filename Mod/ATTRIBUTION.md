@@ -5,16 +5,17 @@ A 1.6 port of **Extinguish Refuelables Compatibilty Patch**, by **Keshash**
 
 ## Status: public
 
-The source mod is **dead** — it declares 1.4 and nothing further — and **no licence is declared
-anywhere**, checked at the four places one could be: no `LICENSE` file in the mod, no mention in
-its `About.xml`, no linked repository (`<url>` is absent entirely), and nothing in the body of
-the description on its Steam page. That last check is the one that matters: it is the one that
-was skipped once on たたら製鉄, whose ban on redistribution turned out to be a sentence in its
-description and nowhere else.
+**Licence classification: silent; original maintenance status uncertain.** Rechecked on
+2026-09-13: no licence file in the installed original, no licence or source URL in About.xml,
+and no licence, redistribution permission or prohibition in the live Steam description.
+Source headers contain a 2023 copyright notice, not a permission grant. No original source
+repository was identified. The repository's `_tools/LICENCE-AUDIT.md` records the checked sources.
 
-This is the usual convention for ports on the RimWorld Workshop: republished with **credit by
-name** and **removal on request, without argument**. The `<author>` field reads
-`Keshash - 1.6 port: nelim`, and the removal clause is in the description.
+The prior claim that the source was dead because it declared only 1.4 was not justified:
+the author answered a compatibility question in November 2024. Absence of a licence does
+not establish permission to redistribute. MIT covers only the port's additions.
+The public status is a distribution choice; attribution and removal on request are the port
+maintainer's policy, not permission from the original author.
 
 Keshash shipped `Source/`, so nothing here was decompiled.
 

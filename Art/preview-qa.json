@@ -1,0 +1,105 @@
+{
+  "dimensions": [
+    896,
+    504
+  ],
+  "bytes": 653861,
+  "fonts": {
+    "h1 .main": [
+      {
+        "familyName": "Segoe UI Semibold",
+        "postScriptName": "SegoeUI-Semibold",
+        "isCustomFont": false,
+        "glyphCount": 22
+      }
+    ],
+    "h1 .suffix": [
+      {
+        "familyName": "Segoe UI Semibold",
+        "postScriptName": "SegoeUI-Semibold",
+        "isCustomFont": false,
+        "glyphCount": 5
+      }
+    ],
+    ".tag": [
+      {
+        "familyName": "Segoe UI",
+        "postScriptName": "SegoeUI",
+        "isCustomFont": false,
+        "glyphCount": 12
+      }
+    ],
+    "p": [
+      {
+        "familyName": "Segoe UI",
+        "postScriptName": "SegoeUI",
+        "isCustomFont": false,
+        "glyphCount": 106
+      }
+    ],
+    ".version": [
+      {
+        "familyName": "Segoe UI",
+        "postScriptName": "SegoeUI-Bold",
+        "isCustomFont": false,
+        "glyphCount": 3
+      }
+    ]
+  },
+  "boxes": {
+    "h1 .main": [
+      {
+        "x": 50,
+        "y": 49,
+        "width": 385.9375,
+        "height": 51
+      },
+      {
+        "x": 50,
+        "y": 90.796875,
+        "width": 336.40625,
+        "height": 51
+      }
+    ],
+    "h1 .suffix": [
+      {
+        "x": 396.859375,
+        "y": 104.796875,
+        "width": 74.078125,
+        "height": 33
+      }
+    ],
+    ".tag": [
+      {
+        "x": 50,
+        "y": 145.59375,
+        "width": 430,
+        "height": 26.390625
+      }
+    ],
+    "p": [
+      {
+        "x": 50,
+        "y": 210.984375,
+        "width": 430,
+        "height": 91.3125
+      }
+    ],
+    ".version": [
+      {
+        "x": 846.7371826171875,
+        "y": 4.737185001373291,
+        "width": 44.525634765625,
+        "height": 44.52562713623047
+      }
+    ]
+  },
+  "minimumContrastAcrossTextRectangles": {
+    "h1 .main": 10.916,
+    "h1 .suffix": 8.304,
+    ".tag": 8.005,
+    "p": 6.138,
+    ".version": 9.783
+  },
+  "version": "1.6"
+}

@@ -1,15 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ModMetaData>
-  <name>Extinguish Refuelables Compatibility Patch Renew</name>
+  <name>Extinguish Refuelables Compatibility Patch Renew (unofficial)</name>
   <author>Keshash - 1.6 port: nelim</author>
   <packageId>nelim.extinguishrefuelablescompatibilitypatchrenew</packageId>
   <supportedVersions>
     <li>1.6</li>
   </supportedVersions>
   <url>https://github.com/vbardales/Rimworld-Extinguish-Refuelables-Compatibility-Patch-Renew</url>
-  <description>A 1.6 port of Keshash's Extinguish Refuelables Compatibilty Patch. I am not the author of this mod; the work here is what it took to make it run on 1.6, and to repair what the port turned up.
+  <description>UNOFFICIAL. This mod is published without the original author's explicit consent. If the original author contacts me to request its removal, I undertake to take it down promptly.
+
+A 1.6 port of Keshash's Extinguish Refuelables Compatibilty Patch. I am not the author of this mod; the work here is what it took to make it run on 1.6, and to repair what the port turned up.
 
 Extinguish Refuelables gives a torch or a campfire an on/off switch, so a colony can put one out instead of letting it burn wood all night. Extinguish Refuelables Continued covers the base game, Vanilla Furniture Expanded, Medieval Lighting and Heat and Smoked meat. This adds the buildings it does not reach, with no def in common between the two.
+
+Source code and issue reports: https://github.com/vbardales/Rimworld-Extinguish-Refuelables-Compatibility-Patch-Renew
 
 WHAT IT COVERS
 

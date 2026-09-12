@@ -1,73 +1,109 @@
 ---
-mod:          Extinguish Refuelables Compatibility Patch Renew
+mod:          Extinguish Refuelables Compatibility Patch Renew (unofficial)
 packageId:    nelim.extinguishrefuelablescompatibilitypatchrenew
 repo:         Rimworld-Extinguish-Refuelables-Compatibility-Patch-Renew
+remote:       https://github.com/vbardales/Rimworld-Extinguish-Refuelables-Compatibility-Patch-Renew.git
 visibility:   public
+mod_visibility: public, not published to Workshop
+repository_visibility: public
+local_path:   C:\Users\nelim\Documents\rimworld\ExtinguishRefuelablesCompatibilityPatchRenew
 detached:     yes
-stage:        done
+maintainer:   Codex, current task responsible for this repository and STATUS.md
+stage:        verification
 licence:      silent
-licence_at:   none, looked for at the four places it could have been, see ATTRIBUTION.md
+licence_at:   _tools/LICENCE-AUDIT.md; original local files and live Steam description checked 2026-09-13
+port_licence: MIT, additions only
 dependencies: declared
-showcase:     complete
+showcase:     complete, recomposed and visually verified 2026-09-13
 tested_on:
 workshop:
+automated_tests: passed, XML contract fixtures across 16 target-mod/DLC combinations
+build:        passed, Release net48, 0 warnings and 0 errors
 remaining:
-  - unverified: the seventeen scenarios in _tools/FUNCTIONAL-SCENARIOS.md, none played, scenario 0
-    included. This mod has never run in a game, and nothing in it can be seen from outside one: a
-    patch operation that misses its target is silent by construction.
-  - feature: the showcase is engraved in black, from before the 2026-09-12 instruction on the veil
-    taking a colour from the image
+  - unverified: manual scenarios 0-16 have no recorded in-game execution
+  - unverified: current upstream definitions, runtime type resolution and C# rendering/ticks in game
 session:      local_52a44608-2383-4e78-b72e-789405b47e80
-updated:      2026-09-12, automatic sweep, the mod's session, English, then the dependencies field
+updated:      2026-09-13, Preview overlay recomposition and visual verification by Codex
 ---
 
-# Extinguish Refuelables Compatibility Patch Renew — status
+# Repository identity and maintenance
 
-A status sheet, read by a pass over every mod rather than by asking each thread in turn. It lives
-at the root and never in `Mod/`, so Steam does not receive it.
+This task manages only the local repository at `local_path`, including keeping this status
+current after changes and verification. `git rev-parse --show-toplevel` resolves to this folder;
+its `.git` is a directory, and `--show-superproject-working-tree` returns nothing. This is an
+independent local repository, not a monorepo subdirectory or a submodule.
+The session field is the historical session group identifier, not an asserted current task ID.
 
-The fields above were deduced from disk on 2026-09-12. Four could not be and waited for the
-session that holds this mod; they are filled in here, and a fourth is corrected:
+GitHub's public REST API confirmed `private: false` and `visibility: public` on 2026-09-13.
+The mod's documented distribution status is public; Workshop publication is not recorded and
+there is no `Mod/About/PublishedFileId.txt`. Public repository visibility is separate from licence.
 
-- **`stage`** — `done` confirmed. The port is made and documented, the build passes without a
-  warning, and the assembly committed under `Mod/Assemblies/` has exactly the fingerprint a clean
-  build produces. What is left is not development, it is verification in game.
-- **`tested_on`** — left empty, and that is the fact rather than an omission: nobody has ever seen
-  this mod run in a game. Not even scenario 0, which asks only that the game start and the patches
-  take.
-- **`remaining`** — the catch-all line becomes two. The first says the same thing with a number on
-  it, now that `_tools/FUNCTIONAL-SCENARIOS.md` is there to count. The second is a debt rather than
-  a defect: the showcase was engraved on the 11th, the day before the veil was told to take a
-  colour from the image. It stays black until the mod next passes through the Workshop, but the
-  sheet should say so rather than show a showcase marked complete with nothing qualifying it.
-- **`visibility`** — corrected from private to public. The GitHub repository is public, asked of
-  GitHub rather than deduced from disk.
+# Mod licence and title
 
-`licence` reads `silent`: the original mod declares a licence nowhere, checked at the four places
-it could have — no `LICENSE` file, nothing in its `About.xml`, no linked repository since it has
-no `<url>` at all, nothing in the body of its Steam description — and it stopped at 1.4. What the
-port added is MIT. The detail is in `ATTRIBUTION.md`.
+**Classification: `silent` — no explicit original licence found.** Verified on 2026-09-13
+against the installed original's full file inventory, source notices and About.xml, and the
+original Workshop description fetched directly from Steam. No original repository is linked,
+and targeted web searches did not identify one. Evidence and limits are recorded in
+[`_tools/LICENCE-AUDIT.md`](_tools/LICENCE-AUDIT.md).
 
-`dependencies` reads `declared`, and the word was checked rather than assumed. The one mod this
-cannot run without is Extinguish Refuelables Continued, which supplies two of the three comp
-classes the patches inject, and it is named in `modDependencies`. The three target mods sit in
-`loadAfter` and deliberately nowhere else: every operation is guarded by `PatchOperationFindMod`,
-so the mod does nothing and errors at nothing when they are absent, and what it injects into their
-defs comes either from Extinguish Refuelables or from this mod's own assembly. The other values
-are `to check`, when a non-vanilla `loadAfter` suggests a dependency that is not declared, and
-`none`, when the mod needs nothing. An undeclared dependency is not cosmetic: on 2026-09-11
-Reequilibrage animaux took 47 vanilla animals down with it, Muffalo included, because the class it
-injects belongs to a mod that was not declared and not loaded.
+No written refusal was found (`forbidden`), no explicit original licence was found (`open`),
+and this continuation is not `original`. Both identical LICENSE files scope MIT to the port's
+additions only. No explicit permission to redistribute the original has been established.
+Public visibility and removal on request do not supply that permission.
 
-`workshop` stays empty: nothing has ever been published under this name, and the mod carries no
-`About/PublishedFileId.txt`. Keshash's own was dropped in the port, since it names their item.
+Correction: the 1.4 tag does not establish abandonment. The author replied about compatibility
+in November 2024; current maintenance status is uncertain. `silent` here records licence silence;
+if the catalogue also requires proven abandonment, that prerequisite remains unverified.
 
-The `remaining` categories: `feature` for something missing from the first cut, `defect` for a
-known fault left unfixed, `unverified` for what could not be checked.
+Keep the existing **`(unofficial)`** suffix: it identifies the continuation without explicit
+author consent. It is present in About.xml and README. The GitHub link is now present in both
+About.xml's `url` field and the actual description text.
 
-The `session` field is untouched: it comes from the sweep and names the session group, not this
-conversation.
+# Verification
 
-`licence` vocabulary: `open` an explicit licence, `silent` no licence and a dead source,
-`alive` no licence but a living source, `forbidden` a written refusal, `original` owing nothing
-to anyone — not a name, not an idea traceable to one mod, not a value derived from its assets.
+- Manual: `_tools/FUNCTIONAL-SCENARIOS.md` contains 17 scenarios (0-16), with actions,
+  expected outcomes and failure clues. None has a recorded game run. `tested_on` remains empty.
+- Automated XML: `pwsh -NoProfile -File _tools/Test-Xml.ps1` passed on 2026-09-13.
+  Tests apply the supported patch operations using .NET XPath to independent contract fixtures,
+  across all 8 target-mod combinations with and without Ideology. They check all 13 targets,
+  single switches, comp order, overlay replacements, preserved size/offset and existing comps,
+  untouched unrelated definitions, mod guards, DLC guards and core metadata.
+- Build: `dotnet build -c Release Source/ExtinguishRefuelablesPatch.csproj --no-restore`
+  passed on 2026-09-13 with 0 warnings and 0 errors.
+- Limits: the XML harness models only operations used here; it does not execute RimWorld's
+  loader or read current upstream definitions. There is no automated C# runtime suite;
+  compilation checks API compatibility, while rendering, switch/fuel behaviour, ticking and
+  save compatibility still require the manual game scenarios. Do not mark these passed from
+  the XML results. A full runtime test harness remains absent.
+
+The required Continued dependency is declared. The three target mods remain optional and are
+listed in loadAfter, with each patch guarded by mod name. No additional dependency was introduced.
+
+# Preview recomposition — 2026-09-13
+
+- Final: `Mod/About/Preview.png`, 896 × 504, 653,861 bytes (under 900 KB).
+- Illustration retained without regeneration. `Art/Preview.png` is a byte-identical copy of
+  `Art/Preview-source.png`; the full-resolution original remains preserved at that path.
+  No text has been added to either source. Top-aligned cover framing keeps both braziers below
+  the text and readable. No publication was performed.
+- Composition and parameters: `Art/preview.html`; sole colour reference:
+  `Art/preview-palette.json`. Reproduce with `node Art/render-preview.cjs` using the bundled
+  Playwright/Sharp dependencies and installed Chrome. Version is read from the shipped About.xml.
+- Palette rationale: the broad cool stone slabs provide the slate veil and the blue-grey
+  material family used for the light blue secondary ink. The orange flame and its warm pool
+  supply the accent; its warm saturated orange separates clearly from the cool blue tag.
+  The dominant material family is retained rather than averaging stone and fire together.
+- Exact name and summary preserved, with Renew at 65% and `(unofficial)` on its own line.
+  Title 38 px fits two lines; text block starts at (50,54). Summary remains 21 px / 430 px.
+  The dark coloured radial veil holds behind the text and fades vertically below it to preserve
+  the flame. Standard dark-veil text shadow retained. Badge uses declared stable version 1.6.
+- Actual rendered fonts verified through Chrome DevTools after `document.fonts.ready`:
+  Segoe UI Semibold for title, Segoe UI regular for tag/summary, Segoe UI Bold for badge.
+  No fallback. Report: `Art/preview-qa.json`.
+- Contrast checked against every pixel in the text rectangles of the rendered background-only
+  image (`Art/preview-background.png`), without relying on text shadows: title 10.916:1,
+  Renew 8.304:1, tag 8.005:1, summary 6.138:1; badge ink on its opaque accent 9.783:1.
+  All exceed 4.5:1. Bounds checked within the frame.
+- Visually inspected at 896 × 504 and in `Art/preview-268.png`: no clipping or overlap,
+  both subjects clear, title/Renew/version identifiable, rule visible, secondary/accent distinct.
+  The summary is intended for the full-size view, as specified by the style guide.

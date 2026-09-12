@@ -1,0 +1,35 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><title>Mod Preview</title>
+<style>
+* { box-sizing: border-box; }
+html,body,h1,p { margin:0; padding:0; }
+body { width:896px; height:504px; overflow:hidden; font-family:"Segoe UI",system-ui,sans-serif; }
+.frame { position:relative; width:896px; height:504px; background:url(Preview.png) center top/cover no-repeat; }
+.veil { position:absolute; inset:0; mask-image:linear-gradient(to bottom, black 60%, transparent 82%); background:radial-gradient(ellipse 850px 640px at top left, rgb(var(--veil-rgb) / .96) 0%, rgb(var(--veil-rgb) / .90) 42%, rgb(var(--veil-rgb) / 0) 100%); }
+.text { position:absolute; left:50px; top:54px; color:var(--inkPrimary); text-shadow:0 3px 10px rgba(0,0,0,.75); }
+h1 { font-size:38px; font-weight:600; line-height:1.1; letter-spacing:0; white-space:nowrap; }
+.suffix { font-size:.65em; color:var(--inkSecondary); }
+.tag { margin-top:8px; font-size:24px; font-weight:400; line-height:1.1; letter-spacing:.2px; color:var(--inkSecondary); }
+.rule { width:58px; height:3px; background:var(--accent); margin:20px 0 16px; }
+p { width:430px; font-size:21px; font-weight:400; line-height:1.45; color:var(--inkPrimary); }
+.badge { position:absolute; right:0; top:0; width:80px; height:80px; background:var(--accent); clip-path:polygon(0 0,100% 0,100% 100%); }
+.version { position:absolute; left:869px; top:27px; transform:translate(-50%,-50%) rotate(45deg); color:var(--badgeInk); font-size:26px; font-weight:700; line-height:1; }
+.background-only .text,.background-only .version { visibility:hidden; }
+</style></head><body><div class="frame"><div class="veil"></div>
+<div class="text"><h1><span class="main">Extinguish Refuelables</span><br><span class="main">Compatibility Patch</span> <span class="suffix">Renew</span></h1>
+<div class="tag">(unofficial)</div><div class="rule"></div>
+<p>Puts out Medieval Overhaul's and Vanilla Expanded's fires, the way Extinguish Refuelables puts out the rest.</p></div>
+<div class="badge"></div><div class="version"></div></div>
+<script>
+window.ready = (async () => {
+ const palette = await (await fetch('preview-palette.json')).json();
+ for (const [key,value] of Object.entries(palette)) document.documentElement.style.setProperty('--'+key,value);
+ document.documentElement.style.setProperty('--veil-rgb',palette.veil.match(/\w\w/g).map(v=>parseInt(v,16)).join(' '));
+ const about = new DOMParser().parseFromString(await (await fetch('../Mod/About/About.xml')).text(),'application/xml');
+ const versions = [...about.querySelectorAll('supportedVersions > li')].map(e=>e.textContent.trim()).filter(v=>/^\d+\.\d+$/.test(v));
+ versions.sort((a,b)=>{const x=a.split('.').map(Number),y=b.split('.').map(Number);return x[0]-y[0] || x[1]-y[1]});
+ if (!versions.length) throw Error('No declared stable version');
+ document.querySelector('.version').textContent=versions.at(-1);
+ await document.fonts.ready;
+})();
+</script></body></html>
