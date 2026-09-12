@@ -1,9 +1,10 @@
 # Functional scenarios, to be played in game
 
-This mod is thirteen XML operations and one comp class. Almost nothing in it can be seen from
-outside the game: a patch that does not apply is silent by construction, and the one behaviour the
-C# adds is a flame that is drawn or not drawn. So these scenarios carry the verification, and each
-one is written with a single thing to watch and a single way of being wrong.
+This mod is seven XML operations over thirteen buildings, and one comp class. Almost nothing in
+it can be seen from outside the game: a patch that does not apply is silent by construction, and
+the one behaviour the C# adds is a flame that is drawn or not drawn. So these scenarios carry the
+verification, and each one is written with a single thing to watch and a single way of being
+wrong.
 
 **The mod has never been run in a game.** Until scenario 0 passes, nothing below is worth playing.
 
@@ -73,7 +74,7 @@ not buildings of their own.
 **Watch for in `Player.log`.** Four lines, each meaning a different failure:
 
 - `Patch operation ... failed`, in a line that opens with this mod's name in square brackets. One
-  of the thirteen operations did not match. The line names which, and the file it came from. This
+  of the seven operations did not match. The line names which, and the file it came from. This
   is what splitting the operations apart was for: in the original they were one sequence per target
   mod, and the first failure swallowed every operation after it without a word.
 - `Could not find type named ExtinguishRefuelables.CompProperties_FireOverlayExtinguishable`, or
@@ -232,7 +233,7 @@ few minutes.
 **Expect.** Not one line from this mod in the log, and no visible effect anywhere.
 
 **Why it matters.** `PatchOperationFindMod` reports success when the mod it names is absent, so all
-thirteen operations should cost a player with none of the three exactly nothing. That is the claim
+seven operations should cost a player with none of the three exactly nothing. That is the claim
 on the mod page, and it is the claim most likely to be quietly false.
 
 ## 12. One target mod at a time
