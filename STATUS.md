@@ -26,7 +26,7 @@ updated:      2026-09-12, automatic sweep, the mod's session, English, then the 
 A status sheet, read by a pass over every mod rather than by asking each thread in turn. It lives
 at the root and never in `Mod/`, so Steam does not receive it.
 
-The fields above were deduced from disk on 2026-09-12. Three could not be and waited for the
+The fields above were deduced from disk on 2026-09-12. Four could not be and waited for the
 session that holds this mod; they are filled in here, and a fourth is corrected:
 
 - **`stage`** — `done` confirmed. The port is made and documented, the build passes without a
