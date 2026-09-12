@@ -1,4 +1,7 @@
 ---
+localization: checked, no mod-owned in-game strings
+translation_en: checked, English metadata; in-game text inherited
+translation_fr: not applicable, no mod-owned in-game strings
 mod:          Extinguish Refuelables Compatibility Patch Renew (unofficial)
 packageId:    nelim.extinguishrefuelablescompatibilitypatchrenew
 repo:         Rimworld-Extinguish-Refuelables-Compatibility-Patch-Renew
@@ -9,7 +12,7 @@ repository_visibility: public
 local_path:   C:\Users\nelim\Documents\rimworld\ExtinguishRefuelablesCompatibilityPatchRenew
 detached:     yes
 maintainer:   Codex, current task responsible for this repository and STATUS.md
-stage:        verification
+stage:        done
 licence:      silent
 licence_at:   _tools/LICENCE-AUDIT.md; original local files and live Steam description checked 2026-09-13
 port_licence: MIT, additions only
@@ -17,13 +20,12 @@ dependencies: declared
 showcase:     complete, recomposed and visually verified 2026-09-13
 tested_on:
 workshop:
-automated_tests: passed, XML contract fixtures across 16 target-mod/DLC combinations
+automated_tests: passed, 16 XML combinations, installed 1.6 targets and DLL types, 72 C# cases
 build:        passed, Release net48, 0 warnings and 0 errors
 remaining:
-  - unverified: manual scenarios 0-16 have no recorded in-game execution
-  - unverified: current upstream definitions, runtime type resolution and C# rendering/ticks in game
+  - non_blocking: manual scenarios 0-16 not executed, explicitly excluded by user
 session:      local_52a44608-2383-4e78-b72e-789405b47e80
-updated:      2026-09-13, Preview overlay recomposition and visual verification by Codex
+updated:      2026-09-13, offline verification complete; in-game tests non-blocking by user instruction
 ---
 
 # Repository identity and maintenance
@@ -70,11 +72,22 @@ About.xml's `url` field and the actual description text.
   untouched unrelated definitions, mod guards, DLC guards and core metadata.
 - Build: `dotnet build -c Release Source/ExtinguishRefuelablesPatch.csproj --no-restore`
   passed on 2026-09-13 with 0 warnings and 0 errors.
-- Limits: the XML harness models only operations used here; it does not execute RimWorld's
-  loader or read current upstream definitions. There is no automated C# runtime suite;
-  compilation checks API compatibility, while rendering, switch/fuel behaviour, ticking and
-  save compatibility still require the manual game scenarios. Do not mark these passed from
-  the XML results. A full runtime test harness remains absent.
+- Installed mods: `_tools/Test-InstalledMods.ps1` passed against local Steam 1.6 definitions
+  on 2026-09-13, with 12 targets without Ideology and 13 with it. Exact mod-name guards,
+  original overlay classes, single added switches and preservation of existing comp data pass.
+  All three replacement types exist in the shipped DLL metadata. No target name overlaps
+  Continued's installed patch XML.
+- C#: `_tools/Test-Behaviour.ps1` compiles the actual production source with minimal test
+  doubles and passes 72 fuel/switch/rotation/spawn cases, including absent comps, north-only
+  rendering, the height offset, delayed growth start and preservation of an existing timer.
+- Release rebuild: 0 warnings, 0 errors; shipped DLL hash unchanged after rebuild.
+- Packaging: `Mod/` contains only metadata, two images, three XML patches, the mod DLL,
+  licence and attribution. Test harnesses, source and game assemblies are not packaged.
+- Limits: these are offline checks against installed copies, not a fresh Workshop download.
+  Raw upstream defs are inspected before other mods' patches and full XML inheritance.
+  DLL metadata checks prove type presence; Unity loading, actual rendering and save behaviour
+  are not executed. Test doubles exercise this mod's logic, not the engine implementations.
+  Manual scenarios remain unplayed and explicitly non-blocking by user instruction.
 
 The required Continued dependency is declared. The three target mods remain optional and are
 listed in loadAfter, with each patch guarded by mod name. No additional dependency was introduced.
@@ -107,3 +120,21 @@ listed in loadAfter, with each patch guarded by mod name. No additional dependen
 - Visually inspected at 896 × 504 and in `Art/preview-268.png`: no clipping or overlap,
   both subjects clear, title/Renew/version identifiable, rule visible, secondary/accent distinct.
   The summary is intended for the full-size view, as specified by the style guide.
+
+# Completion and localization
+
+`stage: done` records completion of implementation, documentation, packaging and all scoped
+out-of-game checks. The user explicitly excluded in-game testing and confirmed that it does
+not block stages. `tested_on` remains empty rather than claiming a game session.
+Workshop publication has not been performed.
+
+Installed source IDs checked: Medieval Overhaul 3219596926, Classical 2787850474,
+Medieval 2 3444347874, Continued 3772905265. Scripts accept a different Workshop root.
+Run the three PowerShell test scripts in separate fresh `pwsh -NoProfile -File` processes;
+the C# harness defines test-only RimWorld/Verse/Unity names within its own process.
+
+Localization audit: the three patches add/replace comps only; they define no labels,
+descriptions or translation keys. The C# class emits no user-visible strings or custom gizmos.
+English and French in-game labels and switches are inherited from RimWorld and the target mods,
+whose translation coverage remains their responsibility. About.xml and the Preview use English
+as required for this public mod. No mod-owned French translation file is needed.

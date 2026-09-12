@@ -173,8 +173,8 @@ uploads, and it uploads it whole.
 game, one thing to watch each, and what the failure looks like in `Player.log`. Run `pwsh -NoProfile -File _tools/Test-Xml.ps1` for metadata and XML contract tests across
 16 combinations of target mods and Ideology. The fixtures check switches, overlay replacement,
 property preservation and guards; they are not current upstream definitions or RimWorld's loader.
-The Release build checks C# compilation. Rendering, ticks and save behaviour still need the
-manual scenarios, which have no recorded game execution.
+Run `pwsh -NoProfile -File _tools/Test-InstalledMods.ps1` to check the installed 1.6 target defs and DLL type names, and `pwsh -NoProfile -File _tools/Test-Behaviour.ps1` for 72 C# cases against test doubles. Run each script in a fresh process. The Release build checks C# API compatibility. Actual engine rendering and save behaviour remain covered by the
+manual scenarios, which have no recorded game execution and are non-blocking by maintainer decision.
 
 ## Licence and credit
 

@@ -6,7 +6,7 @@ the one behaviour the C# adds is a flame that is drawn or not drawn. So these sc
 verification, and each one is written with a single thing to watch and a single way of being
 wrong.
 
-**The mod has never been run in a game.** Until scenario 0 passes, nothing below is worth playing.
+**No game run is recorded.** These manual scenarios are non-blocking by maintainer decision. When executing them, start with scenario 0 before proceeding to the remaining scenarios.
 
 ## Setup for everything here
 
@@ -186,7 +186,7 @@ building instead of in its firebox, means that inheritance is not doing its work
 
 ## 8. The growth timer starts when the fire is lit, not when it is fuelled
 
-**Do.** Build a wood burning stove facing north. Fill its fuel. Leave it **switched off** for a
+**Do.** Use an isolated test copy of the mod/defs with `fireGrowthDurationTicks` set to 600 on the stove overlay; the shipped target defs do not enable visible growth. Build a wood burning stove facing north. Fill its fuel. Leave it **switched off** for a
 full game day. Then switch it on and watch the first minute.
 
 **Expect.** The flame starts small and grows.
@@ -196,9 +196,7 @@ Overhaul starts the growth timer on fuel alone, so a hearth left switched off ov
 already at full size. A full-size flame the instant you switch on is the old behaviour, and means
 the tick guard is never reached.
 
-**Fair warning.** Neither of these two defs sets a growth duration, so the effect may be too quick
-to see. If it is, this scenario proves nothing either way. Record that rather than marking it
-passed.
+**Without that test-only growth duration, record this scenario as not applicable, not passed.** Restore the normal mod list after testing.
 
 ---
 
