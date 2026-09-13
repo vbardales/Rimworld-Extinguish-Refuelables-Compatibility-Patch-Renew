@@ -1,7 +1,7 @@
 ---
-localization: checked, no mod-owned in-game strings
-translation_en: checked, English metadata; in-game text inherited
-translation_fr: not applicable, no mod-owned in-game strings
+localization: not_applicable
+translation_en: not_applicable
+translation_fr: not_applicable
 mod:          Extinguish Refuelables Compatibility Patch Renew (unofficial)
 packageId:    nelim.extinguishrefuelablescompatibilitypatchrenew
 repo:         Rimworld-Extinguish-Refuelables-Compatibility-Patch-Renew
@@ -24,8 +24,9 @@ automated_tests: passed, 16 XML combinations, installed 1.6 targets and DLL type
 build:        passed, Release net48, 0 warnings and 0 errors
 remaining:
   - non_blocking: manual scenarios 0-16 not executed, explicitly excluded by user
+  - unverified: English and French in-game display of inherited building text and switches; not executed, non-blocking under the existing user exclusion of in-game tests
 session:      local_52a44608-2383-4e78-b72e-789405b47e80
-updated:      2026-09-13, offline verification complete; in-game tests non-blocking by user instruction
+updated:      2026-09-13, translation gate audited under PUBLISHING.md and TRANSLATIONS.md; in-game tests remain unverified and non-blocking
 ---
 
 # Repository identity and maintenance
@@ -133,8 +134,35 @@ Medieval 2 3444347874, Continued 3772905265. Scripts accept a different Workshop
 Run the three PowerShell test scripts in separate fresh `pwsh -NoProfile -File` processes;
 the C# harness defines test-only RimWorld/Verse/Unity names within its own process.
 
-Localization audit: the three patches add/replace comps only; they define no labels,
-descriptions or translation keys. The C# class emits no user-visible strings or custom gizmos.
-English and French in-game labels and switches are inherited from RimWorld and the target mods,
-whose translation coverage remains their responsibility. About.xml and the Preview use English
-as required for this public mod. No mod-owned French translation file is needed.
+## Translation audit — 2026-09-13
+
+Applied the translation gate in the parent workspace's `PUBLISHING.md` and
+`TRANSLATIONS.md`. All three fields use the protocol's `not_applicable` value because
+the inventory below found no text added or changed by this mod. This replaces the previous
+free-form `checked` values; it does not certify dependency translations or in-game display.
+
+Inventory and evidence:
+
+- Enumerated published content and source with `rg --files Mod Source`, then read the
+  complete production C# file and all three patch XML files. There are no `LoadFolders.xml`,
+  version folders, owned Defs, language resources or additional UI source files.
+- `Source/CompFireOverlaySouthExtinguishable.cs` implements flame rendering, fuel/switch
+  conditions and the growth timer only. It adds no settings, gizmos, inspect strings,
+  messages, generated text or translation calls, including through helper methods.
+- `Mod/Patches/MedievalOverhaul.xml`, `VanillaFactionsExpandedClassical.xml` and
+  `VanillaFactionsExpandedMedieval2.xml` add empty `CompProperties_Flickable` entries and
+  replace overlay class attributes. All optional mod branches and the Ideology branch
+  were inspected: none adds or overrides labels, descriptions or other text fields.
+- The switch UI comes from the existing game comp; building text remains owned by the
+  target mods. No dependency translation key is explicitly referenced or newly supplied
+  by this mod. Their full English/French coverage was not audited here.
+- There are zero owned Keyed keys, DefInjected paths, parameters or grammar resources to
+  validate. `Check-DefInjected.ps1` is not applicable. Empty language folders and duplicate
+  translations of upstream text are unnecessary.
+- About.xml, preview text, licences, attribution and repository documentation are English
+  metadata/documentation, excluded from the in-game translation gate by the protocol.
+
+The static translation gate is satisfied. English/French runtime display has not been
+checked and is tracked separately in `remaining`; the existing exclusion of in-game tests
+is preserved. Repeat this inventory after changes to UI code, Defs, patches or text resources,
+resetting affected fields to `unchecked` until the audit is complete.
