@@ -13,8 +13,6 @@ A 1.6 port of Keshash's Extinguish Refuelables Compatibilty Patch. I am not the 
 
 Extinguish Refuelables gives a torch or a campfire an on/off switch, so a colony can put one out instead of letting it burn wood all night. Extinguish Refuelables Continued covers the base game, Vanilla Furniture Expanded, Medieval Lighting and Heat and Smoked meat. This adds the buildings it does not reach, with no def in common between the two.
 
-Source code and issue reports: https://github.com/vbardales/Rimworld-Extinguish-Refuelables-Compatibility-Patch-Renew
-
 WHAT IT COVERS
 
 Medieval Overhaul: the 1x1 and 2x2 braziers, plain candles, beeswax candles, the candle stand, the lamp post, the wall lamp, the wall torch, the wood burning stove and the rustic hearth.
@@ -45,7 +43,9 @@ This port was done with Claude Code (Anthropic) under human direction, review an
 
 THANKS
 
-Keshash, who wrote the original patch. Mali for Extinguish Refuelables and Blacktriple for continuing it. SirLalaPyon for Medieval Overhaul, Oskar Potocki and the Vanilla Expanded team for Classical and Medieval 2.</description>
+Keshash, who wrote the original patch. Mali for Extinguish Refuelables and Blacktriple for continuing it. SirLalaPyon for Medieval Overhaul, Oskar Potocki and the Vanilla Expanded team for Classical and Medieval 2.
+
+[url=https://github.com/vbardales/Rimworld-Extinguish-Refuelables-Compatibility-Patch-Renew]Source code on GitHub[/url]</description>
   <modDependencies>
     <li>
       <packageId>blacktriple.extinguishrefuelablescontinued</packageId>
