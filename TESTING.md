@@ -10,7 +10,7 @@ a game yet: every in-game line below is `unverified`, not a pass.
 | XML contracts | `_tools/Test-Xml.ps1` | offline | Every patch operation against contract fixtures, 16 target-mod and DLC combinations, guards, comp order, preserved size and offset. |
 | Installed defs | `_tools/Test-InstalledMods.ps1` | offline | The same against the raw defs of the installed target mods. **Needs Medieval Overhaul in the Steam workshop folder, which it is not at the moment**, so its ten targets are unverified since 2026-09-28. |
 | C# behaviour | `_tools/Test-Behaviour.ps1` | offline | The one comp class, compiled from the real source against test doubles: 72 cases, fuel and switch, all four rotations, the height nudge, the growth timer. |
-| Pickle | `Tests/Pickle/` | in game | The patches in the real def database, the drawn flame, save and reload. See `Tests/Pickle/README.md`. |
+| Pickle | `Tests/Pickle/` | in game | The patches in the real def database, one switch on each of the 13 buildings, the swapped overlay class, the drawn flame in four facings, save and reload. A local step DLL (`Tests/Pickle/Source`, built 2026-09-28, compiles against the Pickle reference package) supplies the switch, overlay and rotation steps. See `Tests/Pickle/README.md`. |
 
 ## Passes a full validation needs
 
@@ -34,12 +34,12 @@ manual check to tick: each is automated and green, or listed here as not applica
 | # | Scenario | Disposition |
 |---|---|---|
 | 0 | It loads and the patches take | Pickle 01, first scenario, in passes 1 and 2. |
-| 1 | Every building gets a switch | Pickle 01 for the defs (patched by this mod); Pickle 02 for the gizmo on one building. The other twelve gizmos are **not** asserted one by one. |
+| 1 | Every building gets a switch | Pickle 03: all thirteen spawned, each read for exactly one `CompFlickable`, plus the swapped overlay class on the fire defs. No gizmo label is assumed. Pickle 02 clicks the real gizmo on one brazier. |
 | 2 | The switch stops fuel, light and heat | Not applicable: vanilla's own comps read `CompFlickable`. Not this mod's code. |
-| 3 | The flame graphic goes out | Pickle 02 `@review` on the brazier only. The torch and the Medieval 2 hearth are **open**. |
+| 3 | The flame graphic goes out | Pickle 02 (brazier) and Pickle 04 (stove and hearth) `@review`, each captured lit then switched off. The torch and the Medieval 2 hearth captures are **open**. |
 | 4 | Heat stones, switch and no flame | Pickle 01 (patched). No capture: there is no flame to see. |
-| 5 | North-only rule | **Open in game.** Covered offline by 72 cases. Needs a local C# step to rotate a spawned building. |
-| 6 | The switch still works on them | **Open in game**, same reason as 5. |
+| 5 | North-only rule | Pickle 04: four facings each of stove and hearth, `@review` captures, facing asserted. The flame itself is judged by eye, so it stays open until the images are opened. Covered offline by 72 cases. |
+| 6 | The switch still works on them | Pickle 04: each facing is switched off and captured, and the switch state is read back. Same `@review` limit as 5. |
 | 7 | Def flame size and offset still apply | **Open**: a comparison of two captures by eye, `@review` at best. |
 | 8 | Growth timer starts when lit | Not applicable: no shipped def sets `fireGrowthDurationTicks`. Offline cases cover it. |
 | 9 | Darklight hearth with Ideology | Pickle 01 (patched, pass 2). |

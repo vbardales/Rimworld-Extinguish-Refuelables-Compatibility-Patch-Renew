@@ -22,14 +22,14 @@ showcase:     complete, recomposed and visually verified 2026-09-13
 tested_on:
 workshop:     3806767177 (private, created 2026-09-23 by the 0.1.0 prepublication)
 automated_tests: Test-Xml passed 2026-09-28 (16 combinations); Test-Behaviour passed 2026-09-28 (72 cases); Test-InstalledMods NOT completed 2026-09-28, Medieval Overhaul no longer installed locally
-pickle_suite: written 2026-09-28 (Tests/Pickle, 2 features, 3 passes), never run
+pickle_suite: written 2026-09-28 (Tests/Pickle, 4 features, local step DLL, 3 passes), never run
 build:        passed 2026-09-28, Release net48, 0 warnings and 0 errors, DLL unchanged
 remaining:
   - unverified: the Pickle suite has never run; passes sans-facultatifs, avec-facultatifs and sans-ideology are all pending, and every scenario, step label and cell in it is an unproven guess (mandatory for tested)
   - unverified: Test-InstalledMods against Medieval Overhaul, absent from the local Steam workshop folder since 2026-09-13
   - unverified: no pass yet for the declared incompatibility with Keshash.ExtinguishRefuelablesPatch (mandatory for tested)
-  - unverified: manual scenarios 5, 6, 7, 15 and 16 have no automation and no justification of non-applicability, see TESTING.md (mandatory for tested)
-  - unverified: brazier flame capture only; the torch and the Medieval 2 hearth captures are not written (mandatory for tested)
+  - unverified: manual scenarios 7, 15 and 16 have no automation and no justification of non-applicability, see TESTING.md (mandatory for tested)
+  - unverified: the torch and the Medieval 2 hearth flame captures are not written (mandatory for tested)
   - unverified: @review captures never opened, logs never read (mandatory for tested)
   - unverified: 1.0.0 needs prepublished-stage checks (PUBLICATION.md, description source, thank-you comments) before any publish
 session:      local_52a44608-2383-4e78-b72e-789405b47e80

@@ -12,14 +12,18 @@ against test doubles (72 cases, including all four rotations). What only a runni
 
 - that the patches take in the **real** def database, after every other mod's patches and the real
   load order (`01-load-and-patches.feature`);
-- that the drawn flame really goes out, which is a picture (`02-switch-in-game.feature`, `@review`);
+- that the drawn flame really goes out, which is a picture (`02-switch-in-game.feature` and `04-north-only.feature`, `@review`);
+- that every one of the thirteen buildings carries exactly one switch (`03-every-building.feature`);
 - that a switched-off building survives a save and reload.
 
 Not written, with the reason: fuel, light and heat stopping when the switch is off is vanilla's
 `CompRefuelable`, `CompGlower` and `CompHeatPusher` reading `CompFlickable`, not this mod's code
-(the game's behaviour, not the mod's). A south-, east- or west-facing stove has no built-in step to
-rotate a spawned building: the rule is covered offline by the 72 cases, and an in-game capture would
-need a local C# step, listed in `TESTING.md` as still open.
+(the game's behaviour, not the mod's).
+
+`Source/` builds the one local step DLL the suite needs (`Mod/Pickle/Assemblies`, tracked, rebuilt
+with `dotnet build -c Release Source/ExtinguishRefuelablesPatch.PickleSteps.csproj`): it reads the
+switch off a spawned building, reads the overlay class off a def, and rotates a spawned building,
+which no built-in step does. It compiles against the Pickle reference package; it has not run.
 
 ## Passes
 

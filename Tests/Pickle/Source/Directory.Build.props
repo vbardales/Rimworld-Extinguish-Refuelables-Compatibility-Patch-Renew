@@ -1,0 +1,9 @@
+<Project>
+
+  <PropertyGroup>
+    <!-- Intermediates stay out of the companion mod: the staging copies Mod/ verbatim. -->
+    <BaseIntermediateOutputPath>$(MSBuildThisFileDirectory)..\..\..\.build\obj\PickleSteps\</BaseIntermediateOutputPath>
+    <BaseOutputPath>$(MSBuildThisFileDirectory)..\..\..\.build\bin\PickleSteps\</BaseOutputPath>
+  </PropertyGroup>
+
+</Project>
