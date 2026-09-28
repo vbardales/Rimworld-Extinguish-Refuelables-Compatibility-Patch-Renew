@@ -16,6 +16,7 @@ maintainer:   Claude Code session for this repository and STATUS.md
 stage:        done
 licence:      silent
 licence_at:   _tools/LICENCE-AUDIT.md; original local files and live Steam description checked 2026-09-13
+upstream_mod_remotes: N/A (checked 2026-09-28: neither Keshash's original nor Extinguish Refuelables Continued declares a <url> in About.xml; gh search repos for both names finds nothing to fork)
 port_licence: MIT, additions only
 dependencies: declared
 showcase:     complete, recomposed and visually verified 2026-09-13
@@ -68,9 +69,8 @@ What changed since the earlier audit, and what it does to the chain:
 - **`.dds`:** none in the repository or its history to remove; `*.dds` and the evidence folders are now
   ignored. **Evidence:** none was ever committed; retention rules are in `TESTING.md`.
 
-Distance to `tested`, from `AUDIT.md`: see `remaining`. Scenarios 1, 3, 5, 6, 15 and 16 and the Keshash pass are written since, unrun; scenario 7 is not written.
-(`@requires` on the three target mods and Ideology, passes 2 and 3 not run); no manual test left to
-tick (scenarios 5, 6, 7, 15 and 16 still open, and the Keshash pass unwritten); `@review` captures opened.
+Distance to `tested`, from `AUDIT.md`: see `remaining`. Scenarios 1, 3, 5, 6, 15 and 16 and the
+Keshash pass are written since, unrun; scenario 7 is not written.
 
 # Repository identity and maintenance
 
