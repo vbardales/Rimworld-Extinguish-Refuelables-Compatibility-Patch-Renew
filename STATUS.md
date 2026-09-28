@@ -26,7 +26,7 @@ automated_tests: Test-Xml passed 2026-09-28 (16 combinations); Test-Behaviour pa
 pickle_suite: written 2026-09-28 (Tests/Pickle, 8 features, local step DLL, 5 passes), never run
 build:        passed 2026-09-28, Release net48, 0 warnings and 0 errors, DLL unchanged
 remaining:
-  - unverified: the Pickle suite has never run; passes sans-facultatifs, avec-facultatifs and sans-ideology are all pending, and every scenario, step label and cell in it is an unproven guess (mandatory for tested)
+  - unverified: the Pickle suite has never run; all 5 passes (sans-facultatifs, avec-facultatifs, retrait, sans-ideology, incompat-keshash) are pending, and every scenario, step label and cell in it is an unproven guess (mandatory for tested)
   - unverified: Test-InstalledMods against Medieval Overhaul, absent from the local Steam workshop folder since 2026-09-13
   - unverified: the Keshash incompatibility pass is written but its symptom is a prediction and the id of malistaticy.mer in its map is unconfirmed (mandatory for tested)
   - unverified: manual scenario 7 (flame size and offset) is not written: it needs Medieval Overhaul defs, absent locally (mandatory for tested)

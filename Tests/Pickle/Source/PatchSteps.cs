@@ -52,19 +52,10 @@ namespace ExtinguishRefuelablesPatch.PickleSteps
             return flickable;
         }
 
-        [Then("Extinguish Refuelables Patch: the {string} at ({int}, {int}) has an on/off switch")]
-        public void HasSwitch(PickleContext ctx, string defName, int x, int z)
-        {
-            SwitchOf(ctx, ThingAt(ctx, defName, x, z));
-        }
-
         [Then("Extinguish Refuelables Patch: the {string} at ({int}, {int}) has exactly one on/off switch")]
         public void HasOneSwitch(PickleContext ctx, string defName, int x, int z)
         {
-            Thing thing = ThingAt(ctx, defName, x, z);
-            ThingWithComps withComps = thing as ThingWithComps;
-            ctx.Assert(withComps != null, $"{defName} carries no comps at all");
-            int count = withComps.AllComps.Count(c => c is CompFlickable);
+            int count = CountSwitches(ctx, ThingAt(ctx, defName, x, z));
             ctx.Assert(count == 1, $"{defName} has {count} CompFlickable, expected exactly one");
         }
 
@@ -112,7 +103,6 @@ namespace ExtinguishRefuelablesPatch.PickleSteps
             ctx.Assert(!classes.Any(c => Unswapped.Contains(c)),
                 $"{defName} still carries an unswapped overlay; its comp properties are: {string.Join(", ", classes)}");
         }
-
 
         [Then("Extinguish Refuelables Patch: the {string} at ({int}, {int}) has {int} on/off switches")]
         public void HasSwitchCount(PickleContext ctx, string defName, int x, int z, int expected)
