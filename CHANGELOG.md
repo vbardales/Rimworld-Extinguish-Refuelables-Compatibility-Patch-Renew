@@ -6,6 +6,12 @@ All notable changes to this mod are documented here.
 
 ### Changed
 
+- `packageId` from `nelim.extinguishrefuelablescompatibilitypatchrenew` to
+  `nelim.extinguishrefuelablescompatibilitypatch`: `renew` no longer belongs in an id, the
+  `nelim.` prefix already carries the mod and the continuation lives in the displayed name, the
+  folder and the repository. The 0.1.0 upload that created the private Workshop item carried the
+  old id, so anyone who enabled that build re-enables the mod under the new one; nothing public
+  names either.
 - `packageId` from `nelim.extinguishrefuelablespatch` to
   `nelim.extinguishrefuelablescompatibilitypatchrenew`, and the mod folder renamed to match. Both
   now spell out the name the mod displays. The id had never shipped — no Workshop item, and no
@@ -54,6 +60,13 @@ First release. Port of Keshash's **Extinguish Refuelables Compatibilty Patch** t
 
 ### Changed
 
+
+- `packageId` from `nelim.extinguishrefuelablescompatibilitypatchrenew` to
+  `nelim.extinguishrefuelablescompatibilitypatch`: `renew` no longer belongs in an id, the
+  `nelim.` prefix already carries the mod and the continuation lives in the displayed name, the
+  folder and the repository. The 0.1.0 upload that created the private Workshop item carried the
+  old id, so anyone who enabled that build re-enables the mod under the new one; nothing public
+  names either.
 - `packageId` from `Keshash.ExtinguishRefuelablesPatch` to `nelim.extinguishrefuelablespatch`,
   and `Keshash.ExtinguishRefuelablesPatch` declared in `<incompatibleWith>`: both patch the same
   defs.

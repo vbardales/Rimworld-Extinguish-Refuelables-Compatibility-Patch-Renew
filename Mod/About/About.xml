@@ -2,7 +2,7 @@
 <ModMetaData>
   <name>Extinguish Refuelables Compatibility Patch Renew (unofficial)</name>
   <author>Keshash - 1.6 adapted by Nelim</author>
-  <packageId>nelim.extinguishrefuelablescompatibilitypatchrenew</packageId>
+  <packageId>nelim.extinguishrefuelablescompatibilitypatch</packageId>
   <supportedVersions>
     <li>1.6</li>
   </supportedVersions>

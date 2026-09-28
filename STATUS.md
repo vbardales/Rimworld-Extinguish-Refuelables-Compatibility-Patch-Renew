@@ -4,7 +4,7 @@ localization: not_applicable
 translation_en: not_applicable
 translation_fr: not_applicable
 mod:          Extinguish Refuelables Compatibility Patch Renew (unofficial)
-packageId:    nelim.extinguishrefuelablescompatibilitypatchrenew
+packageId:    nelim.extinguishrefuelablescompatibilitypatch
 repo:         Rimworld-Extinguish-Refuelables-Compatibility-Patch-Renew
 remote:       https://github.com/vbardales/Rimworld-Extinguish-Refuelables-Compatibility-Patch-Renew.git
 visibility:   public
@@ -27,7 +27,7 @@ remaining:
   - unverified: manual scenarios 0-16 not executed; mandatory for tested, not for done
   - unverified: English/French UI, logs, new game, existing save and switch persistence; mandatory for tested
 session:      local_52a44608-2383-4e78-b72e-789405b47e80
-updated:      2026-09-13, ordered workflow audit; done retained, game validation required for tested
+updated:      2026-09-28, packageId no longer carries renew
 ---
 
 # Repository identity and maintenance

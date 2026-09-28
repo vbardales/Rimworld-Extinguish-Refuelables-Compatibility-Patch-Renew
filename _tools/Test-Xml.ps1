@@ -52,7 +52,7 @@ function Apply-Operation($op, $doc, $active, $ideology) {
 }
 Assert ($patches.Count -eq 3) 'Expected three patch files'
 [xml]$about = Get-Content "$root/Mod/About/About.xml" -Raw
-Assert ($about.ModMetaData.packageId -eq 'nelim.extinguishrefuelablescompatibilitypatchrenew') 'Wrong packageId'
+Assert ($about.ModMetaData.packageId -eq 'nelim.extinguishrefuelablescompatibilitypatch') 'Wrong packageId'
 Assert ($about.ModMetaData.name.EndsWith('(unofficial)')) 'Missing unofficial suffix'
 Assert ($about.ModMetaData.description.Contains([string]$about.ModMetaData.url)) 'GitHub URL missing from description'
 Assert ($about.ModMetaData.modDependencies.li.packageId -contains 'blacktriple.extinguishrefuelablescontinued') 'Missing dependency'
