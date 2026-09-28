@@ -4,25 +4,8 @@ All notable changes to this mod are documented here.
 
 ## [Unreleased]
 
-### Changed
-
-- `packageId` from `nelim.extinguishrefuelablescompatibilitypatchrenew` to
-  `nelim.extinguishrefuelablescompatibilitypatch`: `renew` no longer belongs in an id, the
-  `nelim.` prefix already carries the mod and the continuation lives in the displayed name, the
-  folder and the repository. The 0.1.0 upload that created the private Workshop item carried the
-  old id, so anyone who enabled that build re-enables the mod under the new one; nothing public
-  names either.
-- `packageId` from `nelim.extinguishrefuelablespatch` to
-  `nelim.extinguishrefuelablescompatibilitypatchrenew`, and the mod folder renamed to match. Both
-  now spell out the name the mod displays. The id had never shipped — no Workshop item, and no
-  save or `ModsConfig.xml` names it — so there was nothing to migrate.
-- The GitHub repository renamed from `Rimworld-Extinguish-Refuelables-Patch-Renew`, the last
-  identifier still short of the displayed name, and the `<url>` in `About.xml` with it. GitHub
-  redirects from the old name, so the link that shipped with 1.0.0 still resolves.
-
-## [1.0.0] — 2026-09-05
-
-First release. Port of Keshash's **Extinguish Refuelables Compatibilty Patch** to RimWorld 1.6.
+Port of Keshash's **Extinguish Refuelables Compatibilty Patch** to RimWorld 1.6. It becomes
+1.0.0 when it is published; until then it stays here, above 0.1.0.
 
 ### Fixed
 
@@ -60,16 +43,15 @@ First release. Port of Keshash's **Extinguish Refuelables Compatibilty Patch** t
 
 ### Changed
 
-
-- `packageId` from `nelim.extinguishrefuelablescompatibilitypatchrenew` to
-  `nelim.extinguishrefuelablescompatibilitypatch`: `renew` no longer belongs in an id, the
-  `nelim.` prefix already carries the mod and the continuation lives in the displayed name, the
-  folder and the repository. The 0.1.0 upload that created the private Workshop item carried the
-  old id, so anyone who enabled that build re-enables the mod under the new one; nothing public
-  names either.
-- `packageId` from `Keshash.ExtinguishRefuelablesPatch` to `nelim.extinguishrefuelablespatch`,
-  and `Keshash.ExtinguishRefuelablesPatch` declared in `<incompatibleWith>`: both patch the same
-  defs.
+- `packageId` from `Keshash.ExtinguishRefuelablesPatch` to
+  `nelim.extinguishrefuelablescompatibilitypatch`, and `Keshash.ExtinguishRefuelablesPatch`
+  declared in `<incompatibleWith>`: both patch the same defs. `renew` is deliberately not in the
+  id: the `nelim.` prefix already carries the mod, and the continuation is said by the displayed
+  name, the folder and the repository. The 0.1.0 upload carried an earlier id ending in `renew`,
+  so a build enabled from that item has to be enabled again under this one; nothing public names
+  either.
+- The GitHub repository renamed from `Rimworld-Extinguish-Refuelables-Patch-Renew` to match the
+  displayed name, and the `<url>` in `About.xml` with it. GitHub redirects from the old name.
 - `<supportedVersions>` set to 1.6. Name corrected to *Compatibility*.
 - The dependency on `malistaticy.mer` updated to `blacktriple.extinguishrefuelablescontinued`.
   It was never a third mod — that was Extinguish Refuelables' own `packageId`, as the
@@ -126,3 +108,10 @@ First release. Port of Keshash's **Extinguish Refuelables Compatibilty Patch** t
 - Which buildings are patched, minus what upstream deleted — Keshash's choice throughout.
 - That Medieval Overhaul's stove and rustic hearth need a comp of their own, because their flame
   is drawn only while the building faces north.
+
+## [0.1.0] — 2026-09-23
+
+Creation of the Workshop item, and of its `About/PublishedFileId.txt`. This upload existed only to
+create the item, which Steam makes private: it is not a tested release. It carried `Mod/` as it
+stood at commit `53eabc2`, which is the state the entry above starts from, under the previous
+`packageId` (`nelim.extinguishrefuelablescompatibilitypatchrenew`).

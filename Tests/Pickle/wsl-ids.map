@@ -1,0 +1,3 @@
+# Resolves ids in every pass and activates nothing. Extinguish Refuelables Continued is the mod's
+# one hard dependency; the staging script does not know its id.
+blacktriple.extinguishrefuelablescontinued   3772905265

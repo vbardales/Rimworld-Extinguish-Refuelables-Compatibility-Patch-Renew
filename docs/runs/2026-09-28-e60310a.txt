@@ -1,0 +1,4 @@
+2026-09-28 e60310a offline Test-Xml.ps1 PASS 16 mod/DLC combinations, packageId nelim.extinguishrefuelablescompatibilitypatch
+2026-09-28 e60310a offline Test-Behaviour.ps1 PASS 72 C# cases against test doubles, no game engine
+2026-09-28 e60310a offline Test-InstalledMods.ps1 NOT RUN TO THE END: Medieval Overhaul (3219596926) is no longer installed in the local Steam workshop folder, so its 10 targets could not be read; Classical, Medieval 2 and Continued are present
+2026-09-28 e60310a build dotnet build -c Release 0 warnings 0 errors, DLL md5 610e7c1f07a403df97d8b13f10545b5f unchanged after rebuild

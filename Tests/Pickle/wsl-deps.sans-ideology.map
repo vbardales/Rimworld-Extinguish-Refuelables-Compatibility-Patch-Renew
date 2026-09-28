@@ -1,0 +1,7 @@
+# The avec-facultatifs pass without Ideology: Medieval 2 keeps the darklight hearth behind an
+# Ideology load folder, and this pass proves the mod's guard (MayRequire) holds without it.
+!ludeon.rimworld.ideology
+OskarPotocki.VanillaFactionsExpanded.Core   2023507013
+OskarPotocki.VFE.Classical                  2787850474
+OskarPotocki.VFE.Medieval2                  3444347874
+DankPyon.Medieval.Overhaul                  3219596926

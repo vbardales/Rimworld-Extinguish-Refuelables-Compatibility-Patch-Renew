@@ -1,0 +1,9 @@
+# The pass with the three target mods, in the order they need each other. Ids and packageIds read
+# from each mod's own About.xml on 2026-09-28. Vanilla Expanded Framework is a hard dependency of
+# Classical and Medieval 2 (the staging copies only the tested mod's own dependencies, so it is named here).
+# Medieval Overhaul's own dependencies could NOT be read: it is no longer in the local Steam
+# folder. If the staging stops with "no Workshop id known for ...", the missing id belongs here.
+OskarPotocki.VanillaFactionsExpanded.Core   2023507013
+OskarPotocki.VFE.Classical                  2787850474
+OskarPotocki.VFE.Medieval2                  3444347874
+DankPyon.Medieval.Overhaul                  3219596926

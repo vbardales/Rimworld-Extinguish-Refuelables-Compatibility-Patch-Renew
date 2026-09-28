@@ -8,11 +8,11 @@ packageId:    nelim.extinguishrefuelablescompatibilitypatch
 repo:         Rimworld-Extinguish-Refuelables-Compatibility-Patch-Renew
 remote:       https://github.com/vbardales/Rimworld-Extinguish-Refuelables-Compatibility-Patch-Renew.git
 visibility:   public
-mod_visibility: public, not published to Workshop
+mod_visibility: private Workshop item created by the 0.1.0 prepublication; not public, not tested
 repository_visibility: public
 local_path:   C:\Users\nelim\Documents\rimworld\ExtinguishRefuelablesCompatibilityPatchRenew
 detached:     yes
-maintainer:   Codex, current task responsible for this repository and STATUS.md
+maintainer:   Claude Code session for this repository and STATUS.md
 stage:        done
 licence:      silent
 licence_at:   _tools/LICENCE-AUDIT.md; original local files and live Steam description checked 2026-09-13
@@ -20,15 +20,58 @@ port_licence: MIT, additions only
 dependencies: declared
 showcase:     complete, recomposed and visually verified 2026-09-13
 tested_on:
-workshop:
-automated_tests: passed, 16 XML combinations, installed 1.6 targets and DLL types, 72 C# cases
-build:        passed, Release net48, 0 warnings and 0 errors
+workshop:     3806767177 (private, created 2026-09-23 by the 0.1.0 prepublication)
+automated_tests: Test-Xml passed 2026-09-28 (16 combinations); Test-Behaviour passed 2026-09-28 (72 cases); Test-InstalledMods NOT completed 2026-09-28, Medieval Overhaul no longer installed locally
+pickle_suite: written 2026-09-28 (Tests/Pickle, 2 features, 3 passes), never run
+build:        passed 2026-09-28, Release net48, 0 warnings and 0 errors, DLL unchanged
 remaining:
-  - unverified: manual scenarios 0-16 not executed; mandatory for tested, not for done
-  - unverified: English/French UI, logs, new game, existing save and switch persistence; mandatory for tested
+  - unverified: the Pickle suite has never run; passes sans-facultatifs, avec-facultatifs and sans-ideology are all pending, and every scenario, step label and cell in it is an unproven guess (mandatory for tested)
+  - unverified: Test-InstalledMods against Medieval Overhaul, absent from the local Steam workshop folder since 2026-09-13
+  - unverified: no pass yet for the declared incompatibility with Keshash.ExtinguishRefuelablesPatch (mandatory for tested)
+  - unverified: manual scenarios 5, 6, 7, 15 and 16 have no automation and no justification of non-applicability, see TESTING.md (mandatory for tested)
+  - unverified: brazier flame capture only; the torch and the Medieval 2 hearth captures are not written (mandatory for tested)
+  - unverified: @review captures never opened, logs never read (mandatory for tested)
+  - unverified: 1.0.0 needs prepublished-stage checks (PUBLICATION.md, description source, thank-you comments) before any publish
 session:      local_52a44608-2383-4e78-b72e-789405b47e80
-updated:      2026-09-28, packageId no longer carries renew
+updated:      2026-09-28, audit against AUDIT.md of 2026-09-27; Pickle suite written, packageId without renew, 0.1.0 recorded
 ---
+
+
+# Audit against AUDIT.md — 2026-09-28
+
+Audited revision `e60310a` plus uncommitted documentation and test files added by this audit.
+Untracked and left alone: `Art/ModIcon.ico`, `Art/Preview.ico`. Documents read, and their versions,
+are in `docs/PROTOCOLS-READ.md`. No RimWorld was launched and no Pickle run was submitted.
+
+Decision: **done -> done**, on a corrected basis. The 2026-09-13 audit below found `done` validated
+without any Pickle scenario, because the criterion did not yet exist. `AUDIT.md` now requires Pickle
+scenarios to be **written** and their scope justified before `done`. Before this audit that criterion
+failed, so the honest stage was `preTest`. It is met now by `Tests/Pickle/` and `TESTING.md`, which
+also map all 17 manual scenarios to a disposition. Nothing in the suite has been run.
+
+What changed since the earlier audit, and what it does to the chain:
+
+- **Prepublication happened.** `Mod/About/PublishedFileId.txt` exists (item created 2026-09-23). The
+  CHANGELOG now opens with `0.1.0`, dated by that file's timestamp, and the port's content sits under
+  `Unreleased` above it, since 1.0.0 arrives with `published`. That earlier changelog dated a 1.0.0 on
+  2026-09-05 which was never tagged or released. This is a prepublication, not the `prepublished` state.
+- **packageId lost `renew`** (`nelim.extinguishrefuelablescompatibilitypatch`), on the owner's instruction
+  and in line with `PUBLISHING.md` (2026-09-27). The 0.1.0 item was uploaded under the old id.
+- **The offline installed-defs test can no longer complete.** Medieval Overhaul is missing from the local
+  Steam workshop folder; its ten targets are unverified, not failed. The 2026-09-13 pass stands for what
+  it read then.
+- **Extinguish Refuelables Continued does not cover this mod.** Its installed copy is 1.6-only and
+  patches the base game, Vanilla Furniture Expanded, Smoked meat and Medieval Lighting and Heat. No
+  defName of Medieval Overhaul, Classical or Medieval 2 appears in it.
+- **No original repository.** GitHub searches for Keshash's patch and for Extinguish Refuelables find
+  nothing to fork or send a pull request to. Mali's original source is mirrored in `emipa606/ModRequests`
+  (2864470385), which is a request register, not a maintained upstream. Continued links no repository.
+- **`.dds`:** none in the repository or its history to remove; `*.dds` and the evidence folders are now
+  ignored. **Evidence:** none was ever committed; retention rules are in `TESTING.md`.
+
+Distance to `tested`, from `AUDIT.md`: no `@wip` scenario (none exist); every conditional scenario run
+(`@requires` on the three target mods and Ideology, passes 2 and 3 not run); no manual test left to
+tick (scenarios 5, 6, 7, 15 and 16 still open, and the Keshash pass unwritten); `@review` captures opened.
 
 # Repository identity and maintenance
 
@@ -39,8 +82,9 @@ independent local repository, not a monorepo subdirectory or a submodule.
 The session field is the historical session group identifier, not an asserted current task ID.
 
 GitHub's public REST API confirmed `private: false` and `visibility: public` on 2026-09-13.
-The mod's documented distribution status is public; Workshop publication is not recorded and
-there is no `Mod/About/PublishedFileId.txt`. Public repository visibility is separate from licence.
+The repository is public. A Workshop item exists, created privately by the 0.1.0 prepublication
+(id in `Mod/About/PublishedFileId.txt`, committed as `1793588`); it is not public and not tested.
+Public repository visibility is separate from licence.
 
 # Mod licence and title
 
@@ -279,4 +323,4 @@ an item outside the workflow. This supersedes the earlier audit's classification
 The corrected artifact satisfies the added criterion; `stage: done` is retained.
 Only metadata changed; independent build, behavior and image validations remain valid.
 XML parsing, the final-link/URL check and the existing XML suite passed after the change.
-No Workshop item exists for this mod, so updating a live description is not applicable.
+At the time, no Workshop item existed. One was created on 2026-09-23, see the 2026-09-28 audit above.
