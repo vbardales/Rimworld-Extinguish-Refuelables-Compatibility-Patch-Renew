@@ -113,6 +113,58 @@ namespace ExtinguishRefuelablesPatch.PickleSteps
                 $"{defName} still carries an unswapped overlay; its comp properties are: {string.Join(", ", classes)}");
         }
 
+
+        [Then("Extinguish Refuelables Patch: the {string} at ({int}, {int}) has {int} on/off switches")]
+        public void HasSwitchCount(PickleContext ctx, string defName, int x, int z, int expected)
+        {
+            int count = CountSwitches(ctx, ThingAt(ctx, defName, x, z));
+            ctx.Assert(count == expected, $"{defName} has {count} CompFlickable, expected {expected}");
+        }
+
+        [Then("Extinguish Refuelables Patch: the {string} at ({int}, {int}) has no on/off switch")]
+        public void HasNoSwitch(PickleContext ctx, string defName, int x, int z)
+        {
+            int count = CountSwitches(ctx, ThingAt(ctx, defName, x, z));
+            ctx.Assert(count == 0, $"{defName} has {count} CompFlickable, expected none");
+        }
+
+        // Takes the switch comp off a standing building, so a save made right after holds none of its
+        // state: the same file a game without this mod would have written. Reloading it with the mod
+        // active is then the case of adding the mod to a save in progress.
+        [When("Extinguish Refuelables Patch: I strip the on/off switch from the {string} at ({int}, {int})")]
+        public void StripSwitch(PickleContext ctx, string defName, int x, int z)
+        {
+            ThingWithComps withComps = ThingAt(ctx, defName, x, z) as ThingWithComps;
+            ctx.Assert(withComps != null, $"{defName} carries no comps at all");
+            int removed = withComps.AllComps.RemoveAll(c => c is CompFlickable);
+            ctx.Assert(removed > 0, $"{defName} had no CompFlickable to strip");
+        }
+
+        // Reads one field of the swapped fire overlay's comp properties, by name, as text. The swapped
+        // classes are not all descended from vanilla's CompProperties_FireOverlay, so the field is read
+        // by reflection rather than by a cast.
+        [Then("Extinguish Refuelables Patch: the def {string} fire overlay field {string} is {string}")]
+        public void OverlayField(PickleContext ctx, string defName, string field, string expected)
+        {
+            ThingDef def = DefDatabase<ThingDef>.GetNamedSilentFail(defName);
+            ctx.Assert(def != null, $"no ThingDef {defName}");
+            CompProperties props = def.comps.FirstOrDefault(c => Swapped.Contains(c.GetType().FullName));
+            ctx.Assert(props != null, $"{defName} has no extinguishable overlay");
+            System.Reflection.FieldInfo info = props.GetType().GetField(field,
+                System.Reflection.BindingFlags.Public | System.Reflection.BindingFlags.NonPublic
+                | System.Reflection.BindingFlags.Instance | System.Reflection.BindingFlags.FlattenHierarchy);
+            ctx.Assert(info != null, $"{props.GetType().FullName} has no field {field}");
+            string actual = System.Convert.ToString(info.GetValue(props), System.Globalization.CultureInfo.InvariantCulture);
+            ctx.Assert(actual == expected, $"{defName} overlay {field} is {actual}, expected {expected}");
+        }
+
+        private static int CountSwitches(PickleContext ctx, Thing thing)
+        {
+            ThingWithComps withComps = thing as ThingWithComps;
+            ctx.Assert(withComps != null, $"{thing.def.defName} carries no comps at all");
+            return withComps.AllComps.Count(c => c is CompFlickable);
+        }
+
         private static bool ParseState(PickleContext ctx, string state)
         {
             bool on = state == "on";

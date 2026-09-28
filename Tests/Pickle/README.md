@@ -29,14 +29,15 @@ which no built-in step does. It compiles against the Pickle reference package; i
 
 | Pass | Command shape | Establishes |
 |---|---|---|
-| sans-facultatifs | no `-DepMap`, `-Filter '<suite>,!@sans-ideology'` | The mod loads with Continued alone and reports nothing. Most scenarios are skipped by `@requires`: a skip is not a pass. |
-| avec-facultatifs | `-DepMap wsl-deps.avec-facultatifs.map`, `-Filter '<suite>,!@sans-ideology'` | The thirteen buildings are patched and the switch works. The three target mods are not incompatible with one another, so one pass covers them. |
+| sans-facultatifs | no `-DepMap`, `-Filter '<suite>,!@sans-ideology,!@incompat-keshash'` | The mod loads with Continued alone and reports nothing. Most scenarios are skipped by `@requires`: a skip is not a pass. |
+| avec-facultatifs | `-DepMap wsl-deps.avec-facultatifs.map`, same filter | The thirteen buildings are patched, each has one switch, the flames go out, a save round-trips, and the mod added to a save works (features 01 to 06). The three target mods are not incompatible with one another, so one pass covers them. |
+| retrait | `-DepMap wsl-deps.avec-facultatifs.map -Filter '07-remove-mod::write' -Then '07-remove-mod::read' -ThenWithout nelim.extinguishrefuelablescompatibilitypatch` | A save written with the mod loads with it taken out, and the buildings lose their switch. Two launches, one request. |
 | sans-ideology | `-DepMap wsl-deps.sans-ideology.map`, `-Filter '@sans-ideology'` | The `MayRequire` guard holds when the DLC is absent. |
+| incompat-keshash | `-DepMap wsl-deps.incompat-keshash.map`, `-Filter '@incompat-keshash'` | The declared incompatibility still behaves as declared. The symptom asserted is a prediction. |
 
 `<suite>` is the companion's display name, `Extinguish Refuelables Compatibility Patch - Pickle tests`.
 English and French passes are **not** run: the mod adds no text (see `STATUS.md`, translation audit),
-so the language would change nothing this suite can observe. The declared incompatibility with
-Keshash's original patch has **no pass yet**; see `TESTING.md`.
+so the language would change nothing this suite can observe.
 
 ## Evidence
 

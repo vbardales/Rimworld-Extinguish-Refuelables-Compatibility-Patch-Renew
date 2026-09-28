@@ -17,12 +17,9 @@ a game yet: every in-game line below is `unverified`, not a pass.
 1. **sans-facultatifs**: no map. Continued alone.
 2. **avec-facultatifs**: `wsl-deps.avec-facultatifs.map`. Medieval Overhaul, Classical and Medieval 2.
    They are not incompatible with one another, so no split is needed.
-3. **sans-ideology**: `wsl-deps.sans-ideology.map`, filter `@sans-ideology`.
-4. **incompatibility with Keshash's original patch**: `incompatibleWith` declares
-   `Keshash.ExtinguishRefuelablesPatch`. **No pass and no scenario yet.** The original stops at 1.4 and
-   depends on `malistaticy.mer`, which has not existed since Extinguish Refuelables was continued, so
-   the first thing to read is what the game does with it beside this mod. Its symptom is not known, and
-   is to be observed once, then asserted (an `an error matching` step under `@allow-errors`), not guessed.
+3. **retrait**: two launches, `-Then` and `-ThenWithout`, see `Tests/Pickle/README.md`.
+4. **sans-ideology**: `wsl-deps.sans-ideology.map`, filter `@sans-ideology`.
+5. **incompatibility with Keshash's original patch**: `wsl-deps.incompat-keshash.map`, filter `@incompat-keshash`. `incompatibleWith` declares `Keshash.ExtinguishRefuelablesPatch`. Written 2026-09-28 (Pickle 08), and the symptom it asserts is a **prediction** read off the original's patch files: two switches on a brazier and errors from its old namespaces. The original stops at 1.4 and needs `malistaticy.mer`, Mali's mod, whose Workshop id in the map is unconfirmed.
 
 Languages: no French or English pass. The mod adds no text, see the translation audit in `STATUS.md`.
 
@@ -36,11 +33,11 @@ manual check to tick: each is automated and green, or listed here as not applica
 | 0 | It loads and the patches take | Pickle 01, first scenario, in passes 1 and 2. |
 | 1 | Every building gets a switch | Pickle 03: all thirteen spawned, each read for exactly one `CompFlickable`, plus the swapped overlay class on the fire defs. No gizmo label is assumed. Pickle 02 clicks the real gizmo on one brazier. |
 | 2 | The switch stops fuel, light and heat | Not applicable: vanilla's own comps read `CompFlickable`. Not this mod's code. |
-| 3 | The flame graphic goes out | Pickle 02 (brazier) and Pickle 04 (stove and hearth) `@review`, each captured lit then switched off. The torch and the Medieval 2 hearth captures are **open**. |
+| 3 | The flame graphic goes out | Pickle 02 (brazier), 04 (stove, hearth) and 05 (torch, Medieval 2 and darklight hearths), `@review`, each captured lit then switched off, with the switch state asserted. Judged by eye once the images are opened. |
 | 4 | Heat stones, switch and no flame | Pickle 01 (patched). No capture: there is no flame to see. |
 | 5 | North-only rule | Pickle 04: four facings each of stove and hearth, `@review` captures, facing asserted. The flame itself is judged by eye, so it stays open until the images are opened. Covered offline by 72 cases. |
 | 6 | The switch still works on them | Pickle 04: each facing is switched off and captured, and the switch state is read back. Same `@review` limit as 5. |
-| 7 | Def flame size and offset still apply | **Open**: a comparison of two captures by eye, `@review` at best. |
+| 7 | Def flame size and offset still apply | **Not written yet.** The step exists (`the def X fire overlay field F is V`, read off the live def). The expected values are Medieval Overhaul's own, and its defs are not installed locally, so they cannot be read. Written the moment they can. |
 | 8 | Growth timer starts when lit | Not applicable: no shipped def sets `fireGrowthDurationTicks`. Offline cases cover it. |
 | 9 | Darklight hearth with Ideology | Pickle 01 (patched, pass 2). |
 | 10 | Without Ideology | Pickle 01 `@sans-ideology`, pass 3. |
@@ -48,8 +45,8 @@ manual check to tick: each is automated and green, or listed here as not applica
 | 12 | One target mod at a time | Not applicable: pass 2 names each def, so a failing file is already identified. |
 | 13 | No collision with Continued | Pickle 01 last scenario: Continued still patches its own building. Two switches on one building is asserted offline (single switches, no shared defName). |
 | 14 | Save, reload, state holds | Pickle 02 second scenario, `@review`. |
-| 15 | Adding the mod to a save in progress | **Open.** Needs a fixture made without the mod that holds the buildings. |
-| 16 | Removing the mod from a save in progress | **Open.** The test companion depends on the mod, so `-ThenWithout` cannot remove it. |
+| 15 | Adding the mod to a save in progress | Pickle 06: a strip step removes the switch comp from standing buildings, the save written next is the file a game without this mod would have written, and the reload with the patches active must give one switch, on. Emulates the file, not the changed mod list, which is the engine's. |
+| 16 | Removing the mod from a save in progress | Pickle 07, two launches under one lock: write with the mod, read with it taken out (`-Then` and `-ThenWithout`). The companion no longer depends on the mod, so it survives. Asserts what the mod page only reasoned: the buildings lose their switch. |
 
 The open rows, and the unrun passes above, are what stands between this mod and `tested`.
 

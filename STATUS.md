@@ -22,14 +22,13 @@ showcase:     complete, recomposed and visually verified 2026-09-13
 tested_on:
 workshop:     3806767177 (private, created 2026-09-23 by the 0.1.0 prepublication)
 automated_tests: Test-Xml passed 2026-09-28 (16 combinations); Test-Behaviour passed 2026-09-28 (72 cases); Test-InstalledMods NOT completed 2026-09-28, Medieval Overhaul no longer installed locally
-pickle_suite: written 2026-09-28 (Tests/Pickle, 4 features, local step DLL, 3 passes), never run
+pickle_suite: written 2026-09-28 (Tests/Pickle, 8 features, local step DLL, 5 passes), never run
 build:        passed 2026-09-28, Release net48, 0 warnings and 0 errors, DLL unchanged
 remaining:
   - unverified: the Pickle suite has never run; passes sans-facultatifs, avec-facultatifs and sans-ideology are all pending, and every scenario, step label and cell in it is an unproven guess (mandatory for tested)
   - unverified: Test-InstalledMods against Medieval Overhaul, absent from the local Steam workshop folder since 2026-09-13
-  - unverified: no pass yet for the declared incompatibility with Keshash.ExtinguishRefuelablesPatch (mandatory for tested)
-  - unverified: manual scenarios 7, 15 and 16 have no automation and no justification of non-applicability, see TESTING.md (mandatory for tested)
-  - unverified: the torch and the Medieval 2 hearth flame captures are not written (mandatory for tested)
+  - unverified: the Keshash incompatibility pass is written but its symptom is a prediction and the id of malistaticy.mer in its map is unconfirmed (mandatory for tested)
+  - unverified: manual scenario 7 (flame size and offset) is not written: it needs Medieval Overhaul defs, absent locally (mandatory for tested)
   - unverified: @review captures never opened, logs never read (mandatory for tested)
   - unverified: 1.0.0 needs prepublished-stage checks (PUBLICATION.md, description source, thank-you comments) before any publish
 session:      local_52a44608-2383-4e78-b72e-789405b47e80
@@ -69,7 +68,7 @@ What changed since the earlier audit, and what it does to the chain:
 - **`.dds`:** none in the repository or its history to remove; `*.dds` and the evidence folders are now
   ignored. **Evidence:** none was ever committed; retention rules are in `TESTING.md`.
 
-Distance to `tested`, from `AUDIT.md`: no `@wip` scenario (none exist); every conditional scenario run
+Distance to `tested`, from `AUDIT.md`: see `remaining`. Scenarios 1, 3, 5, 6, 15 and 16 and the Keshash pass are written since, unrun; scenario 7 is not written.
 (`@requires` on the three target mods and Ideology, passes 2 and 3 not run); no manual test left to
 tick (scenarios 5, 6, 7, 15 and 16 still open, and the Keshash pass unwritten); `@review` captures opened.
 

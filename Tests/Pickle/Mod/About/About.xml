@@ -6,12 +6,10 @@
   <supportedVersions>
     <li>1.6</li>
   </supportedVersions>
-  <description>In-game functional tests for Extinguish Refuelables Compatibility Patch Renew (unofficial), run by Pickle. Development only: never published.</description>
+  <description>In-game functional tests for Extinguish Refuelables Compatibility Patch Renew (unofficial), run by Pickle. Development only: never published.
+
+It does not depend on the mod under test, on purpose: the remove-mod scenario loads a save with that mod taken out of the list, and the companion has to survive it. It loads after it.</description>
   <modDependencies>
-    <li>
-      <packageId>nelim.extinguishrefuelablescompatibilitypatch</packageId>
-      <displayName>Extinguish Refuelables Compatibility Patch Renew (unofficial)</displayName>
-    </li>
     <li>
       <packageId>rimworks.pickle</packageId>
       <displayName>Pickle</displayName>

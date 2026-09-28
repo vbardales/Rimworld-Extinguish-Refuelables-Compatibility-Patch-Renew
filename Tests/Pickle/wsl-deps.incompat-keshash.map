@@ -1,0 +1,11 @@
+# The declared incompatibility: Keshash's original patch beside this one, with the target mods it
+# patched. It is 1.4-only and depends on malistaticy.mer, Mali's original Extinguish Refuelables,
+# whose Workshop id (2864470385) is the folder name of its source mirror in emipa606/ModRequests,
+# read on 2026-09-28 and NOT confirmed against the Workshop page. If the staging says "no Workshop
+# id known", or the game refuses these two, that is the first thing the run reports.
+malistaticy.mer                              2864470385
+OskarPotocki.VanillaFactionsExpanded.Core   2023507013
+OskarPotocki.VFE.Classical                  2787850474
+OskarPotocki.VFE.Medieval2                  3444347874
+DankPyon.Medieval.Overhaul                  3219596926
+Keshash.ExtinguishRefuelablesPatch          3109675320
