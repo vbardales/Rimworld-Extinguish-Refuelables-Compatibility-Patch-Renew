@@ -34,7 +34,7 @@ source, `About.xml`. Not present in this repository: `PUBLICATION.md`, `TESTING.
 
 Hashes recomputed. `AUDIT.md` (`daab030ccf`, 2026-10-02 15:14) read in full again. Unchanged since the table above and
 not reread: `MOD_SETTINGS.md`, `scripts/SEARCHING.md`, `PickleTools/Headless/README.md`, `Rimworld-Release-Admin/docs/OPERATIONS.md`,
-`Rimworld-Ticket-Dispatcher/docs/WELCOME.md`, `SUBMIT.md`. Changed since and NOT yet reread (read the diff only when the
+`Rimworld-Ticket-Dispatcher/docs/WELCOME.md`, `SUBMIT.md`. Changed since and NOT yet reread, except TRANSLATIONS.md (read in full 2026-10-02, only the not_applicable branch matters here, FRENCH_REVIEW.md not required: no text added) (read the diff only when the
 topic comes up): `AGENTS.md` `44dddcbc8f`, `PUBLISHING.md` `11de03424f`, `TRANSLATIONS.md` `7b4d9a23bd`, `STYLE_RIMWORLD.md`
 `773961397c`, `WORKSHOP_COMMENTS.md` `cdd3381ba9`, `PickleTools/README.md` `1d28b27e67`, `PickleTools/docs/steps.md`
 `8639a06971`, `PickleTools/Authoring/README.md` `75329decf2`.
