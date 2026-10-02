@@ -142,6 +142,15 @@ listed in loadAfter, with each patch guarded by mod name. No additional dependen
 
 # Preview recomposition — 2026-09-13
 
+**Replaced on 2026-10-02.** The owner regenerated `Mod/About/Preview.png` and `Mod/About/ModIcon.png` and
+cleaned `Art/`. Gone from the repository: `Art/preview.html`, `Art/render-preview.cjs`, `Art/preview-qa.json`,
+`Art/preview-background.png`, `Art/preview-268.png`, `Art/Preview.png`. The composition is now described by
+`Art/preview-copy.json` (with `Art/echo.png`), the sources stay `Art/ModIcon-source.png` and
+`Art/Preview-source.png`, and `Art/Gallery/` holds the Workshop pictures. Every measurement below
+(size, fonts, contrast, title sizes) describes the **previous** image and no longer holds for the shipped
+one; the paragraph is kept as history only. The shipped Preview and icon are not re-measured by this
+session: icon and Preview generation belong to the owner (`AUDIT.md`).
+
 - Final: `Mod/About/Preview.png`, 896 × 504, 653,861 bytes (under 900 KB).
 - Illustration retained without regeneration. `Art/Preview.png` is a byte-identical copy of
   `Art/Preview-source.png`; the full-resolution original remains preserved at that path.
