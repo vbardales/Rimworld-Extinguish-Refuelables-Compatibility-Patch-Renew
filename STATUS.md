@@ -14,6 +14,7 @@ local_path:   C:\Users\nelim\Documents\rimworld\ExtinguishRefuelablesCompatibili
 detached:     yes
 maintainer:   Claude Code session for this repository and STATUS.md
 stage:        done
+workflow_stage: done
 licence:      silent
 licence_at:   _tools/LICENCE-AUDIT.md; original local files and live Steam description checked 2026-09-13
 upstream_mod_remotes: N/A (checked 2026-09-28: neither Keshash's original nor Extinguish Refuelables Continued declares a <url> in About.xml; gh search repos for both names finds nothing to fork)
@@ -31,9 +32,11 @@ remaining:
   - unverified: the Keshash incompatibility pass is written but its symptom is a prediction and the id of malistaticy.mer in its map is unconfirmed (mandatory for tested)
   - unverified: manual scenario 7 (flame size and offset) is not written: it needs Medieval Overhaul defs, absent locally (mandatory for tested)
   - unverified: @review captures never opened, logs never read (mandatory for tested)
+  - unverified: no scenario may stay `@wip` (none is tagged today) and every `@requires:<packageId>` scenario (Medieval Overhaul, Classical, Medieval 2, Ideology) must have run on a map that mounts that mod, report read (mandatory for tested, AUDIT.md 2026-10-02)
+  - unverified: no manual test left to validate: each of the 17 scenarios in `_tools/FUNCTIONAL-SCENARIOS.md` must be automated and green or listed not applicable with its reason (mandatory for tested)
   - unverified: 1.0.0 needs prepublished-stage checks (PUBLICATION.md, description source, thank-you comments) before any publish
 session:      local_52a44608-2383-4e78-b72e-789405b47e80
-updated:      2026-09-28, audit against AUDIT.md of 2026-09-27; Pickle suite written, packageId without renew, 0.1.0 recorded
+updated:      2026-10-02, re-audit against AUDIT.md of 2026-10-02: stage unchanged (done), `tested` criteria extended; before that 2026-09-28, audit against AUDIT.md of 2026-09-27; Pickle suite written, packageId without renew, 0.1.0 recorded
 ---
 
 
