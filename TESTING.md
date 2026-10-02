@@ -21,6 +21,8 @@ a game yet: every in-game line below is `unverified`, not a pass.
 4. **sans-ideology**: `wsl-deps.sans-ideology.map`, filter `@sans-ideology`.
 5. **incompatibility with Keshash's original patch**: `wsl-deps.incompat-keshash.map`, filter `@incompat-keshash`. `incompatibleWith` declares `Keshash.ExtinguishRefuelablesPatch`. Written 2026-09-28 (Pickle 08), and the symptom it asserts is a **prediction** read off the original's patch files: two switches on a brazier and errors from its old namespaces. The original stops at 1.4 and needs `malistaticy.mer`, Mali's mod, whose Workshop id in the map is unconfirmed.
 
+6. **gallery**: `wsl-deps.gallery.map`, filter `@gallery`. Three Workshop pictures from the screenshot studio, judged by eye; order and captions go in PUBLICATION.md (not written yet).
+
 Languages: no French or English pass. The mod adds no text, see the translation audit in `STATUS.md`.
 
 ## The 17 manual scenarios, and where each one goes

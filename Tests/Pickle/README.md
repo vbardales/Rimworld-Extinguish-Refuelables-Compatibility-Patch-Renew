@@ -34,6 +34,7 @@ which no built-in step does. It compiles against the Pickle reference package; i
 | retrait | `-DepMap wsl-deps.avec-facultatifs.map -Filter '07-remove-mod::write' -Then '07-remove-mod::read' -ThenWithout nelim.extinguishrefuelablescompatibilitypatch` | A save written with the mod loads with it taken out, and the buildings lose their switch. Two launches, one request. |
 | sans-ideology | `-DepMap wsl-deps.sans-ideology.map`, `-Filter '@sans-ideology'` | The `MayRequire` guard holds when the DLC is absent. |
 | incompat-keshash | `-DepMap wsl-deps.incompat-keshash.map`, `-Filter '@incompat-keshash'` | The declared incompatibility still behaves as declared. The symptom asserted is a prediction. |
+| gallery | `-DepMap wsl-deps.gallery.map`, `-Filter '@gallery'` | The three Workshop gallery pictures (`09-gallery.feature`), taken in the screenshot studio. `@review` only: nothing is asserted about the image, somebody opens every one. Skipped by `@requires` in the other passes. |
 
 `<suite>` is the companion's display name, `Extinguish Refuelables Compatibility Patch - Pickle tests`.
 English and French passes are **not** run: the mod adds no text (see `STATUS.md`, translation audit),

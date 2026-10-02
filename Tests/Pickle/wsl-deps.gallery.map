@@ -1,0 +1,10 @@
+# The Workshop gallery pass: the three target mods plus the screenshot studio, so the pictures are
+# taken in a dressed meadow instead of the bare test colony. Ids as in wsl-deps.avec-facultatifs.map.
+# ClearScreen keeps a log viewer or another mod's notice out of the frame. Needs Ideology (the
+# studio save was made with the five DLC), so there is no sans-ideology variant of this pass.
+OskarPotocki.VanillaFactionsExpanded.Core   2023507013
+OskarPotocki.VFE.Classical                  2787850474
+OskarPotocki.VFE.Medieval2                  3444347874
+DankPyon.Medieval.Overhaul                  3219596926
+nelim.pickletools.screenshotstudio   path:PickleTools/ScreenshotStudio/Mod
+nelim.pickletools.clearscreen        path:PickleTools/ClearScreen/Mod
