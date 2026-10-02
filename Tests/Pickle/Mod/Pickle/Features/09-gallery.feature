@@ -29,8 +29,8 @@ Feature: Workshop gallery, "The vigil of the cold hall"
   # overlay in the frame, and Ambre dressed as above. Run with
   # "-DepMap wsl-deps.gallery.map -Filter '@gallery'". Skipped by @requires in the other passes.
   #
-  # NOT YET PLAYED, and two things the suite cannot do yet are asked of PickleTools, see the two
-  # steps marked "ASKED": place a named colonist on a cell, and send the other colonists out of frame.
+  # NOT YET PLAYED. The colonist steps (stands at, out of frame, body, hair, tattoo, dye) are
+  # ColonistRace's, compiled by PickleTools on 2026-10-02 and not played either (PickleTools/docs/STAGING.md).
 
   Background:
     Given the save "nelim-zen-meadow-studio" is loaded
@@ -42,9 +42,11 @@ Feature: Workshop gallery, "The vigil of the cold hall"
     And Nelim's Pickle Tools: "Ambre" wears "Apparel_CollarShirt" dyed rgb (58, 74, 92)
     And Nelim's Pickle Tools: "Ambre" wears "Apparel_Pants" dyed rgb (46, 58, 72)
     And Nelim's Pickle Tools: "Ambre" face tattoo is "none"
-    # ASKED of PickleTools (StageDecor or a new Pose tool): both steps below do not exist yet.
-    And Nelim's Pickle Tools: the other colonists are out of frame
+    # Order matters: "out of frame" sends away every colonist that no "stands at" placed in this
+    # scenario, so the subject is placed first. Both steps are PickleTools' (ColonistRace), written
+    # 2026-10-02, compiled and not played.
     And Nelim's Pickle Tools: "Ambre" stands at (125, 95) facing South
+    And Nelim's Pickle Tools: the other colonists are out of frame
     And Nelim's Pickle Tools: I lay the floor "WoodPlankFloor" from (121, 94) to (129, 98)
     And Nelim's Pickle Tools: I lay the floor "TileSandstone" from (124, 94) to (126, 98)
     And Nelim's Pickle Tools: I place the decor "Shelf" at (121, 94)
