@@ -6,7 +6,7 @@ version**) and the shared authoring guide. **None of it has been run.**
 
 ## What needs a running game, and what does not
 
-The offline scripts in `_tools/` already prove, without the engine: every patch operation against
+The offline scripts in `scripts/` already prove, without the engine: every patch operation against
 contract fixtures (16 target-mod and DLC combinations), the raw installed defs, and the one C# class
 against test doubles (72 cases, including all four rotations). What only a running game shows:
 

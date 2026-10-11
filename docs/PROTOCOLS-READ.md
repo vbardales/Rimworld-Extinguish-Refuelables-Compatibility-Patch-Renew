@@ -25,8 +25,8 @@ Read on 2026-09-28. "Full" means every line; "Headings" means only the outline.
 | `STYLE_RIMWORLD.md` | `f64a8fa446`, 2026-09-27 21:24 | Lines 1-200 | Not useful | About generating the preview and icon, which this task does not do. Only the icon control matters, and that is in `AUDIT.md`. |
 | `scripts/SEARCHING.md` | `45f0fa13cc`, 2026-09-27 21:14 | Headings | Not useful | Corpus search tool; nothing here needs it. |
 
-Repository files read: `STATUS.md`, `README.md`, `CHANGELOG.md`, `_tools/FUNCTIONAL-SCENARIOS.md`
-(opening), `_tools/LICENCE-AUDIT.md` (headings and the repository search), all three patches, the C#
+Repository files read: `STATUS.md`, `README.md`, `CHANGELOG.md`, `TEST_SCENARIOS.md`
+(opening), `docs/LICENCE-AUDIT.md` (headings and the repository search), all three patches, the C#
 source, `About.xml`. Not present in this repository: `PUBLICATION.md`, `TESTING.md`, `BACKLOG.md`,
 `NOTES.md`, `BUGS.md`, `Tests/Pickle/`.
 

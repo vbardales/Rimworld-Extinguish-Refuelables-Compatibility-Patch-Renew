@@ -13,10 +13,9 @@ repository_visibility: public
 local_path:   C:\Users\nelim\Documents\rimworld\ExtinguishRefuelablesCompatibilityPatchRenew
 detached:     yes
 maintainer:   Claude Code session for this repository and STATUS.md
-stage:        done
-workflow_stage: done
+workflow_stage: writeTests[1.0.0]
 licence:      silent
-licence_at:   _tools/LICENCE-AUDIT.md; original local files and live Steam description checked 2026-09-13
+licence_at:   docs/LICENCE-AUDIT.md; original local files and live Steam description checked 2026-09-13
 upstream_mod_remotes: N/A (checked 2026-09-28: neither Keshash's original nor Extinguish Refuelables Continued declares a <url> in About.xml; gh search repos for both names finds nothing to fork)
 port_licence: MIT, additions only
 dependencies: declared
@@ -27,18 +26,36 @@ automated_tests: Test-Xml passed 2026-09-28 (16 combinations); Test-Behaviour pa
 pickle_suite: written 2026-09-28 (Tests/Pickle, 8 features, local step DLL, 5 passes), never run
 build:        passed 2026-09-28, Release net48, 0 warnings and 0 errors, DLL unchanged
 remaining:
+  - defect: Test-InstalledMods cannot pass without Medieval Overhaul locally (7.b); scenario 7 of TEST_SCENARIOS.md is not written (7.a)
   - unverified: the Pickle suite has never run; all 5 passes (sans-facultatifs, avec-facultatifs, retrait, sans-ideology, incompat-keshash) are pending, and every scenario, step label and cell in it is an unproven guess (mandatory for tested)
   - unverified: Test-InstalledMods against Medieval Overhaul, absent from the local Steam workshop folder since 2026-09-13
   - unverified: the Keshash incompatibility pass is written but its symptom is a prediction and the id of malistaticy.mer in its map is unconfirmed (mandatory for tested)
   - unverified: manual scenario 7 (flame size and offset) is not written: it needs Medieval Overhaul defs, absent locally (mandatory for tested)
   - unverified: @review captures never opened, logs never read (mandatory for tested)
   - unverified: no scenario may stay `@wip` (none is tagged today) and every `@requires:<packageId>` scenario (Medieval Overhaul, Classical, Medieval 2, Ideology) must have run on a map that mounts that mod, report read (mandatory for tested, AUDIT.md 2026-10-02)
-  - unverified: no manual test left to validate: each of the 17 scenarios in `_tools/FUNCTIONAL-SCENARIOS.md` must be automated and green or listed not applicable with its reason (mandatory for tested)
+  - unverified: no manual test left to validate: each of the 17 scenarios in `TEST_SCENARIOS.md` must be automated and green or listed not applicable with its reason (mandatory for tested)
   - unverified: 1.0.0 needs prepublished-stage checks (PUBLICATION.md, description source, thank-you comments) before any publish
-session:      local_52a44608-2383-4e78-b72e-789405b47e80
-updated:      2026-10-02, re-audit against AUDIT.md of 2026-10-02: stage unchanged (done), `tested` criteria extended; before that 2026-09-28, audit against AUDIT.md of 2026-09-27; Pickle suite written, packageId without renew, 0.1.0 recorded
+session:      local_ea52f7cf-763d-47d6-a494-43c4491e1649
+updated:      2026-10-11, re-audit against AUDIT.md of 2026-10-11: workflow_stage back to writeTests[1.0.0]; 2026-10-02 audit kept below as history
+protocols_read_sha: 15804c0c4f9bbb36e58f92f2f18a8d9ae534fd3b
 ---
 
+
+# Re-audit against AUDIT.md — 2026-10-11
+
+Decision: **done -> writeTests[1.0.0]** (the old `done` maps to `playTests`, but 7.b fails today). Replaces the
+"Decision: done -> done" paragraph of 2026-09-28 below (kept as history).
+
+- Rerun now: `Test-Xml.ps1` PASS (16 combinations); `Test-Behaviour.ps1` PASS (72 cases); build 0 warnings, 0 errors, DLL
+  SHA256 unchanged (`48717BB5...`). `Test-InstalledMods.ps1` cannot go green: Medieval Overhaul is not installed (7.b).
+- Mod root cleaned (AGENTS.md, closing pass 3): `_tools/` split into `scripts/` (Test-*.ps1, BehaviourHarness.cs) and
+  `TEST_SCENARIOS.md` (was `_tools/FUNCTIONAL-SCENARIOS.md`, name of 7.a) and `docs/LICENCE-AUDIT.md`; the stale
+  `_tools/preview.html` and `_tools/build-about.sh` (they pointed at the deleted `Art/preview.html` and `render-preview.cjs`)
+  are deleted; `.build/` renamed `build/` (PUBLISHING.md, owner rule 2026-10-10) with the two `Directory.Build.props`.
+  Scratch Preview experiments in the old `.build/` are deleted.
+- Local scripts: the `scripts/LOCAL_SCRIPTS.md` rows still name `_tools/...`; the Audit workflow session is told.
+- Gaps keeping the stage at `writeTests`: scenario 7 not written, `Test-InstalledMods` not green, Pickle suite never run
+  (allowed at this stage), `protocols_read_sha` absent until the commit.
 
 # Audit against AUDIT.md — 2026-09-28
 
@@ -94,7 +111,7 @@ Public repository visibility is separate from licence.
 against the installed original's full file inventory, source notices and About.xml, and the
 original Workshop description fetched directly from Steam. No original repository is linked,
 and targeted web searches did not identify one. Evidence and limits are recorded in
-[`_tools/LICENCE-AUDIT.md`](_tools/LICENCE-AUDIT.md).
+[`docs/LICENCE-AUDIT.md`](docs/LICENCE-AUDIT.md).
 
 No written refusal was found (`forbidden`), no explicit original licence was found (`open`),
 and this continuation is not `original`. Both identical LICENSE files scope MIT to the port's
@@ -111,21 +128,21 @@ About.xml's `url` field and the actual description text.
 
 # Verification
 
-- Manual: `_tools/FUNCTIONAL-SCENARIOS.md` contains 17 scenarios (0-16), with actions,
+- Manual: `TEST_SCENARIOS.md` contains 17 scenarios (0-16), with actions,
   expected outcomes and failure clues. None has a recorded game run. `tested_on` remains empty.
-- Automated XML: `pwsh -NoProfile -File _tools/Test-Xml.ps1` passed on 2026-09-13.
+- Automated XML: `pwsh -NoProfile -File scripts/Test-Xml.ps1` passed on 2026-09-13.
   Tests apply the supported patch operations using .NET XPath to independent contract fixtures,
   across all 8 target-mod combinations with and without Ideology. They check all 13 targets,
   single switches, comp order, overlay replacements, preserved size/offset and existing comps,
   untouched unrelated definitions, mod guards, DLC guards and core metadata.
 - Build: `dotnet build -c Release Source/ExtinguishRefuelablesPatch.csproj --no-restore`
   passed on 2026-09-13 with 0 warnings and 0 errors.
-- Installed mods: `_tools/Test-InstalledMods.ps1` passed against local Steam 1.6 definitions
+- Installed mods: `scripts/Test-InstalledMods.ps1` passed against local Steam 1.6 definitions
   on 2026-09-13, with 12 targets without Ideology and 13 with it. Exact mod-name guards,
   original overlay classes, single added switches and preservation of existing comp data pass.
   All three replacement types exist in the shipped DLL metadata. No target name overlaps
   Continued's installed patch XML.
-- C#: `_tools/Test-Behaviour.ps1` compiles the actual production source with minimal test
+- C#: `scripts/Test-Behaviour.ps1` compiles the actual production source with minimal test
   doubles and passes 72 fuel/switch/rotation/spawn cases, including absent comps, north-only
   rendering, the height offset, delayed growth start and preservation of an existing timer.
 - Release rebuild: 0 warnings, 0 errors; shipped DLL hash unchanged after rebuild.
@@ -228,7 +245,7 @@ resetting affected fields to `unchecked` until the audit is complete.
 This section and the current front matter supersede earlier interpretations above while
 preserving historical results. Audited revision: `9258f4b048355d3ecbe28db3c178edb43a583213`.
 The working tree was clean at entry. Only STATUS.md was edited by this audit; build
-intermediates and a fetched Steam page are under ignored `.build/`. No implementation,
+intermediates and a fetched Steam page are under ignored `build/`. No implementation,
 image, licence or distributed document was changed; no commit, push or publication occurred.
 
 Decision: **done -> done**. These are the user's literal workflow states, not aliases:
@@ -269,10 +286,10 @@ options; it overrides the older document's runtime requirement for this case.
 
 ## Commands and observed results
 
-- `pwsh -NoProfile -File _tools/Test-Xml.ps1`: PASS, 16 target-mod/DLC combinations.
-- `pwsh -NoProfile -File _tools/Test-Behaviour.ps1`: PASS, 72 cases against test doubles
+- `pwsh -NoProfile -File scripts/Test-Xml.ps1`: PASS, 16 target-mod/DLC combinations.
+- `pwsh -NoProfile -File scripts/Test-Behaviour.ps1`: PASS, 72 cases against test doubles
   compiling actual production source; does not run RimWorld/Unity or exercise real saves.
-- `pwsh -NoProfile -File _tools/Test-InstalledMods.ps1`: PASS, 12 installed targets without
+- `pwsh -NoProfile -File scripts/Test-InstalledMods.ps1`: PASS, 12 installed targets without
   Ideology, 13 with it, preserved comp data, replacement DLL types and no Continued overlap.
   These are raw installed defs, not the complete engine inheritance/patch pipeline.
 - `dotnet build -c Release Source/ExtinguishRefuelablesPatch.csproj --no-restore`: initial
@@ -292,9 +309,9 @@ options; it overrides the older document's runtime requirement for this case.
 The installed original inventory and notices were rechecked: only a copyright notice, no
 licence grant or source repository link. The live original Steam description and tag were
 retrieved with Invoke-WebRequest after Firecrawl was unavailable and the web reader failed;
-local evidence: `.build/audit-steam-2026-09-13.html`. The description contains no licence,
+local evidence: `build/audit-steam-2026-09-13.html`. The description contains no licence,
 permission or prohibition; Steam and installed metadata declare 1.4, not 1.6. The historical
-bounded search/comments review in _tools/LICENCE-AUDIT.md is retained, not claimed as rerun.
+bounded search/comments review in docs/LICENCE-AUDIT.md is retained, not claimed as rerun.
 
 Under the current PUBLISHING.md operational definition, the missing declared 1.6 support
 establishes abandonment **for this workflow**. The older demand above for additional proof
@@ -335,3 +352,8 @@ The corrected artifact satisfies the added criterion; `stage: done` is retained.
 Only metadata changed; independent build, behavior and image validations remain valid.
 XML parsing, the final-link/URL check and the existing XML suite passed after the change.
 At the time, no Workshop item existed. One was created on 2026-09-23, see the 2026-09-28 audit above.
+
+
+## Preview source migration — 2026-10-03
+
+Copy, typography, layout and palette are consolidated in `Art/Preview.config.json`. Canonical inputs are `Art/Preview-source.png`, `Art/echo.png` and `Art/ModIcon-source.png`; temporary renderer diagnostics belong under ignored `Art/.render/`. Existing Preview, gallery and ICO outputs were preserved because they were present and coherent; no render was run. Superseded JSON files and generated QA intermediates were removed. Nothing published.

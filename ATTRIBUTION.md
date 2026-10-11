@@ -9,7 +9,7 @@ A 1.6 port of **Extinguish Refuelables Compatibilty Patch**, by **Keshash**
 2026-09-13: no licence file in the installed original, no licence or source URL in About.xml,
 and no licence, redistribution permission or prohibition in the live Steam description.
 Source headers contain a 2023 copyright notice, not a permission grant. No original source
-repository was identified. The repository's `_tools/LICENCE-AUDIT.md` records the checked sources.
+repository was identified. The repository's `docs/LICENCE-AUDIT.md` records the checked sources.
 
 The prior claim that the source was dead because it declared only 1.4 was not justified:
 the author answered a compatibility question in November 2024. Absence of a licence does

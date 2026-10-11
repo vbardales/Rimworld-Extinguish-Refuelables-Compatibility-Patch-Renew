@@ -7,9 +7,9 @@ a game yet: every in-game line below is `unverified`, not a pass.
 
 | Layer | Where | Runs | Proves |
 |---|---|---|---|
-| XML contracts | `_tools/Test-Xml.ps1` | offline | Every patch operation against contract fixtures, 16 target-mod and DLC combinations, guards, comp order, preserved size and offset. |
-| Installed defs | `_tools/Test-InstalledMods.ps1` | offline | The same against the raw defs of the installed target mods. **Needs Medieval Overhaul in the Steam workshop folder, which it is not at the moment**, so its ten targets are unverified since 2026-09-28. |
-| C# behaviour | `_tools/Test-Behaviour.ps1` | offline | The one comp class, compiled from the real source against test doubles: 72 cases, fuel and switch, all four rotations, the height nudge, the growth timer. |
+| XML contracts | `scripts/Test-Xml.ps1` | offline | Every patch operation against contract fixtures, 16 target-mod and DLC combinations, guards, comp order, preserved size and offset. |
+| Installed defs | `scripts/Test-InstalledMods.ps1` | offline | The same against the raw defs of the installed target mods. **Needs Medieval Overhaul in the Steam workshop folder, which it is not at the moment**, so its ten targets are unverified since 2026-09-28. |
+| C# behaviour | `scripts/Test-Behaviour.ps1` | offline | The one comp class, compiled from the real source against test doubles: 72 cases, fuel and switch, all four rotations, the height nudge, the growth timer. |
 | Pickle | `Tests/Pickle/` | in game | The patches in the real def database, one switch on each of the 13 buildings, the swapped overlay class, the drawn flame in four facings, save and reload. A local step DLL (`Tests/Pickle/Source`, built 2026-09-28, compiles against the Pickle reference package) supplies the switch, overlay and rotation steps. See `Tests/Pickle/README.md`. |
 
 ## Passes a full validation needs
@@ -27,7 +27,7 @@ Languages: no French or English pass. The mod adds no text, see the translation 
 
 ## The 17 manual scenarios, and where each one goes
 
-`_tools/FUNCTIONAL-SCENARIOS.md` stays as the detailed description. For `tested`, none may remain a
+`TEST_SCENARIOS.md` stays as the detailed description. For `tested`, none may remain a
 manual check to tick: each is automated and green, or listed here as not applicable with its reason.
 
 | # | Scenario | Disposition |

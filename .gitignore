@@ -8,9 +8,9 @@
 #     folder is published. That is what `Mod/` is for: the junction points there, and everything
 #     else in this folder - Source/, the docs, this file - stays out of reach by construction.
 
-# Build intermediates. Directory.Build.props sends them to .build/ at the repository root, but
+# Build intermediates. Directory.Build.props sends them to build/ at the repository root, but
 # a build run from another directory can still drop them beside the csproj.
-.build/
+build/
 Source/obj/
 Source/bin/
 
@@ -42,3 +42,6 @@ desktop.ini
 # What deserves versioning is a one-line summary per run in docs/runs/, cited by STATUS.md.
 Tests/Pickle/Evidence/
 evidence/
+
+# Reproducible Preview diagnostics generated locally by the shared renderer.
+Art/.render/
