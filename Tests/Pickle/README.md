@@ -14,6 +14,7 @@ against test doubles (72 cases, including all four rotations). What only a runni
   load order (`01-load-and-patches.feature`);
 - that the drawn flame really goes out, which is a picture (`02-switch-in-game.feature` and `04-north-only.feature`, `@review`);
 - that every one of the thirteen buildings carries exactly one switch (`03-every-building.feature`);
+- that each swapped fire keeps the flame size its def declares (`10-def-values.feature`);
 - that a switched-off building survives a save and reload.
 
 Not written, with the reason: fuel, light and heat stopping when the switch is off is vanilla's
@@ -30,7 +31,7 @@ which no built-in step does. It compiles against the Pickle reference package; i
 | Pass | Command shape | Establishes |
 |---|---|---|
 | sans-facultatifs | no `-DepMap`, `-Filter '<suite>,!@sans-ideology,!@incompat-keshash'` | The mod loads with Continued alone and reports nothing. Most scenarios are skipped by `@requires`: a skip is not a pass. |
-| avec-facultatifs | `-DepMap wsl-deps.avec-facultatifs.map`, same filter | The thirteen buildings are patched, each has one switch, the flames go out, a save round-trips, and the mod added to a save works (features 01 to 06). The three target mods are not incompatible with one another, so one pass covers them. |
+| avec-facultatifs | `-DepMap wsl-deps.avec-facultatifs.map`, same filter | The thirteen buildings are patched, each has one switch, the flames go out, a save round-trips, and the mod added to a save works (features 01 to 06 and 10). The three target mods are not incompatible with one another, so one pass covers them. |
 | retrait | `-DepMap wsl-deps.avec-facultatifs.map -Filter '07-remove-mod::write' -Then '07-remove-mod::read' -ThenWithout nelim.extinguishrefuelablescompatibilitypatch` | A save written with the mod loads with it taken out, and the buildings lose their switch. Two launches, one request. |
 | sans-ideology | `-DepMap wsl-deps.sans-ideology.map`, `-Filter '@sans-ideology'` | The `MayRequire` guard holds when the DLC is absent. |
 | incompat-keshash | `-DepMap wsl-deps.incompat-keshash.map`, `-Filter '@incompat-keshash'` | The declared incompatibility still behaves as declared. The symptom asserted is a prediction. |

@@ -1,6 +1,8 @@
 @requires:nelim.pickletools.screenshotstudio
 @requires:nelim.pickletools.stagedecor
 @requires:DankPyon.Medieval.Overhaul
+@requires:nelim.pickletools.clearscreen
+@requires:nelim.pickletools.colonistrace
 @gallery
 Feature: Workshop gallery, "The vigil of the cold hall"
 

@@ -48,18 +48,18 @@ namespace ExtinguishRefuelablesPatch.PickleSteps
         private static CompFlickable SwitchOf(PickleContext ctx, Thing thing)
         {
             CompFlickable flickable = thing.TryGetComp<CompFlickable>();
-            ctx.Assert(flickable != null, $"{thing.def.defName} has no CompFlickable, so no on/off switch");
+            ctx.Assert(flickable != null, $"{thing.def.defName} has no CompFlickable, so no on\\/off switch");
             return flickable;
         }
 
-        [Then("Extinguish Refuelables Patch: the {string} at ({int}, {int}) has exactly one on/off switch")]
+        [Then("Extinguish Refuelables Patch: the {string} at \\({int}, {int}\\) has exactly one on\\/off switch")]
         public void HasOneSwitch(PickleContext ctx, string defName, int x, int z)
         {
             int count = CountSwitches(ctx, ThingAt(ctx, defName, x, z));
             ctx.Assert(count == 1, $"{defName} has {count} CompFlickable, expected exactly one");
         }
 
-        [Then("Extinguish Refuelables Patch: the {string} at ({int}, {int}) is switched {word}")]
+        [Then("Extinguish Refuelables Patch: the {string} at \\({int}, {int}\\) is switched {word}")]
         public void IsSwitched(PickleContext ctx, string defName, int x, int z, string state)
         {
             bool wantOn = ParseState(ctx, state);
@@ -68,14 +68,14 @@ namespace ExtinguishRefuelablesPatch.PickleSteps
                 $"{defName} at ({x}, {z}) is switched {(flickable.SwitchIsOn ? "on" : "off")}, expected {state}");
         }
 
-        [When("Extinguish Refuelables Patch: I switch the {string} at ({int}, {int}) {word}")]
+        [When("Extinguish Refuelables Patch: I switch the {string} at \\({int}, {int}\\) {word}")]
         public void Switch(PickleContext ctx, string defName, int x, int z, string state)
         {
             bool wantOn = ParseState(ctx, state);
             SwitchOf(ctx, ThingAt(ctx, defName, x, z)).SwitchIsOn = wantOn;
         }
 
-        [When("Extinguish Refuelables Patch: I rotate the {string} at ({int}, {int}) to {word}")]
+        [When("Extinguish Refuelables Patch: I rotate the {string} at \\({int}, {int}\\) to {word}")]
         public void Rotate(PickleContext ctx, string defName, int x, int z, string direction)
         {
             Rot4 rot = Rot4.FromString(direction);
@@ -84,7 +84,7 @@ namespace ExtinguishRefuelablesPatch.PickleSteps
             thing.Rotation = rot;
         }
 
-        [Then("Extinguish Refuelables Patch: the {string} at ({int}, {int}) faces {word}")]
+        [Then("Extinguish Refuelables Patch: the {string} at \\({int}, {int}\\) faces {word}")]
         public void Faces(PickleContext ctx, string defName, int x, int z, string direction)
         {
             Rot4 want = Rot4.FromString(direction);
@@ -104,14 +104,14 @@ namespace ExtinguishRefuelablesPatch.PickleSteps
                 $"{defName} still carries an unswapped overlay; its comp properties are: {string.Join(", ", classes)}");
         }
 
-        [Then("Extinguish Refuelables Patch: the {string} at ({int}, {int}) has {int} on/off switches")]
+        [Then("Extinguish Refuelables Patch: the {string} at \\({int}, {int}\\) has {int} on\\/off switches")]
         public void HasSwitchCount(PickleContext ctx, string defName, int x, int z, int expected)
         {
             int count = CountSwitches(ctx, ThingAt(ctx, defName, x, z));
             ctx.Assert(count == expected, $"{defName} has {count} CompFlickable, expected {expected}");
         }
 
-        [Then("Extinguish Refuelables Patch: the {string} at ({int}, {int}) has no on/off switch")]
+        [Then("Extinguish Refuelables Patch: the {string} at \\({int}, {int}\\) has no on\\/off switch")]
         public void HasNoSwitch(PickleContext ctx, string defName, int x, int z)
         {
             int count = CountSwitches(ctx, ThingAt(ctx, defName, x, z));
@@ -121,7 +121,7 @@ namespace ExtinguishRefuelablesPatch.PickleSteps
         // Takes the switch comp off a standing building, so a save made right after holds none of its
         // state: the same file a game without this mod would have written. Reloading it with the mod
         // active is then the case of adding the mod to a save in progress.
-        [When("Extinguish Refuelables Patch: I strip the on/off switch from the {string} at ({int}, {int})")]
+        [When("Extinguish Refuelables Patch: I strip the on\\/off switch from the {string} at \\({int}, {int}\\)")]
         public void StripSwitch(PickleContext ctx, string defName, int x, int z)
         {
             ThingWithComps withComps = ThingAt(ctx, defName, x, z) as ThingWithComps;

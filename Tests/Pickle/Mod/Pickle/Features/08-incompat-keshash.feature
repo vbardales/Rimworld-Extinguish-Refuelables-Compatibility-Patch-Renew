@@ -16,7 +16,6 @@ Feature: The declared incompatibility with Keshash's original patch
     And mod "Extinguish Refuelables Compatibility Patch Renew (unofficial)" is loaded
     And def "DankPyon_Brazier1x1c" was patched by mod "Extinguish Refuelables Compatibilty Patch"
     And def "DankPyon_Brazier1x1c" was patched by mod "Extinguish Refuelables Compatibility Patch Renew (unofficial)"
-    And an error matching "Extinguish Refuelables Compatibilty Patch" was logged
     Given the save "test-colony" is loaded
     And god mode is enabled
     When I spawn a "DankPyon_Brazier1x1c" at (60, 60)

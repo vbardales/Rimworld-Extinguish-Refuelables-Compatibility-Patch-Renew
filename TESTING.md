@@ -8,7 +8,7 @@ a game yet: every in-game line below is `unverified`, not a pass.
 | Layer | Where | Runs | Proves |
 |---|---|---|---|
 | XML contracts | `scripts/Test-Xml.ps1` | offline | Every patch operation against contract fixtures, 16 target-mod and DLC combinations, guards, comp order, preserved size and offset. |
-| Installed defs | `scripts/Test-InstalledMods.ps1` | offline | The same against the raw defs of the installed target mods. **Needs Medieval Overhaul in the Steam workshop folder, which it is not at the moment**, so its ten targets are unverified since 2026-09-28. |
+| Installed defs | `scripts/Test-InstalledMods.ps1` | offline | The same against the raw defs of the installed target mods. Passes 2026-10-11 with Medieval Overhaul in the Steam workshop folder (12 targets, 13 with Ideology). |
 | C# behaviour | `scripts/Test-Behaviour.ps1` | offline | The one comp class, compiled from the real source against test doubles: 72 cases, fuel and switch, all four rotations, the height nudge, the growth timer. |
 | Pickle | `Tests/Pickle/` | in game | The patches in the real def database, one switch on each of the 13 buildings, the swapped overlay class, the drawn flame in four facings, save and reload. A local step DLL (`Tests/Pickle/Source`, built 2026-09-28, compiles against the Pickle reference package) supplies the switch, overlay and rotation steps. See `Tests/Pickle/README.md`. |
 
@@ -39,7 +39,7 @@ manual check to tick: each is automated and green, or listed here as not applica
 | 4 | Heat stones, switch and no flame | Pickle 01 (patched). No capture: there is no flame to see. |
 | 5 | North-only rule | Pickle 04: four facings each of stove and hearth, `@review` captures, facing asserted. The flame itself is judged by eye, so it stays open until the images are opened. Covered offline by 72 cases. |
 | 6 | The switch still works on them | Pickle 04: each facing is switched off and captured, and the switch state is read back. Same `@review` limit as 5. |
-| 7 | Def flame size and offset still apply | **Not written yet.** The step exists (`the def X fire overlay field F is V`, read off the live def). The expected values are Medieval Overhaul's own, and its defs are not installed locally, so they cannot be read. Written the moment they can. |
+| 7 | Def flame size and offset still apply | Pickle 10: the live `fireSize` of the five swapped Medieval Overhaul fires against the values read from its installed 1.6 defs on 2026-10-11. The offsets are judged by eye in the `@review` captures of 04. |
 | 8 | Growth timer starts when lit | Not applicable: no shipped def sets `fireGrowthDurationTicks`. Offline cases cover it. |
 | 9 | Darklight hearth with Ideology | Pickle 01 (patched, pass 2). |
 | 10 | Without Ideology | Pickle 01 `@sans-ideology`, pass 3. |
