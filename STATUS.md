@@ -13,7 +13,7 @@ repository_visibility: public
 local_path:   C:\Users\nelim\Documents\rimworld\ExtinguishRefuelablesCompatibilityPatchRenew
 detached:     yes
 maintainer:   Claude Code session for this repository and STATUS.md
-workflow_stage: makeSources
+workflow_stage: writeTests[1.0.0]
 licence:      silent
 licence_at:   docs/LICENCE-AUDIT.md; original local files and live Steam description checked 2026-09-13
 upstream_mod_remotes: N/A (checked 2026-09-28: neither Keshash's original nor Extinguish Refuelables Continued declares a <url> in About.xml; gh search repos for both names finds nothing to fork)
@@ -26,7 +26,6 @@ automated_tests: rerun 2026-10-11 at 0cd711d: Test-Xml PASS (16 combinations); T
 pickle_suite: written 2026-09-28, repaired 2026-10-11 (Check-Steps: all patterns compile, every step line resolves; 10 features, 5 passes plus gallery), never run
 build:        passed 2026-09-28, Release net48, 0 warnings and 0 errors, DLL unchanged
 remaining:
-  - defect: Mod/About/ModIcon.png (2026-10-02), Art/ModIcon.ico and Mod/About/Preview.png (2026-10-03) are older than Art/ModIcon-source.png (2026-10-04, uncommitted change under way by another session); derivatives stale until that source settles (AUDIT.md 2.b)
   - unverified: scenario 7 is written (Pickle 10-def-values.feature, five fireSize values read from the installed Medieval Overhaul 1.6 defs) but has not run
   - unverified: the Pickle suite has never run; all 5 passes (sans-facultatifs, avec-facultatifs, retrait, sans-ideology, incompat-keshash) are pending, and every scenario, step label and cell in it is an unproven guess (mandatory for tested)
   - unverified: the Keshash incompatibility pass is written but its symptom is a prediction and the id of malistaticy.mer in its map is unconfirmed (mandatory for tested)
@@ -35,21 +34,21 @@ remaining:
   - unverified: no manual test left to validate: each of the 17 scenarios in `TEST_SCENARIOS.md` must be automated and green or listed not applicable with its reason (mandatory for tested)
   - unverified: 1.0.0 needs prepublished-stage checks (PUBLICATION.md, description source, thank-you comments) before any publish
 session:      local_ea52f7cf-763d-47d6-a494-43c4491e1649
-updated:      2026-10-11, re-audit against AUDIT.md of 2026-10-11: workflow_stage done -> makeSources (stale ModIcon derivative, 2.b); gates 3 to 7 pass; 2026-10-02 audit kept below as history
-protocols_read_sha: 380ec723c1e642f36b317771473c5bbfa8424934
+updated:      2026-10-11, re-audit against AUDIT.md of 2026-10-11: workflow_stage writeTests[1.0.0] (derivatives regenerated from the 2026-10-04 ModIcon source, 2.b cleared)
+protocols_read_sha: bceb5f8ae0d6bd1b095acf6379428e8483568790
 ---
 
 
 # Re-audit against AUDIT.md — 2026-10-11
 
-Decision: **done -> makeSources**. Replaces the "Decision: done -> done" paragraph of 2026-09-28 below (kept as
+Decision: **done -> makeSources, then writeTests[1.0.0] the same day** once the derivatives were regenerated (below, "Way back up", done). Replaces the "Decision: done -> done" paragraph of 2026-09-28 below (kept as
 history). The first failing transition fixes the state (AUDIT.md, section 16): gate 2 fails, so everything above it
 (gates 3 to 7, which pass or were repaired below) waits on one derived file.
 
 | Gate | Result | Evidence, 2026-10-11 at `0cd711d` plus this change |
 | --- | --- | --- |
 | 1 setupRepo | pass | Independent repo, origin public (`gh repo view`: PUBLIC, main), README, ATTRIBUTION, LICENSE, CHANGELOG, STATUS; `(unofficial)` suffix and `UNOFFICIAL` paragraph present; licence `silent`, `upstream_mod_remotes` N/A with date. Not redone: duplicate search (1.a, `Search-Workshop.sh`). |
-| 2 makeSources | **fail (2.b)** | `Mod/About/ModIcon.png` (2026-10-02, 25,945 bytes, 128x128 RGBA, in the 20-30 KB range) and `Art/ModIcon.ico` (2026-10-03) are older than `Art/ModIcon-source.png` (2026-10-04, modified and not committed). `Mod/About/Preview.png` is 551 KB, 896x504. Not regenerated: another session is reworking `Art/` (uncommitted `Preview.config.json`, deleted `preview-copy.json` and `preview-palette.json`); the regeneration (`node ../scripts/Render-Preview.cjs`, key `modIconSource`) and the Preview chain wait for it. Not checked: 2.e palette measures. |
+| 2 makeSources | fail (2.b), cleared the same day: `ModIcon.png` 128x128, 28,435 bytes, `ModIcon.ico`, `Preview.png` and `0-preview.png` regenerated from the committed source (`b920634`) | `Mod/About/ModIcon.png` (2026-10-02, 25,945 bytes, 128x128 RGBA, in the 20-30 KB range) and `Art/ModIcon.ico` (2026-10-03) are older than `Art/ModIcon-source.png` (2026-10-04, modified and not committed). `Mod/About/Preview.png` is 551 KB, 896x504. Not regenerated: another session is reworking `Art/` (uncommitted `Preview.config.json`, deleted `preview-copy.json` and `preview-palette.json`); the regeneration (`node ../scripts/Render-Preview.cjs`, key `modIconSource`) and the Preview chain wait for it. Not checked: 2.e palette measures. |
 | 3 code | pass | Build 0 warnings, 0 errors, DLL SHA256 unchanged (`48717BB5...`), `Mod/Assemblies` identical to the sources; `[Unreleased]` in CHANGELOG. No build script to declare to CI/CD (a plain csproj). |
 | 4 declareDependencies | pass | About.xml packageIds read against the installed About.xml files: `DankPyon.Medieval.Overhaul`, `OskarPotocki.VFE.Classical`, `OskarPotocki.VFE.Medieval2` (all 1.6), `blacktriple.extinguishrefuelablescontinued` (1.6 only). Hard dependency Continued only (two overlay classes); the three targets are `loadAfter` and each patch is guarded by `PatchOperationFindMod` on the exact name; the darklight hearth by `MayRequire` Ideology; `incompatibleWith` Keshash. No `LoadFolders.xml` needed. `1.6` only in `supportedVersions`. Date and revision: this entry. |
 | 5 auditSettings | pass, `not_applicable` | Source re-read: no `Mod` subclass, no settings, no `MainButtonDef`; the on/off switch is vanilla `CompFlickable`. |
