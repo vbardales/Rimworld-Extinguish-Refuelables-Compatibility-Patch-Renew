@@ -1,0 +1,17 @@
+{
+  "templateStamp": "ba64b0c1b25d",
+  "workshopId": "3806767177",
+  "packageId": "nelim.extinguishrefuelablescompatibilitypatch",
+  "releaseTitle": "Extinguish Refuelables Compatibility Patch Renew (unofficial) {version}",
+  "requirePaths": [
+    "Assemblies/ExtinguishRefuelablesPatch.dll",
+    "Patches",
+    "About"
+  ],
+  "forbidPaths": [],
+  "previewFile": "About/Preview.png",
+  "galleryDir": "Art/Gallery",
+  "build": {
+    "project": "Source/ExtinguishRefuelablesPatch.csproj"
+  }
+}
