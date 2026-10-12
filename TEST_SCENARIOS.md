@@ -33,8 +33,8 @@ The full list of what should end up with a switch, thirteen buildings across thr
 |---|---|---|---|---|
 | Medieval Overhaul | `DankPyon_Brazier1x1c` | ancient brazier | **none** | vanilla overlay |
 | Medieval Overhaul | `DankPyon_Brazier2x2c` | ancient obelisk brazier | **none** | vanilla overlay |
-| Medieval Overhaul | `DankPyon_Candles` | candles, tallow | yes | none |
-| Medieval Overhaul | `DankPyon_Candles_Beeswax` | candles, bee wax | yes | none |
+| Medieval Overhaul | `DankPyon_Candles` | candles (tallow, label shared) | yes | none |
+| Medieval Overhaul | `DankPyon_Candles_Beeswax` | candles (bee wax, label shared) | yes | none |
 | Medieval Overhaul | `DankPyon_CandleStand` | candle stand | yes | none |
 | Medieval Overhaul | `DankPyon_WallLamp` | wall oil lamp | yes | none |
 | Medieval Overhaul | `DankPyon_LampPost` | lamp post | yes | none |
