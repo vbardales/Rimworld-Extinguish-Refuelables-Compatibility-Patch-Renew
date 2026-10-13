@@ -13,7 +13,7 @@ repository_visibility: public
 local_path:   C:\Users\nelim\Documents\rimworld\ExtinguishRefuelablesCompatibilityPatchRenew
 detached:     yes
 maintainer:   Claude Code session for this repository and STATUS.md
-workflow_stage: writeTests[1.0.0]
+workflow_stage: playTests[1.0.0]
 licence:      silent
 licence_at:   docs/LICENCE-AUDIT.md; original local files and live Steam description checked 2026-09-13
 upstream_mod_remotes: N/A (checked 2026-09-28: neither Keshash's original nor Extinguish Refuelables Continued declares a <url> in About.xml; gh search repos for both names finds nothing to fork)
@@ -22,7 +22,7 @@ dependencies: declared
 showcase:     complete, recomposed and visually verified 2026-09-13
 tested_on:
 workshop:     3806767177 (private, created 2026-09-23 by the 0.1.0 prepublication)
-automated_tests: rerun 2026-10-11 at 0cd711d: Test-Xml PASS (16 combinations); Test-Behaviour PASS (72 cases); Test-InstalledMods PASS (12 targets without Ideology, 13 with it, Medieval Overhaul installed); build 0 warnings, 0 errors, DLL unchanged
+automated_tests: rerun 2026-10-13 at 8a57b14: Test-Xml PASS (16 combinations); Test-Behaviour PASS (72 cases); Test-InstalledMods PASS (12 targets without Ideology, 13 with it, Medieval Overhaul installed); build 0 warnings, 0 errors, DLL unchanged
 pickle_suite: written 2026-09-28, repaired 2026-10-11 (Check-Steps: all patterns compile, every step line resolves; 10 features, 5 passes plus gallery), never run
 build:        passed 2026-09-28, Release net48, 0 warnings and 0 errors, DLL unchanged
 remaining:
@@ -34,7 +34,7 @@ remaining:
   - unverified: no manual test left to validate: each of the 17 scenarios in `TEST_SCENARIOS.md` must be automated and green or listed not applicable with its reason (mandatory for tested)
   - unverified: 1.0.0 needs prepublished-stage checks (PUBLICATION.md, description source, thank-you comments) before any publish
 session:      local_ea52f7cf-763d-47d6-a494-43c4491e1649
-updated:      2026-10-11, re-audit against AUDIT.md of 2026-10-11: workflow_stage writeTests[1.0.0] (derivatives regenerated from the 2026-10-04 ModIcon source, 2.b cleared)
+updated:      2026-10-13, writeTests gate 7 re-checked at 8a57b14 (tests rerun green, Check-Steps clean, About.xml description without a version): workflow_stage playTests[1.0.0]
 protocols_read_sha: 5e7c922c02ef44b3ee1357f59dde11a7da5e66f6
 ---
 
