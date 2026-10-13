@@ -9,7 +9,7 @@
   <url>https://github.com/vbardales/Rimworld-Extinguish-Refuelables-Compatibility-Patch-Renew</url>
   <description>UNOFFICIAL. This mod is published without the original author's explicit consent. If the original author contacts me to request its removal, I undertake to take it down promptly.
 
-A 1.6 port of Keshash's Extinguish Refuelables Compatibilty Patch. I am not the author of this mod; the work here is what it took to make it run on 1.6, and to repair what the port turned up.
+A port of Keshash's Extinguish Refuelables Compatibilty Patch. I am not the author of this mod; the work here is what it took to make it run on the latest RimWorld version, and to repair what the port turned up.
 
 Extinguish Refuelables gives a torch or a campfire an on/off switch, so a colony can put one out instead of letting it burn wood all night. Extinguish Refuelables Continued covers the base game, Vanilla Furniture Expanded, Medieval Lighting and Heat and Smoked meat. This adds the buildings it does not reach, with no def in common between the two.
 
@@ -23,9 +23,9 @@ Vanilla Factions Expanded - Medieval 2: the hearth, and the darklight hearth wit
 
 Each mod's patch is guarded, so having none of them installed does nothing and errors at nothing.
 
-WHAT CHANGED IN THE 1.6 PORT
+WHAT CHANGED IN THE PORT
 
-The original patched Vanilla Factions Expanded - Medieval and Vanilla Factions Expanded - Vikings. Both stop at RimWorld 1.4 and cannot load here. Their content moved into Medieval 2, where the Vikings hearth survives as VFEM2_Hearth with the same comps, so the patch follows it there. The Vikings funeral pyre, the Medieval candle and the Medieval wall torch lamp did not make the move.
+The original patched Vanilla Factions Expanded - Medieval and Vanilla Factions Expanded - Vikings. Both stop at RimWorld 1.4 and cannot load on the latest RimWorld version. Their content moved into Medieval 2, where the Vikings hearth survives as VFEM2_Hearth with the same comps, so the patch follows it there. The Vikings funeral pyre, the Medieval candle and the Medieval wall torch lamp did not make the move.
 
 Extinguish Refuelables changed its namespace when it was continued, and Medieval Overhaul changed its own; every class name in the four patch files pointed at a type that no longer exists. The patches were also written as one long sequence per mod, which stops at the first operation that fails rather than skipping it, so one defName going away silenced everything after it. Each group is now its own operation.
 
