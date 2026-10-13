@@ -35,7 +35,7 @@ remaining:
   - unverified: 1.0.0 needs prepublished-stage checks (PUBLICATION.md, description source, thank-you comments) before any publish
 session:      local_ea52f7cf-763d-47d6-a494-43c4491e1649
 updated:      2026-10-11, re-audit against AUDIT.md of 2026-10-11: workflow_stage writeTests[1.0.0] (derivatives regenerated from the 2026-10-04 ModIcon source, 2.b cleared)
-protocols_read_sha: bceb5f8ae0d6bd1b095acf6379428e8483568790
+protocols_read_sha: 5e7c922c02ef44b3ee1357f59dde11a7da5e66f6
 ---
 
 
