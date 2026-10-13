@@ -37,7 +37,7 @@ remaining:
   - unverified: 1.0.0 needs prepublished-stage checks (PUBLICATION.md, description source, thank-you comments) before any publish
 session:      local_ea52f7cf-763d-47d6-a494-43c4491e1649
 updated:      2026-10-13, writeTests gate 7 re-checked at 8a57b14 (tests rerun green, Check-Steps clean, About.xml description without a version): workflow_stage playTests[1.0.0]
-protocols_read_sha: 5e7c922c02ef44b3ee1357f59dde11a7da5e66f6
+protocols_read_sha: b483dd6813cb9e000e9a71d4a0d631de555c7aac
 ---
 
 
