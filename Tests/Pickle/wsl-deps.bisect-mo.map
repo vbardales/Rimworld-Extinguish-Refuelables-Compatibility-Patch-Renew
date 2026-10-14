@@ -1,0 +1,2 @@
+# Bisection of the avec-facultatifs startup hang (2026-10-14): the game stalls before any mod logs. One target mod at a time. Ids as in wsl-deps.avec-facultatifs.map.
+DankPyon.Medieval.Overhaul                  3219596926
