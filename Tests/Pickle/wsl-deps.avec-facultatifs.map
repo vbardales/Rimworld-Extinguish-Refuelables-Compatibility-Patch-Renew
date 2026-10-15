@@ -1,9 +1,10 @@
 # The pass with the three target mods, in the order they need each other. Ids and packageIds read
 # from each mod's own About.xml on 2026-09-28. Vanilla Expanded Framework is a hard dependency of
 # Classical and Medieval 2 (the staging copies only the tested mod's own dependencies, so it is named here).
-# Medieval Overhaul's own dependencies could NOT be read: it is no longer in the local Steam
-# folder. If the staging stops with "no Workshop id known for ...", the missing id belongs here.
+# Medieval Overhaul hard-depends on syrchalis.processor.framework (read from its About.xml 2026-10-15; the About names
+# 3210544395 but the WSL cache holds the mod as 2633514537). Left out, the game stalled at startup (2026-10-14; suspected cause, to confirm by a run).
 OskarPotocki.VanillaFactionsExpanded.Core   2023507013
 OskarPotocki.VFE.Classical                  2787850474
 OskarPotocki.VFE.Medieval2                  3444347874
 DankPyon.Medieval.Overhaul                  3219596926
+syrchalis.processor.framework               2633514537
