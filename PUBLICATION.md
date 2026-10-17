@@ -2,7 +2,7 @@
 
 What the Workshop page asks for and the repository holds nowhere else. Written 2026-10-02, **draft**:
 the pictures do not exist yet (the gallery pass has not run), so the order below is a plan, not a
-verified sequence. Nothing here was sent to Steam. The item exists, private, from the `0.1.0`
+verified sequence. This draft has not been sent to Steam. The item exists, private, from the `0.1.0`
 prepublication (id in `Mod/About/PublishedFileId.txt`).
 
 ## Version

@@ -1,33 +1,24 @@
 # Functional scenarios, to be played in game
 
-This mod is seven XML operations over thirteen buildings, and one comp class. Almost nothing in
-it can be seen from outside the game: a patch that does not apply is silent by construction, and
-the one behaviour the C# adds is a flame that is drawn or not drawn. So these scenarios carry the
-verification, and each one is written with a single thing to watch and a single way of being
-wrong.
+Mod = seven XML operations over thirteen buildings, one comp class. Almost nothing visible outside game: patch that fails to apply is silent by construction, only C# behaviour is flame drawn or not drawn. So scenarios carry verification. Each has one thing to watch, one way to be wrong.
 
-**No game run is recorded.** These manual scenarios are non-blocking by maintainer decision. When executing them, start with scenario 0 before proceeding to the remaining scenarios.
+**No game run recorded.** Manual scenarios non-blocking by maintainer decision. When executing, start with scenario 0 before the rest.
 
 ## Setup for everything here
 
-Development mode on, and god mode for placing buildings and filling their fuel without waiting.
+Development mode on. God mode for placing buildings and filling fuel without waiting.
 
-Mods active: **Extinguish Refuelables Continued**, which is a hard dependency and supplies two of
-the three comp classes the patches name, then **Medieval Overhaul**, **Vanilla Factions Expanded -
-Classical** and **Vanilla Factions Expanded - Medieval 2**. Scenarios 11 and 12 take some of those
-away again, so keep the modlist easy to edit.
+Mods active: **Extinguish Refuelables Continued** (hard dependency, supplies two of three comp classes patches name), then **Medieval Overhaul**, **Vanilla Factions Expanded - Classical**, **Vanilla Factions Expanded - Medieval 2**. Scenarios 11 and 12 remove some again, so keep modlist easy to edit.
 
-Empty `Player.log` before each start, and read it after. The filter that catches everything below:
+Empty `Player.log` before each start, read after. Filter catching everything below:
 
 ```bash
 grep -E "Patch operation|XML error|Could not find type|Could not resolve" Player.log
 ```
 
-The switch this mod installs is vanilla's own: a small on/off icon in the selected building's
-command row, the same one a lamp has. Where a scenario says *switched off*, it means that icon
-toggled off, not the building deconstructed.
+Switch this mod installs is vanilla's own: small on/off icon in selected building's command row, same as lamp. *Switched off* = icon toggled off, not building deconstructed.
 
-The full list of what should end up with a switch, thirteen buildings across three mods:
+Full list of what should get a switch, thirteen buildings across three mods:
 
 | mod | defName | in-game label | fuel | drawn flame |
 |---|---|---|---|---|
@@ -45,263 +36,179 @@ The full list of what should end up with a switch, thirteen buildings across thr
 | VFE - Medieval 2 | `VFEM2_Hearth` | hearth | yes | vanilla overlay |
 | VFE - Medieval 2 | `VFEM2_HearthDarklight` | darklight hearth | yes | darklight overlay |
 
-**The two braziers have no fuel comp at all**, read out of Medieval Overhaul's own 1.6 def files.
-They burn for ever and always did; what the switch buys there is the light, the heat and the flame
-going away, not wood saved. Do not go looking for a fuel gauge on them, and do not read its absence
-as a failed patch.
+**Two braziers have no fuel comp at all**, read from Medieval Overhaul's own 1.6 def files. Burn forever, always did. Switch buys light, heat, flame going away, not wood saved. No fuel gauge on them. Absence is not failed patch.
 
-The labels are out of each mod's own 1.6 def files, and two pairs of them collide. **Both Medieval
-Overhaul candle defs are labelled simply `candles`** and are told apart only by what refuels them,
-tallow or bee wax; the description in the build menu says which. And **Medieval Overhaul's rustic
-hearth and Medieval 2's hearth are both labelled `hearth`**, from two different mods, which matters
-in scenario 12 where only one of the two mods is loaded. Select the building and read the defName
-in the inspect pane with development mode on rather than trusting the label.
+Labels come from each mod's own 1.6 def files. Two pairs collide. **Both Medieval Overhaul candle defs labelled just `candles`**, told apart only by refuel item, tallow or bee wax. Build menu description says which. **Medieval Overhaul rustic hearth and Medieval 2 hearth both labelled `hearth`**, different mods. Matters in scenario 12, where only one of two mods loaded. Select building, read defName in inspect pane with development mode on. Do not trust label.
 
-The beeswax **candle stand** is deliberately not on that list. It exists only in Medieval Overhaul's
-`1.4` folder and is gone from 1.5 and 1.6, checked folder by folder, so the port dropped it. Do not
-go looking for it. The `_WoodLog` and `_BlocksGranite` candle stands that 1.5 added are not on the
-list either, and should not be: they are map-generation symbols pointing back at `DankPyon_CandleStand`,
-not buildings of their own.
+Beeswax **candle stand** deliberately not on list. Exists only in Medieval Overhaul `1.4` folder, gone from 1.5 and 1.6, checked folder by folder, so port dropped it. Do not look for it. `_WoodLog` and `_BlocksGranite` candle stands added in 1.5 also not on list, and should not be: map-generation symbols pointing back to `DankPyon_CandleStand`, not buildings.
 
 ---
 
 ## 0. It loads, and the patches take
 
-**Do.** Start the game with everything from Setup active. Reach the main menu, then load any save.
+**Do.** Start game with everything from Setup active. Reach main menu, load any save.
 
-**Expect.** No red text, and nothing from this mod in the log.
+**Expect.** No red text, nothing from this mod in log.
 
-**Watch for in `Player.log`.** Four lines, each meaning a different failure:
+**Watch for in `Player.log`.** Four lines, each a different failure:
 
-- `Patch operation ... failed`, in a line that opens with this mod's name in square brackets. One
-  of the seven operations did not match. The line names which, and the file it came from. This
-  is what splitting the operations apart was for: in the original they were one sequence per target
-  mod, and the first failure swallowed every operation after it without a word.
-- `Could not find type named ExtinguishRefuelables.CompProperties_FireOverlayExtinguishable`, or
-  the same for `CompProperties_DarklightOverlayExtinguishable`. Extinguish Refuelables Continued
-  has renamed its namespace again. That happened once already between 2023 and 1.6, and repairing
-  it was most of the port.
-- `Could not find type named ExtinguishRefuelablesPatch.CompProperties_FireOverlaySouthExtinguishable`
-  means this mod's own assembly did not load. Check `Mod/Assemblies`.
-- `Could not find type named MedievalOverhaul.CompProperties_FireOverlaySouth` is not this mod's
-  error, but seeing it means Medieval Overhaul has renamed that class, and the stove and rustic
-  hearth operations will have failed on the line above.
+- `Patch operation ... failed`, in line opening with this mod's name in square brackets. One of seven operations did not match. Line names which, and source file. This is why operations were split: original had one sequence per target mod, first failure swallowed every later operation silently.
+- `Could not find type named ExtinguishRefuelables.CompProperties_FireOverlayExtinguishable`, or same for `CompProperties_DarklightOverlayExtinguishable`. Extinguish Refuelables Continued renamed namespace again. Happened once already between 2023 and 1.6, repairing it was most of the port.
+- `Could not find type named ExtinguishRefuelablesPatch.CompProperties_FireOverlaySouthExtinguishable` = this mod's own assembly did not load. Check `Mod/Assemblies`.
+- `Could not find type named MedievalOverhaul.CompProperties_FireOverlaySouth` not this mod's error, but means Medieval Overhaul renamed that class, and stove and rustic hearth operations failed on the line above.
 
-**A silence that is not success.** `PatchOperationFindMod` compares the target mod's **name**, free
-text out of its `About.xml`, not its `packageId`. If one of those names has changed by so much as
-an em dash, the whole file does nothing and says nothing. Scenario 1 is what proves the patches
-ran. Scenario 0 only proves nothing crashed.
+**Silence that is not success.** `PatchOperationFindMod` compares target mod's **name**, free text from its `About.xml`, not `packageId`. If a name changed by even an em dash, whole file does nothing, says nothing. Scenario 1 proves patches ran. Scenario 0 only proves nothing crashed.
 
-**If it fails here, stop.** Everything below assumes the patches are live.
+**If fails here, stop.** Everything below assumes patches live.
 
 ---
 
 ## 1. Every building on the list gets a switch
 
-**Do.** Place one of each of the thirteen. Select each and look at its command row.
+**Do.** Place one of each of thirteen. Select each, look at command row.
 
-**Expect.** The on/off switch on all thirteen.
+**Expect.** On/off switch on all thirteen.
 
-**Why it matters.** This is the only proof that `PatchOperationFindMod` matched. A building with no
-switch means either its mod's name did not match or its `defName` has moved upstream. A whole mod's
-worth missing at once points at the name; one building on its own points at the `defName`.
+**Why it matters.** Only proof `PatchOperationFindMod` matched. No switch = mod name did not match or `defName` moved upstream. Whole mod's worth missing at once points to name; one building alone points to `defName`.
 
 ## 2. The switch actually puts the fire out
 
-**Do.** A rustic wall torch, fuelled, in a closed room. Note the fuel gauge, the light on the floor
-and the room temperature in the inspect pane. Switch it off. Let a few game hours pass.
+**Do.** Rustic wall torch, fuelled, in closed room. Note fuel gauge, floor light, room temperature in inspect pane. Switch off. Let a few game hours pass.
 
-**Expect.** The fuel gauge stops dropping. The light goes. The room stops being heated.
+**Expect.** Fuel gauge stops dropping. Light goes. Room stops heating.
 
-**Why it matters.** None of that is this mod's code. Vanilla's `CompRefuelable`, `CompGlower` and
-`CompHeatPusher` each consult `CompFlickable` on their own, and all the mod does is put the comp
-there. A switch that appears while the fuel keeps burning means something else on that building is
-driving the fuel.
+**Why it matters.** None of that is this mod's code. Vanilla `CompRefuelable`, `CompGlower`, `CompHeatPusher` each consult `CompFlickable` themselves; mod only adds the comp. Switch appears but fuel keeps burning = something else on that building drives fuel.
 
-**Not on the braziers.** Pick any building from the table with *yes* in the fuel column. The two
-braziers have nothing to save, and the whole scenario would read as a failure on them.
+**Not on braziers.** Pick any building from table with *yes* in fuel column. Braziers have nothing to save, scenario would read as failure on them.
 
 ## 3. The flame graphic goes out with it
 
-**Do.** The 1x1 brazier, the 2x2 brazier, the rustic wall torch, and the Medieval 2 hearth. Switch
-each off.
+**Do.** 1x1 brazier, 2x2 brazier, rustic wall torch, Medieval 2 hearth. Switch each off.
 
-**Expect.** The drawn flame disappears, immediately.
+**Expect.** Drawn flame disappears, immediately.
 
-**Why it matters.** The overlay swap is a separate operation from the switch: the fire overlay comp
-is exchanged for the extinguishable one from Extinguish Refuelables. A flame that keeps burning on
-a building whose light and heat have stopped is the signature of that swap failing where the switch
-went in. It is exactly the shape of failure the original had, and the reason each group is now its
-own operation.
+**Why it matters.** Overlay swap is separate operation from switch: fire overlay comp exchanged for extinguishable one from Extinguish Refuelables. Flame keeps burning on building whose light and heat stopped = swap failed where switch went in. Exact failure shape of the original, reason each group is now its own operation.
 
-**The braziers are the sharpest case.** They have no fuel to stop, so the flame is most of what
-there is to see. On them, a flame that stays means the second Medieval Overhaul operation did not
-match.
+**Braziers sharpest case.** No fuel to stop, so flame is most of what there is to see. Flame stays on them = second Medieval Overhaul operation did not match.
 
 ## 4. The heat stones have a switch and no flame
 
 **Do.** Heat stones, fuelled. Switch off, then on.
 
-**Expect.** The heat and the glow stop and come back. No flame either way, since they are a heated
-slab rather than a fire, and nothing red in the log.
+**Expect.** Heat and glow stop and return. No flame either way, since heated slab not fire. Nothing red in log.
 
-**Why it matters.** This building gets the switch and no overlay swap, because it has no overlay to
-swap. It is the case that separates *nothing to do* from *something forgotten*.
+**Why it matters.** Building gets switch, no overlay swap, since no overlay to swap. Case separating *nothing to do* from *something forgotten*.
 
 ---
 
 ## 5. The stove and the rustic hearth keep the north-only rule
 
-**Do.** Four wood burning stoves, one facing each way, all fuelled and switched on. Then the same
-with four rustic hearths.
+**Do.** Four wood burning stoves, one facing each way, all fuelled and on. Then same with four rustic hearths.
 
-**Expect.** A flame on the one facing north. No flame on the other three.
+**Expect.** Flame on the one facing north. No flame on other three.
 
-**Why it matters.** This is the mod's one class, and the one observation by the original author
-that had to be preserved. Medieval Overhaul draws these two flames only from the north, and a
-generic extinguishable overlay would light a fire on the back of a stove turned away. A flame on
-all four facings means the swap landed on the wrong comp.
+**Why it matters.** Mod's one class, and the one observation by original author that had to be preserved. Medieval Overhaul draws these two flames only from north. Generic extinguishable overlay would light fire on back of turned-away stove. Flame on all four facings = swap landed on wrong comp.
 
 ## 6. And the switch still works on them
 
-**Do.** The north-facing stove from scenario 5, alight. Switch it off.
+**Do.** North-facing stove from scenario 5, alight. Switch off.
 
-**Expect.** The flame goes out, the fuel stops, the heat stops.
+**Expect.** Flame goes out, fuel stops, heat stops.
 
-**Why it matters.** Scenario 5 proves the rotation rule survived. This proves it did not survive at
-the cost of the thing the mod exists for. Both conditions sit in one expression in the class, and a
-mistake there breaks one of these two scenarios and not the other.
+**Why it matters.** Scenario 5 proves rotation rule survived. This proves it did not survive at cost of what mod exists for. Both conditions sit in one expression in class, mistake there breaks one scenario and not the other.
 
 ## 7. The def's own flame size and offset still apply
 
-**Do.** Look hard at a north-facing stove, alight, with this mod on. Then turn this mod off,
-restart, and look at the same building again.
+**Do.** Look hard at north-facing stove, alight, mod on. Then turn mod off, restart, look at same building again.
 
-**Expect.** The same flame, at the same size, in the same place on the sprite.
+**Expect.** Same flame, same size, same place on sprite.
 
-**Why it matters.** The class derives from vanilla's `CompFireOverlay` rather than from a bare
-`ThingComp`, which is what lets `Graphic_Flicker` find it and read the def's own flame size and
-draw offset off it. A flame that is suddenly the default size, or sitting in the middle of the
-building instead of in its firebox, means that inheritance is not doing its work.
+**Why it matters.** Class derives from vanilla `CompFireOverlay` not bare `ThingComp`, letting `Graphic_Flicker` find it and read def's flame size and draw offset. Flame suddenly default size, or in middle of building instead of firebox = inheritance not working.
 
 ## 8. The growth timer starts when the fire is lit, not when it is fuelled
 
-**Do.** Use an isolated test copy of the mod/defs with `fireGrowthDurationTicks` set to 600 on the stove overlay; the shipped target defs do not enable visible growth. Build a wood burning stove facing north. Fill its fuel. Leave it **switched off** for a
-full game day. Then switch it on and watch the first minute.
+**Do.** Use isolated test copy of mod/defs with `fireGrowthDurationTicks` set to 600 on stove overlay; shipped target defs do not enable visible growth. Build wood burning stove facing north. Fill fuel. Leave **switched off** for full game day. Then switch on, watch first minute.
 
-**Expect.** The flame starts small and grows.
+**Expect.** Flame starts small and grows.
 
-**Why it matters.** This is the one behaviour the port changed rather than preserved. Medieval
-Overhaul starts the growth timer on fuel alone, so a hearth left switched off overnight comes back
-already at full size. A full-size flame the instant you switch on is the old behaviour, and means
-the tick guard is never reached.
+**Why it matters.** One behaviour port changed rather than preserved. Medieval Overhaul starts growth timer on fuel alone, so hearth left off overnight returns already full size. Full-size flame instantly on switch-on = old behaviour, tick guard never reached.
 
-**Without that test-only growth duration, record this scenario as not applicable, not passed.** Restore the normal mod list after testing.
+**Without that test-only growth duration, record scenario as not applicable, not passed.** Restore normal mod list after testing.
 
 ---
 
 ## 9. The darklight hearth, with Ideology
 
-**Do.** Ideology active. Place the darklight hearth. Switch it off and on.
+**Do.** Ideology active. Place darklight hearth. Switch off and on.
 
-**Expect.** A switch, darklight that stops and comes back, and the overlay gone while it is off.
+**Expect.** A switch, darklight stops and returns, overlay gone while off.
 
-**Why it matters.** New coverage. The 1.4 original never reached this building, and it is the only
-place the mod names Extinguish Refuelables' darklight comp.
+**Why it matters.** New coverage. 1.4 original never reached this building, and it is only place mod names Extinguish Refuelables' darklight comp.
 
 ## 10. And without Ideology
 
-**Do.** Turn Ideology off. Start. Read the log.
+**Do.** Turn Ideology off. Start. Read log.
 
-**Expect.** Nothing about the darklight hearth, and no patch failure from this mod.
+**Expect.** Nothing about darklight hearth, no patch failure from this mod.
 
-**Why it matters.** Medieval 2 keeps that building behind an Ideology load folder, so without the
-DLC the def does not exist and the two operations naming it would fail. They carry `MayRequire`,
-which the game honours **only on list elements**, which is why those two alone in this mod sit
-inside a sequence instead of standing on their own. A failure here means the guard is in a place
-where nothing reads it.
+**Why it matters.** Medieval 2 keeps that building behind Ideology load folder, so without DLC def does not exist and two operations naming it would fail. They carry `MayRequire`, which game honours **only on list elements**, which is why those two alone sit inside a sequence instead of standing alone. Failure here = guard in place where nothing reads it.
 
 ---
 
 ## 11. None of the three target mods installed
 
-**Do.** Extinguish Refuelables Continued and nothing else from Setup. Start, load a save, play a
-few minutes.
+**Do.** Extinguish Refuelables Continued and nothing else from Setup. Start, load save, play few minutes.
 
-**Expect.** Not one line from this mod in the log, and no visible effect anywhere.
+**Expect.** Not one line from this mod in log, no visible effect anywhere.
 
-**Why it matters.** `PatchOperationFindMod` reports success when the mod it names is absent, so all
-seven operations should cost a player with none of the three exactly nothing. That is the claim
-on the mod page, and it is the claim most likely to be quietly false.
+**Why it matters.** `PatchOperationFindMod` reports success when named mod absent, so all seven operations should cost player with none of three exactly nothing. That is the claim on mod page, and the claim most likely quietly false.
 
 ## 12. One target mod at a time
 
 **Do.** Three starts. Medieval Overhaul alone, then Classical alone, then Medieval 2 alone.
 
-**Expect.** Each time, switches on that mod's buildings from the table and silence about the other
-two.
+**Expect.** Each time, switches on that mod's buildings from table, silence about other two.
 
-**Why it matters.** Cheap, and it separates a failure belonging to one patch file from a failure
-belonging to the mod.
+**Why it matters.** Cheap, separates failure of one patch file from failure of whole mod.
 
 ## 13. No collision with Extinguish Refuelables Continued
 
-**Do.** Both mods active. Place a vanilla campfire and a vanilla torch, and a Vanilla Furniture
-Expanded brazier if you have it, which are buildings the **base** mod covers and this one does not.
-Then look again at the thirteen from the table.
+**Do.** Both mods active. Place vanilla campfire, vanilla torch, and Vanilla Furniture Expanded brazier if you have it, buildings the **base** mod covers and this one does not. Then look again at the thirteen from table.
 
-**Expect.** The base mod's buildings behave as they always did. No building anywhere shows two
-switches, and none of the thirteen loses the one it has.
+**Expect.** Base mod's buildings behave as always. No building shows two switches, none of thirteen loses its one.
 
-**Why it matters.** The two mods were checked to share no `defName` at all, and this is that check
-made visible. Two switches on one building would mean an overlap the comparison missed.
+**Why it matters.** Two mods checked to share no `defName` at all, this is that check made visible. Two switches on one building = overlap comparison missed.
 
 ---
 
 ## 14. Save, reload, and the state holds
 
-**Do.** Switch off about half of the thirteen, leave the rest alight, save, quit to the menu, and
-load back.
+**Do.** Switch off about half of thirteen, leave rest alight, save, quit to menu, load back.
 
-**Expect.** Every switch where you left it, every flame matching its switch, and nothing relit by
-the reload.
+**Expect.** Every switch where left, every flame matching its switch, nothing relit by reload.
 
-**Why it matters.** `CompFlickable` saves its own state, so this should be free. But the comp is
-added by patch rather than declared in the def, and a flame drawn from a comp field that is only
-filled on spawn is the classic thing to get wrong across a load.
+**Why it matters.** `CompFlickable` saves own state, so should be free. But comp added by patch rather than declared in def, and flame drawn from comp field only filled on spawn is classic thing to get wrong across load.
 
 ## 15. Adding it to a game already in progress
 
-**Do.** A save made without this mod, holding some of the thirteen buildings already built. Add the
-mod. Load.
+**Do.** Save made without this mod, holding some of thirteen buildings already built. Add mod. Load.
 
-**Expect.** The switches appear on the buildings already standing, all lit.
+**Expect.** Switches appear on buildings already standing, all lit.
 
-**Why it matters.** The mod page says it is safe to add to a save. This is the test of that
-sentence.
+**Why it matters.** Mod page says safe to add to save. This tests that sentence.
 
 ## 16. Removing it from a game in progress
 
-**Do.** On a **copy** of a save, never the real one. Switch everything from the table back on.
-Save. Remove the mod. Load.
+**Do.** On a **copy** of a save, never the real one. Switch everything from table back on. Save. Remove mod. Load.
 
-**Expect.** The buildings work as they did before the mod.
+**Expect.** Buildings work as before mod.
 
-**Then, separately, and also on a copy.** The same, but leave one building switched **off** before
-removing. This is the case the mod page warns about: the comp goes away with its saved state, and
-what is left is whatever the base mod's defs say. Write down what actually happens, because that
-warning is currently reasoning rather than observation.
+**Then, separately, also on a copy.** Same, but leave one building switched **off** before removing. Case mod page warns about: comp goes away with its saved state, what is left is whatever base mod's defs say. Write down what actually happens, because that warning is currently reasoning not observation.
 
 ---
 
 ## What these scenarios deliberately leave alone
 
-**Rain fuel drain.** The original zeroed the rain fuel consumption on the comp **properties**,
-which every instance of a def shares, so one switched-off stove would have stopped rain drain on
-every stove on the map. That code is not in the port. There is nothing to test either, because
-neither of the two defs it touched declares the field at all. The gap it was written for belongs to
-Extinguish Refuelables, on the base game's own torches.
+**Rain fuel drain.** Original zeroed rain fuel consumption on comp **properties**, shared by every instance of a def, so one switched-off stove would have stopped rain drain on every stove on map. That code not in port. Nothing to test either, since neither of two defs it touched declares the field at all. Gap it was written for belongs to Extinguish Refuelables, on base game's own torches.
 
-**The three mods that are no longer targets.** Vanilla Factions Expanded - Medieval and - Vikings
-stop at 1.4 and cannot load in 1.6, and Vanilla Expanded Framework is no longer a dependency. If a
-scenario here makes you reach for any of the three, the scenario is wrong.
+**The three mods that are no longer targets.** Vanilla Factions Expanded - Medieval and - Vikings stop at 1.4, cannot load in 1.6. Vanilla Expanded Framework no longer a dependency. If a scenario makes you reach for any of the three, scenario is wrong.

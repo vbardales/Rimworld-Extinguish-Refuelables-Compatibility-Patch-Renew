@@ -37,184 +37,179 @@ remaining:
   - unverified: 1.0.0 needs prepublished-stage checks (PUBLICATION.md, description source, thank-you comments) before any publish
 session:      local_ea52f7cf-763d-47d6-a494-43c4491e1649
 updated:      2026-10-13, writeTests gate 7 re-checked at 8a57b14 (tests rerun green, Check-Steps clean, About.xml description without a version): workflow_stage playTests[1.0.0]
-protocols_read_sha: b483dd6813cb9e000e9a71d4a0d631de555c7aac
+protocols_read_sha: c283fedfcc80166d175245f9553ab4095716c1fa
 ---
-
-
 # Re-audit against AUDIT.md — 2026-10-11
 
-Decision: **done -> makeSources, then writeTests[1.0.0] the same day** once the derivatives were regenerated (below, "Way back up", done). Replaces the "Decision: done -> done" paragraph of 2026-09-28 below (kept as
-history). The first failing transition fixes the state (AUDIT.md, section 16): gate 2 fails, so everything above it
-(gates 3 to 7, which pass or were repaired below) waits on one derived file.
+Decision: **done -> makeSources, then writeTests[1.0.0] same day** once derivatives regenerated (below, "Way back up", done). Replaces "Decision: done -> done" paragraph of 2026-09-28 below (kept as
+history). First failing transition fixes state (AUDIT.md, section 16): gate 2 fails, so everything above it
+(gates 3 to 7, pass or repaired below) waits on one derived file.
 
 | Gate | Result | Evidence, 2026-10-11 at `0cd711d` plus this change |
 | --- | --- | --- |
 | 1 setupRepo | pass | Independent repo, origin public (`gh repo view`: PUBLIC, main), README, ATTRIBUTION, LICENSE, CHANGELOG, STATUS; `(unofficial)` suffix and `UNOFFICIAL` paragraph present; licence `silent`, `upstream_mod_remotes` N/A with date. Not redone: duplicate search (1.a, `Search-Workshop.sh`). |
-| 2 makeSources | fail (2.b), cleared the same day: `ModIcon.png` 128x128, 28,435 bytes, `ModIcon.ico`, `Preview.png` and `0-preview.png` regenerated from the committed source (`b920634`) | `Mod/About/ModIcon.png` (2026-10-02, 25,945 bytes, 128x128 RGBA, in the 20-30 KB range) and `Art/ModIcon.ico` (2026-10-03) are older than `Art/ModIcon-source.png` (2026-10-04, modified and not committed). `Mod/About/Preview.png` is 551 KB, 896x504. Not regenerated: another session is reworking `Art/` (uncommitted `Preview.config.json`, deleted `preview-copy.json` and `preview-palette.json`); the regeneration (`node ../scripts/Render-Preview.cjs`, key `modIconSource`) and the Preview chain wait for it. Not checked: 2.e palette measures. |
-| 3 code | pass | Build 0 warnings, 0 errors, DLL SHA256 unchanged (`48717BB5...`), `Mod/Assemblies` identical to the sources; `[Unreleased]` in CHANGELOG. No build script to declare to CI/CD (a plain csproj). |
-| 4 declareDependencies | pass | About.xml packageIds read against the installed About.xml files: `DankPyon.Medieval.Overhaul`, `OskarPotocki.VFE.Classical`, `OskarPotocki.VFE.Medieval2` (all 1.6), `blacktriple.extinguishrefuelablescontinued` (1.6 only). Hard dependency Continued only (two overlay classes); the three targets are `loadAfter` and each patch is guarded by `PatchOperationFindMod` on the exact name; the darklight hearth by `MayRequire` Ideology; `incompatibleWith` Keshash. No `LoadFolders.xml` needed. `1.6` only in `supportedVersions`. Date and revision: this entry. |
-| 5 auditSettings | pass, `not_applicable` | Source re-read: no `Mod` subclass, no settings, no `MainButtonDef`; the on/off switch is vanilla `CompFlickable`. |
-| 6 localize | pass, `not_applicable` | `Check-Translations.ps1`: 0 source texts, 0 Keyed calls. The source has no `Translate`, `Log`, `Messages` or inspect string. `Check-ModBasics.ps1` PASS. `FRENCH_REVIEW.md` was missing (6.f): generated now. |
-| 7 writeTests | pass, repaired | 7.a figures checked 2026-10-12 against the installed Medieval Overhaul 1.6 defs and the patches: 13 buildings (10 + heat stones + two hearths), 17 scenarios, 72 cases, fuel and flame columns match; the two candle rows said "tallow" and "bee wax" as labels while both defs are labelled "candles": reworded. `Test-Xml` PASS (16 combinations), `Test-Behaviour` PASS (72), `Test-InstalledMods` PASS (12 targets without Ideology, 13 with: Medieval Overhaul **is** installed, 3219596926; the "absent" of 2026-09-28 was stale). `TEST_SCENARIOS.md` renamed to the 7.a name. Scenario 7 is now written (`Features/10-def-values.feature`, five `fireSize` values read from the installed 1.6 defs). `Check-Steps.ps1` first said **9 problems**: the step patterns `at ({int}, {int})` and `on/off` were invalid Cucumber expressions (a run would have played zero scenarios), and `09-gallery.feature` lacked two `@requires`; patterns escaped, tags added, the unmatched error-log step of feature 08 removed (no such step exists, its symptom stays a prediction), step DLL rebuilt. Now: all patterns compile, every step line resolves to one expression. Pickle still never run. |
+| 2 makeSources | fail (2.b), cleared same day: `ModIcon.png` 128x128, 28,435 bytes, `ModIcon.ico`, `Preview.png` and `0-preview.png` regenerated from committed source (`b920634`) | `Mod/About/ModIcon.png` (2026-10-02, 25,945 bytes, 128x128 RGBA, in 20-30 KB range) and `Art/ModIcon.ico` (2026-10-03) older than `Art/ModIcon-source.png` (2026-10-04, modified, not committed). `Mod/About/Preview.png` 551 KB, 896x504. Not regenerated: another session reworking `Art/` (uncommitted `Preview.config.json`, deleted `preview-copy.json` and `preview-palette.json`); regeneration (`node ../scripts/Render-Preview.cjs`, key `modIconSource`) and Preview chain wait for it. Not checked: 2.e palette measures. |
+| 3 code | pass | Build 0 warnings, 0 errors, DLL SHA256 unchanged (`48717BB5...`), `Mod/Assemblies` identical to sources; `[Unreleased]` in CHANGELOG. No build script to declare to CI/CD (plain csproj). |
+| 4 declareDependencies | pass | About.xml packageIds read against installed About.xml files: `DankPyon.Medieval.Overhaul`, `OskarPotocki.VFE.Classical`, `OskarPotocki.VFE.Medieval2` (all 1.6), `blacktriple.extinguishrefuelablescontinued` (1.6 only). Hard dependency Continued only (two overlay classes); three targets `loadAfter`, each patch guarded by `PatchOperationFindMod` on exact name; darklight hearth by `MayRequire` Ideology; `incompatibleWith` Keshash. No `LoadFolders.xml` needed. `1.6` only in `supportedVersions`. Date and revision: this entry. |
+| 5 auditSettings | pass, `not_applicable` | Source re-read: no `Mod` subclass, no settings, no `MainButtonDef`; on/off switch is vanilla `CompFlickable`. |
+| 6 localize | pass, `not_applicable` | `Check-Translations.ps1`: 0 source texts, 0 Keyed calls. Source has no `Translate`, `Log`, `Messages` or inspect string. `Check-ModBasics.ps1` PASS. `FRENCH_REVIEW.md` missing (6.f): generated now. |
+| 7 writeTests | pass, repaired | 7.a figures checked 2026-10-12 against installed Medieval Overhaul 1.6 defs and patches: 13 buildings (10 + heat stones + two hearths), 17 scenarios, 72 cases, fuel and flame columns match; two candle rows said "tallow" and "bee wax" as labels while both defs labelled "candles": reworded. `Test-Xml` PASS (16 combinations), `Test-Behaviour` PASS (72), `Test-InstalledMods` PASS (12 targets without Ideology, 13 with: Medieval Overhaul **is** installed, 3219596926; "absent" of 2026-09-28 was stale). `TEST_SCENARIOS.md` renamed to 7.a name. Scenario 7 now written (`Features/10-def-values.feature`, five `fireSize` values read from installed 1.6 defs). `Check-Steps.ps1` first said **9 problems**: step patterns `at ({int}, {int})` and `on/off` invalid Cucumber expressions (run would play zero scenarios), `09-gallery.feature` lacked two `@requires`; patterns escaped, tags added, unmatched error-log step of feature 08 removed (no such step exists, symptom stays prediction), step DLL rebuilt. Now: all patterns compile, every step line resolves to one expression. Pickle still never run. |
 
 Mod root cleaned (AGENTS.md, closing pass 3): `_tools/` split into `scripts/` (Test-*.ps1, BehaviourHarness.cs),
-`TEST_SCENARIOS.md` and `docs/LICENCE-AUDIT.md`; `_tools/preview.html` and `_tools/build-about.sh` deleted (they pointed at
-the deleted `Art/preview.html` and `render-preview.cjs`); `.build/` renamed `build/` (PUBLISHING.md, 2026-10-10) with the two
-`Directory.Build.props`. The `scripts/LOCAL_SCRIPTS.md` rows still name `_tools/...`: the Audit workflow session is told.
+`TEST_SCENARIOS.md` and `docs/LICENCE-AUDIT.md`; `_tools/preview.html` and `_tools/build-about.sh` deleted (pointed at
+deleted `Art/preview.html` and `render-preview.cjs`); `.build/` renamed `build/` (PUBLISHING.md, 2026-10-10) with two
+`Directory.Build.props`. `scripts/LOCAL_SCRIPTS.md` rows still name `_tools/...`: Audit workflow session told.
 
-Way back up: once `Art/ModIcon-source.png` settles, regenerate the derivatives (2.b), then `Check-Status.ps1`,
-`Mark-ProtocolsRead.ps1`, and the stage is `writeTests[1.0.0]` (gates 3 to 7 hold).
+Way back up: once `Art/ModIcon-source.png` settles, regenerate derivatives (2.b), then `Check-Status.ps1`,
+`Mark-ProtocolsRead.ps1`, stage is `writeTests[1.0.0]` (gates 3 to 7 hold).
 
 # Repository identity and maintenance
 
-This task manages only the local repository at `local_path`, including keeping this status
+Task manages only local repository at `local_path`, including keeping this status
 current after changes and verification. `git rev-parse --show-toplevel` resolves to this folder;
-its `.git` is a directory, and `--show-superproject-working-tree` returns nothing. This is an
-independent local repository, not a monorepo subdirectory or a submodule.
-The session field is the historical session group identifier, not an asserted current task ID.
+its `.git` is a directory, `--show-superproject-working-tree` returns nothing. Independent local repository, not monorepo subdirectory or submodule.
+Session field is historical session group identifier, not asserted current task ID.
 
-GitHub's public REST API confirmed `private: false` and `visibility: public` on 2026-09-13.
-The repository is public. A Workshop item exists, created privately by the 0.1.0 prepublication
-(id in `Mod/About/PublishedFileId.txt`, committed as `1793588`); it is not public and not tested.
-Public repository visibility is separate from licence.
+GitHub public REST API confirmed `private: false` and `visibility: public` on 2026-09-13.
+Repository public. Workshop item exists, created privately by 0.1.0 prepublication
+(id in `Mod/About/PublishedFileId.txt`, committed as `1793588`); not public, not tested.
+Public repository visibility separate from licence.
 
 # Mod licence and title
 
-**Classification: `silent` — no explicit original licence found.** Verified on 2026-09-13
-against the installed original's full file inventory, source notices and About.xml, and the
-original Workshop description fetched directly from Steam. No original repository is linked,
-and targeted web searches did not identify one. Evidence and limits are recorded in
+**Classification: `silent` — no explicit original licence found.** Verified 2026-09-13
+against installed original's full file inventory, source notices, About.xml, and original Workshop description fetched directly from Steam. No original repository linked,
+targeted web searches did not identify one. Evidence and limits recorded in
 [`docs/LICENCE-AUDIT.md`](docs/LICENCE-AUDIT.md).
 
-No written refusal was found (`forbidden`), no explicit original licence was found (`open`),
-and this continuation is not `original`. Both identical LICENSE files scope MIT to the port's
-additions only. No explicit permission to redistribute the original has been established.
+No written refusal found (`forbidden`), no explicit original licence found (`open`),
+this continuation not `original`. Both identical LICENSE files scope MIT to port's
+additions only. No explicit permission to redistribute original established.
 Public visibility and removal on request do not supply that permission.
 
-Correction: the 1.4 tag does not establish abandonment. The author replied about compatibility
-in November 2024; current maintenance status is uncertain. `silent` here records licence silence;
-if the catalogue also requires proven abandonment, that prerequisite remains unverified.
+Correction: 1.4 tag does not establish abandonment. Author replied about compatibility
+November 2024; current maintenance status uncertain. `silent` here records licence silence;
+if catalogue also requires proven abandonment, that prerequisite remains unverified.
 
-Keep the existing **`(unofficial)`** suffix: it identifies the continuation without explicit
-author consent. It is present in About.xml and README. The GitHub link is now present in both
-About.xml's `url` field and the actual description text.
+Keep existing **`(unofficial)`** suffix: identifies continuation without explicit
+author consent. Present in About.xml and README. GitHub link now present in both
+About.xml `url` field and actual description text.
 
 # Verification
 
-- Manual: `TEST_SCENARIOS.md` contains 17 scenarios (0-16), with actions,
-  expected outcomes and failure clues. None has a recorded game run. `tested_on` remains empty.
-- Automated XML: `pwsh -NoProfile -File scripts/Test-Xml.ps1` passed on 2026-09-13.
-  Tests apply the supported patch operations using .NET XPath to independent contract fixtures,
-  across all 8 target-mod combinations with and without Ideology. They check all 13 targets,
+- Manual: `TEST_SCENARIOS.md` has 17 scenarios (0-16), with actions,
+  expected outcomes, failure clues. None has recorded game run. `tested_on` remains empty.
+- Automated XML: `pwsh -NoProfile -File scripts/Test-Xml.ps1` passed 2026-09-13.
+  Tests apply supported patch operations using .NET XPath to independent contract fixtures,
+  across all 8 target-mod combinations with and without Ideology. Check all 13 targets,
   single switches, comp order, overlay replacements, preserved size/offset and existing comps,
-  untouched unrelated definitions, mod guards, DLC guards and core metadata.
+  untouched unrelated definitions, mod guards, DLC guards, core metadata.
 - Build: `dotnet build -c Release Source/ExtinguishRefuelablesPatch.csproj --no-restore`
-  passed on 2026-09-13 with 0 warnings and 0 errors.
+  passed 2026-09-13 with 0 warnings, 0 errors.
 - Installed mods: `scripts/Test-InstalledMods.ps1` passed against local Steam 1.6 definitions
-  on 2026-09-13, with 12 targets without Ideology and 13 with it. Exact mod-name guards,
-  original overlay classes, single added switches and preservation of existing comp data pass.
-  All three replacement types exist in the shipped DLL metadata. No target name overlaps
+  2026-09-13, 12 targets without Ideology and 13 with it. Exact mod-name guards,
+  original overlay classes, single added switches, preservation of existing comp data pass.
+  All three replacement types exist in shipped DLL metadata. No target name overlaps
   Continued's installed patch XML.
-- C#: `scripts/Test-Behaviour.ps1` compiles the actual production source with minimal test
-  doubles and passes 72 fuel/switch/rotation/spawn cases, including absent comps, north-only
-  rendering, the height offset, delayed growth start and preservation of an existing timer.
+- C#: `scripts/Test-Behaviour.ps1` compiles actual production source with minimal test
+  doubles, passes 72 fuel/switch/rotation/spawn cases, including absent comps, north-only
+  rendering, height offset, delayed growth start, preservation of existing timer.
 - Release rebuild: 0 warnings, 0 errors; shipped DLL hash unchanged after rebuild.
-- Packaging: `Mod/` contains only metadata, two images, three XML patches, the mod DLL,
-  licence and attribution. Test harnesses, source and game assemblies are not packaged.
-- Limits: these are offline checks against installed copies, not a fresh Workshop download.
-  Raw upstream defs are inspected before other mods' patches and full XML inheritance.
-  DLL metadata checks prove type presence; Unity loading, actual rendering and save behaviour
-  are not executed. Test doubles exercise this mod's logic, not the engine implementations.
-  Manual scenarios remain unplayed and explicitly non-blocking by user instruction.
+- Packaging: `Mod/` contains only metadata, two images, three XML patches, mod DLL,
+  licence, attribution. Test harnesses, source, game assemblies not packaged.
+- Limits: offline checks against installed copies, not fresh Workshop download.
+  Raw upstream defs inspected before other mods' patches and full XML inheritance.
+  DLL metadata checks prove type presence; Unity loading, actual rendering, save behaviour
+  not executed. Test doubles exercise this mod's logic, not engine implementations.
+  Manual scenarios remain unplayed, explicitly non-blocking by user instruction.
 
-The required Continued dependency is declared. The three target mods remain optional and are
-listed in loadAfter, with each patch guarded by mod name. No additional dependency was introduced.
+Required Continued dependency declared. Three target mods remain optional,
+listed in loadAfter, each patch guarded by mod name. No additional dependency introduced.
 
 # Completion and localization
 
-`stage: done` records completion of implementation, documentation, packaging and all scoped
-out-of-game checks. The user explicitly excluded in-game testing and confirmed that it does
-not block stages. `tested_on` remains empty rather than claiming a game session.
-Workshop publication has not been performed.
+`stage: done` records completion of implementation, documentation, packaging, all scoped
+out-of-game checks. User explicitly excluded in-game testing, confirmed it does
+not block stages. `tested_on` remains empty rather than claiming game session.
+Workshop publication not performed.
 
 Installed source IDs checked: Medieval Overhaul 3219596926, Classical 2787850474,
-Medieval 2 3444347874, Continued 3772905265. Scripts accept a different Workshop root.
-Run the three PowerShell test scripts in separate fresh `pwsh -NoProfile -File` processes;
-the C# harness defines test-only RimWorld/Verse/Unity names within its own process.
+Medieval 2 3444347874, Continued 3772905265. Scripts accept different Workshop root.
+Run three PowerShell test scripts in separate fresh `pwsh -NoProfile -File` processes;
+C# harness defines test-only RimWorld/Verse/Unity names within own process.
 
 ## Translation audit — 2026-09-13
 
-Applied the translation gate in the parent workspace's `PUBLISHING.md` and
-`TRANSLATIONS.md`. All three fields use the protocol's `not_applicable` value because
-the inventory below found no text added or changed by this mod. This replaces the previous
-free-form `checked` values; it does not certify dependency translations or in-game display.
+Applied translation gate in parent workspace's `PUBLISHING.md` and
+`TRANSLATIONS.md`. All three fields use protocol's `not_applicable` value because
+inventory below found no text added or changed by this mod. Replaces previous
+free-form `checked` values; does not certify dependency translations or in-game display.
 
 Inventory and evidence:
 
-- Enumerated published content and source with `rg --files Mod Source`, then read the
-  complete production C# file and all three patch XML files. There are no `LoadFolders.xml`,
-  version folders, owned Defs, language resources or additional UI source files.
+- Enumerated published content and source with `rg --files Mod Source`, then read
+  complete production C# file and all three patch XML files. No `LoadFolders.xml`,
+  version folders, owned Defs, language resources, additional UI source files.
 - `Source/CompFireOverlaySouthExtinguishable.cs` implements flame rendering, fuel/switch
-  conditions and the growth timer only. It adds no settings, gizmos, inspect strings,
-  messages, generated text or translation calls, including through helper methods.
+  conditions, growth timer only. Adds no settings, gizmos, inspect strings,
+  messages, generated text, translation calls, including through helper methods.
 - `Mod/Patches/MedievalOverhaul.xml`, `VanillaFactionsExpandedClassical.xml` and
   `VanillaFactionsExpandedMedieval2.xml` add empty `CompProperties_Flickable` entries and
-  replace overlay class attributes. All optional mod branches and the Ideology branch
-  were inspected: none adds or overrides labels, descriptions or other text fields.
-- The switch UI comes from the existing game comp; building text remains owned by the
-  target mods. No dependency translation key is explicitly referenced or newly supplied
-  by this mod. Their full English/French coverage was not audited here.
-- There are zero owned Keyed keys, DefInjected paths, parameters or grammar resources to
-  validate. `Check-DefInjected.ps1` is not applicable. Empty language folders and duplicate
-  translations of upstream text are unnecessary.
-- About.xml, preview text, licences, attribution and repository documentation are English
-  metadata/documentation, excluded from the in-game translation gate by the protocol.
+  replace overlay class attributes. All optional mod branches and Ideology branch
+  inspected: none adds or overrides labels, descriptions, other text fields.
+- Switch UI comes from existing game comp; building text remains owned by
+  target mods. No dependency translation key explicitly referenced or newly supplied
+  by this mod. Their full English/French coverage not audited here.
+- Zero owned Keyed keys, DefInjected paths, parameters, grammar resources to
+  validate. `Check-DefInjected.ps1` not applicable. Empty language folders and duplicate
+  translations of upstream text unnecessary.
+- About.xml, preview text, licences, attribution, repository documentation are English
+  metadata/documentation, excluded from in-game translation gate by protocol.
 
-The static translation gate is satisfied. English/French runtime display has not been
-checked and is tracked separately in `remaining`; the existing exclusion of in-game tests
-is preserved. Repeat this inventory after changes to UI code, Defs, patches or text resources,
-resetting affected fields to `unchecked` until the audit is complete.
+Static translation gate satisfied. English/French runtime display not
+checked, tracked separately in `remaining`; existing exclusion of in-game tests
+preserved. Repeat inventory after changes to UI code, Defs, patches, text resources,
+resetting affected fields to `unchecked` until audit complete.
 
 ## Settings audit
 
-Scope: the full production C# file, csproj/default compile inventory and every distributed
-patch/metadata file. The mod only adds building switches, replaces overlay types and keeps
+Scope: full production C# file, csproj/default compile inventory, every distributed
+patch/metadata file. Mod only adds building switches, replaces overlay types, keeps
 north-only flame rendering with fuel/switch conditions and growth-timer behavior. Per-building
 on/off control already uses vanilla CompFlickable. Fire size/offsets belong to upstream
-building definitions; they are compatibility data, not a missing user configuration interface.
-No concrete additional global option is required by this mod's purpose.
+building definitions; compatibility data, not missing user configuration interface.
+No concrete additional global option required by this mod's purpose.
 
-There is no Verse.Mod subclass, ModSettings, SettingsCategory, settings window, settings
-serialization, MainButtonDef or MainTabWindow in its sources/defs. Thus there is neither an
-empty page nor a shortcut to expose. Defaults/input bounds/settings persistence and RIMMSQOL
-settings integration tests are not applicable. **No RIMMSQOL or other customization integration
-was tested or claimed.** Building-switch save behavior is separate and remains a game test.
-The current user clarification makes this source-based not_applicable finding sufficient for
-options; it overrides the older document's runtime requirement for this case.
+No Verse.Mod subclass, ModSettings, SettingsCategory, settings window, settings
+serialization, MainButtonDef or MainTabWindow in sources/defs. Thus neither empty page nor shortcut to expose. Defaults/input bounds/settings persistence and RIMMSQOL
+settings integration tests not applicable. **No RIMMSQOL or other customization integration
+tested or claimed.** Building-switch save behavior separate, remains game test.
+Current user clarification makes this source-based not_applicable finding sufficient for
+options; overrides older document's runtime requirement for this case.
 
 ## Licence classification and documentary findings
 
-The installed original inventory and notices were rechecked: only a copyright notice, no
-licence grant or source repository link. The live original Steam description and tag were
-retrieved with Invoke-WebRequest after Firecrawl was unavailable and the web reader failed;
-local evidence: `build/audit-steam-2026-09-13.html`. The description contains no licence,
-permission or prohibition; Steam and installed metadata declare 1.4, not 1.6. The historical
-bounded search/comments review in docs/LICENCE-AUDIT.md is retained, not claimed as rerun.
+Installed original inventory and notices rechecked: only copyright notice, no
+licence grant or source repository link. Live original Steam description and tag
+retrieved with Invoke-WebRequest after Firecrawl unavailable and web reader failed;
+local evidence: `build/audit-steam-2026-09-13.html`. Description contains no licence,
+permission, prohibition; Steam and installed metadata declare 1.4, not 1.6. Historical
+bounded search/comments review in docs/LICENCE-AUDIT.md retained, not claimed as rerun.
 
-Under the current PUBLISHING.md operational definition, the missing declared 1.6 support
-establishes abandonment **for this workflow**. The older demand above for additional proof
-of inactivity is superseded. `silent`, public and `(unofficial)` are coherent under that
-rule; MIT remains limited to port additions and does not grant rights over the original.
+Under current PUBLISHING.md operational definition, missing declared 1.6 support
+establishes abandonment **for this workflow**. Older demand above for additional proof
+of inactivity superseded. `silent`, public and `(unofficial)` coherent under that
+rule; MIT remains limited to port additions, grants no rights over original.
 
-Historical finding, corrected in the follow-up below: About.xml contains a raw GitHub URL
-in the middle of its description, rather than the required final Steam-formatted
-`[url=...]Source code on GitHub[/url]` link. Earlier prose claiming that link was complete
-was too broad. This is required before Workshop publication, which is outside the nine
-state transitions; it is not a missing English description or a blocker to done/tested.
-The descriptive claims about safe save addition/removal remain unverified until the
-existing scenarios are played, not proven defects.
+Historical finding, corrected in follow-up below: About.xml contains raw GitHub URL
+mid-description, rather than required final Steam-formatted
+`[url=...]Source code on GitHub[/url]` link. Earlier prose claiming that link complete
+was too broad. Required before Workshop publication, outside the nine
+state transitions; not missing English description or blocker to done/tested.
+Descriptive claims about safe save addition/removal remain unverified until
+existing scenarios played, not proven defects.
 
 
 # History
 
-Earlier audits (2026-09-13, 2026-09-28), the Preview recomposition notes and the 2026-09-13 command log moved to [`docs/runs/2026-09-status-history.md`](docs/runs/2026-09-status-history.md).
+Earlier audits (2026-09-13, 2026-09-28), Preview recomposition notes, 2026-09-13 command log moved to [`docs/runs/2026-09-status-history.md`](docs/runs/2026-09-status-history.md).
