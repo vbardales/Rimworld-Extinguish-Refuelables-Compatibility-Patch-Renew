@@ -41,6 +41,8 @@ desktop.ini
 # Test evidence stays on disk, never in git: screenshots and Player.log grow without limit.
 # What deserves versioning is a one-line summary per run in docs/runs/, cited by STATUS.md.
 Tests/Pickle/Evidence/
+Tests/Pickle/Inbox/
+Tests/Pickle/Parked/
 evidence/
 
 # Reproducible Preview diagnostics generated locally by the shared renderer.

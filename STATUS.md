@@ -23,7 +23,7 @@ showcase:     complete, recomposed and visually verified 2026-09-13
 tested_on:
 workshop:     3806767177 (private, created 2026-09-23 by the 0.1.0 prepublication)
 automated_tests: rerun 2026-10-13 at 8a57b14: Test-Xml PASS (16 combinations); Test-Behaviour PASS (72 cases); Test-InstalledMods PASS (12 targets without Ideology, 13 with it, Medieval Overhaul installed); build 0 warnings, 0 errors, DLL unchanged
-pickle_suite: written 2026-09-28, repaired 2026-10-11 (Check-Steps: all patterns compile, every step line resolves; 10 features, 5 passes plus gallery); runs of 2026-10-14/15 in Tests/Pickle/Evidence: sans-facultatifs 2 passed + 30 skipped, all others no report (startup hang with the three target mods; Processor Framework added to the maps 2026-10-15, 5e204ce); avec-facultatifs ticket 20261017-233257-182-27f4 filed 2026-10-17 at 085360e to test that fix
+pickle_suite: written 2026-09-28, repaired 2026-10-11 (Check-Steps: all patterns compile, every step line resolves; 10 features, 5 passes plus gallery); runs of 2026-10-14/15 (report folders deleted 2026-10-19, none worth keeping; one line each in docs/runs/): sans-facultatifs 2 passed + 30 skipped, all others no report (startup hang with the three target mods; Processor Framework added to the maps 2026-10-15, 5e204ce); avec-facultatifs ticket 20261017-233257-182-27f4 filed 2026-10-17 at 085360e to test that fix
 build:        passed 2026-09-28, Release net48, 0 warnings and 0 errors, DLL unchanged
 remaining:
   - unverified: scenario 7 is written (Pickle 10-def-values.feature, five fireSize values read from the installed Medieval Overhaul 1.6 defs) but has not run
