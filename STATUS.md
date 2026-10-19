@@ -37,7 +37,7 @@ remaining:
   - unverified: 1.0.0 needs prepublished-stage checks (PUBLICATION.md, description source, thank-you comments) before any publish
 session:      local_926aaa54-39cc-4556-b2c2-f577911e36b4
 updated:      2026-10-17, avec-facultatifs ticket filed at 085360e (TM registered this session as owner): workflow_stage playTests[1.0.0]
-protocols_read_sha: c283fedfcc80166d175245f9553ab4095716c1fa
+protocols_read_sha: 7d3b1f5a26a32c297c2c12758979e0a909f674a1
 ---
 # Re-audit against AUDIT.md — 2026-10-11
 
