@@ -13,7 +13,7 @@ repository_visibility: public
 local_path:   C:\Users\nelim\Documents\rimworld\ExtinguishRefuelablesCompatibilityPatchRenew
 detached:     yes
 maintainer:   Claude Code session for this repository and STATUS.md
-workflow_stage: writeTests[1.0.0]
+workflow_stage: playTests[1.0.0]
 licence:      silent
 licence_at:   docs/LICENCE-AUDIT.md; original local files and live Steam description checked 2026-09-13
 upstream_mod_remotes: N/A (checked 2026-09-28: neither Keshash's original nor Extinguish Refuelables Continued declares a <url> in About.xml; gh search repos for both names finds nothing to fork)
@@ -22,11 +22,10 @@ dependencies: declared
 showcase:     complete, recomposed and visually verified 2026-09-13
 tested_on:
 workshop:     3806767177 (private, created 2026-09-23 by the 0.1.0 prepublication)
-automated_tests: rerun 2026-10-13 at 8a57b14: Test-Xml PASS (16 combinations); Test-Behaviour PASS (72 cases); Test-InstalledMods PASS (12 targets without Ideology, 13 with it, Medieval Overhaul installed); build 0 warnings, 0 errors, DLL unchanged
+automated_tests: rerun 2026-10-30 at c20b846 from Tests/ (scripts moved there, Audit confirmed they stay local, LOCAL_SCRIPTS.md rows updated at b64c066): Test-Xml PASS (16 combinations); Test-Behaviour PASS (72 cases); Test-InstalledMods PASS; earlier rerun 2026-10-13 at 8a57b14: Test-Xml PASS (16 combinations); Test-Behaviour PASS (72 cases); Test-InstalledMods PASS (12 targets without Ideology, 13 with it, Medieval Overhaul installed); build 0 warnings, 0 errors, DLL unchanged
 pickle_suite: written 2026-09-28, repaired 2026-10-11 (Check-Steps: all patterns compile, every step line resolves; 10 features, 5 passes plus gallery); runs of 2026-10-14/15 (report folders deleted 2026-10-19, none worth keeping; one line each in docs/runs/): sans-facultatifs 2 passed + 30 skipped, all others no report (startup hang with the three target mods; Processor Framework added to the maps 2026-10-15, 5e204ce); avec-facultatifs ticket 20261017-233257-182-27f4 (filed 2026-10-17 at 085360e) ended exit 3 on 2026-10-18 with no evidence folder copied (log: startup "Terminated", no report; Processor Framework was already in the map, so the hang is not explained); refiled 2026-10-25 at 7dbfa84 as 20261025-153143-002-1c7e, -NoBatch, evidence to Tests/Pickle/Inbox/diag-avec-facultatifs-3, waiting (TM wakes this session, owner local_3a5d40b5); if it hangs again, next step is a bisect-* map pass
 build:        passed 2026-09-28, Release net48, 0 warnings and 0 errors, DLL unchanged
 remaining:
-  - open 7.b/7.c (replay-audit 2026-10-30): Test-Xml.ps1, Test-Behaviour.ps1, Test-InstalledMods.ps1 and BehaviourHarness.cs are deleted from scripts/ in the working tree (owner's move to Tests/, uncommitted) and absent from Tests/: automated tests cannot be rerun now [owner: finish the move or restore from git, then rerun and declare in scripts/LOCAL_SCRIPTS.md]
   - open: avec-facultatifs ticket 20261025-153143-002-1c7e ended exit 3 guard stop 2026-10-30 12:58, no report (infra at low RAM per TM); refile or bisect-* pass once back at playTests
   - unverified: scenario 7 is written (Pickle 10-def-values.feature, five fireSize values read from the installed Medieval Overhaul 1.6 defs) but has not run
   - unverified: only sans-facultatifs has a report (2 passed, 30 skipped); avec-facultatifs (ticket 20261025-153143-002-1c7e waiting; 27f4 ended exit 3 with no report), retrait, sans-ideology, incompat-keshash have none, and every scenario, step label and cell in it is an unproven guess (mandatory for tested)
@@ -38,8 +37,8 @@ remaining:
   - defect: `.github` drifts from the Release-Admin template (`Check-CiTemplate.ps1`, 2026-10-13: Check-Translations.ps1, steam-page.mjs, steam-publish.mjs, steam-page.test.mjs); fix is `generate-publish-workflow.sh --regenerate` by the CI/CD session, relayed through the Ticket Manager
   - unverified: 1.0.0 needs prepublished-stage checks (PUBLICATION.md, description source, thank-you comments) before any publish
 session:      local_3a5d40b5-036d-4b95-bb25-572e9bfd1a82 (code ERCP; registered with TM 2026-10-25)
-updated:      2026-10-30, replay-audit moved playTests[1.0.0] back to writeTests[1.0.0] (7.b/7.c: test scripts missing from the working tree); 1c7e ended exit 3 with no report; earlier 2026-10-25, Preview regenerated (ModIcon badge bottom-right in Art/Preview.config.json) and validated by the owner at 7dbfa84; avec-facultatifs refiled as 20261025-153143-002-1c7e: workflow_stage playTests[1.0.0]. The owner moved scripts/Test-*.ps1, BehaviourHarness.cs and TEST_SCENARIOS.md under Tests/ (uncommitted, hers; paths in this file and scripts/LOCAL_SCRIPTS.md still name the old ones)
-protocols_read_sha: af740f581512fb2b0d8180812d83916db48bf0c1
+updated:      2026-10-30, replay-audit moved back to writeTests (test scripts missing), then forward to playTests[1.0.0] once the scripts were moved under Tests/ and the three tests rerun green (c20b846); 1c7e ended exit 3 with no report; earlier 2026-10-25, Preview regenerated (ModIcon badge bottom-right in Art/Preview.config.json) and validated by the owner at 7dbfa84; avec-facultatifs refiled as 20261025-153143-002-1c7e: workflow_stage playTests[1.0.0]. The owner moved Tests/Test-*.ps1, BehaviourHarness.cs and TEST_SCENARIOS.md under Tests/ (uncommitted, hers; paths in this file and scripts/LOCAL_SCRIPTS.md still name the old ones)
+protocols_read_sha: b64c0668c5e891395288750fb050e54c2891f497
 ---
 # Re-audit against AUDIT.md — 2026-10-11
 
@@ -101,19 +100,19 @@ About.xml `url` field and actual description text.
 
 - Manual: `TEST_SCENARIOS.md` has 17 scenarios (0-16), with actions,
   expected outcomes, failure clues. None has recorded game run. `tested_on` remains empty.
-- Automated XML: `pwsh -NoProfile -File scripts/Test-Xml.ps1` passed 2026-09-13.
+- Automated XML: `pwsh -NoProfile -File Tests/Test-Xml.ps1` passed 2026-09-13.
   Tests apply supported patch operations using .NET XPath to independent contract fixtures,
   across all 8 target-mod combinations with and without Ideology. Check all 13 targets,
   single switches, comp order, overlay replacements, preserved size/offset and existing comps,
   untouched unrelated definitions, mod guards, DLC guards, core metadata.
 - Build: `dotnet build -c Release Source/ExtinguishRefuelablesPatch.csproj --no-restore`
   passed 2026-09-13 with 0 warnings, 0 errors.
-- Installed mods: `scripts/Test-InstalledMods.ps1` passed against local Steam 1.6 definitions
+- Installed mods: `Tests/Test-InstalledMods.ps1` passed against local Steam 1.6 definitions
   2026-09-13, 12 targets without Ideology and 13 with it. Exact mod-name guards,
   original overlay classes, single added switches, preservation of existing comp data pass.
   All three replacement types exist in shipped DLL metadata. No target name overlaps
   Continued's installed patch XML.
-- C#: `scripts/Test-Behaviour.ps1` compiles actual production source with minimal test
+- C#: `Tests/Test-Behaviour.ps1` compiles actual production source with minimal test
   doubles, passes 72 fuel/switch/rotation/spawn cases, including absent comps, north-only
   rendering, height offset, delayed growth start, preservation of existing timer.
 - Release rebuild: 0 warnings, 0 errors; shipped DLL hash unchanged after rebuild.
