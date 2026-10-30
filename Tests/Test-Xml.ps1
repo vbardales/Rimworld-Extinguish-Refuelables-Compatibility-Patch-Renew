@@ -1,6 +1,11 @@
 $ErrorActionPreference = 'Stop'
 $root = Split-Path $PSScriptRoot -Parent
 function Assert($condition, $message) { if (!$condition) { throw $message } }
+# Generic checks (XML well formed, duplicate defNames, xpath compiles, About, translation keys) belong to the shared scripts.
+foreach ($shared in 'Check-ModBasics.ps1', 'Check-Translations.ps1') {
+    & powershell -NoProfile -ExecutionPolicy Bypass -File (Join-Path $root "../scripts/$shared") -ModRoot $root
+    Assert ($LASTEXITCODE -eq 0) "$shared failed"
+}
 # Independent contract fixtures; these are NOT current upstream mod definitions.
 $groups = @(
     @{ Name='Medieval Overhaul'; Defs=@{
