@@ -170,10 +170,9 @@ uploads, and it uploads it whole.
 ## Testing
 
 [`TEST_SCENARIOS.md`](TEST_SCENARIOS.md) — seventeen scenarios to play in
-game, one thing to watch each, and what the failure looks like in `Player.log`. Run `pwsh -NoProfile -File scripts/Test-Xml.ps1` for metadata and XML contract tests across
+game, one thing to watch each, and what the failure looks like in `Player.log`. Run `pwsh -NoProfile -File Tests/Test-Mod.ps1` for the offline suite: the shared checks, then `Tests/Rule-OwnValues.ps1` (metadata and XML contract tests across
 16 combinations of target mods and Ideology. The fixtures check switches, overlay replacement,
-property preservation and guards; they are not current upstream definitions or RimWorld's loader.
-Run `pwsh -NoProfile -File scripts/Test-InstalledMods.ps1` to check the installed 1.6 target defs and DLL type names, and `pwsh -NoProfile -File scripts/Test-Behaviour.ps1` for 72 C# cases against test doubles. Run each script in a fresh process. The Release build checks C# API compatibility. Actual engine rendering and save behaviour remain covered by the
+property preservation and guards; they are not current upstream definitions or RimWorld's loader; the same patch is also applied to the installed 1.6 target defs, and the DLL type names are checked) and `Tests/Rule-Behaviour.ps1` (72 C# cases against test doubles). Each rule runs in a fresh process. The Release build checks C# API compatibility. Actual engine rendering and save behaviour remain covered by the
 manual scenarios, which have no recorded game execution and are non-blocking by maintainer decision.
 
 ## Licence and credit

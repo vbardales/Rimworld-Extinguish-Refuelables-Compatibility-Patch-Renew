@@ -7,9 +7,9 @@ a game yet: every in-game line below is `unverified`, not a pass.
 
 | Layer | Where | Runs | Proves |
 |---|---|---|---|
-| XML contracts | `scripts/Test-Xml.ps1` | offline | Every patch operation against contract fixtures, 16 target-mod and DLC combinations, guards, comp order, preserved size and offset. |
-| Installed defs | `scripts/Test-InstalledMods.ps1` | offline | The same against the raw defs of the installed target mods. Passes 2026-10-11 with Medieval Overhaul in the Steam workshop folder (12 targets, 13 with Ideology). |
-| C# behaviour | `scripts/Test-Behaviour.ps1` | offline | The one comp class, compiled from the real source against test doubles: 72 cases, fuel and switch, all four rotations, the height nudge, the growth timer. |
+| XML contracts | `Tests/Rule-OwnValues.ps1` | offline | Every patch operation against contract fixtures, 16 target-mod and DLC combinations, guards, comp order, preserved size and offset. |
+| Installed defs | `Tests/Rule-OwnValues.ps1` (second half, skipped when the Workshop folder is absent) | offline | The same against the raw defs of the installed target mods. Passes 2026-10-11 with Medieval Overhaul in the Steam workshop folder (12 targets, 13 with Ideology). |
+| C# behaviour | `Tests/Rule-Behaviour.ps1` | offline | The one comp class, compiled from the real source against test doubles: 72 cases, fuel and switch, all four rotations, the height nudge, the growth timer. |
 | Pickle | `Tests/Pickle/` | in game | The patches in the real def database, one switch on each of the 13 buildings, the swapped overlay class, the drawn flame in four facings, save and reload. A local step DLL (`Tests/Pickle/Source`, built 2026-09-28, compiles against the Pickle reference package) supplies the switch, overlay and rotation steps. See `Tests/Pickle/README.md`. |
 
 ## Passes a full validation needs
