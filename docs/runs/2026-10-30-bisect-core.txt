@@ -1,0 +1,1 @@
+bisect-core 20261030-162144-090-f645, VFE Core alone, scenario 01: 1 passed, 0 failed (read 2026-11-07; minified in Tests/Pickle/Evidence/bisect-core). diag-avec-facultatifs-3 (1c7e): no report, deleted.
