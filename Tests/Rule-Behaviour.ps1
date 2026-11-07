@@ -1,7 +1,7 @@
 param([Parameter(Mandatory)][string]$ModRoot, [string]$SharedDir)
 
 # Needs PowerShell 7 (C# 6+ for Add-Type, System.Reflection.Metadata): the generated Test-Mod.ps1 starts rules with Windows PowerShell, so re-run in pwsh when it is there.
-if ($PSVersionTable.PSEdition -eq 'Desktop') { $pw = Get-Command pwsh -ErrorAction SilentlyContinue; if ($pw) { $fwd = @('-ModRoot', $ModRoot); if ($SharedDir) { $fwd += '-SharedDir', $SharedDir }; if ($PSBoundParameters.ContainsKey('WorkshopRoot')) { $fwd += '-WorkshopRoot', $WorkshopRoot }; & $pw.Source -NoProfile -ExecutionPolicy Bypass -File $PSCommandPath @fwd; exit $LASTEXITCODE } }
+if ($PSVersionTable.PSEdition -eq 'Desktop') { $pw = Get-Command pwsh -ErrorAction SilentlyContinue; if ($pw) { $fwd = @('-ModRoot', $ModRoot); if ($SharedDir) { $fwd += '-SharedDir', $SharedDir }; & $pw.Source -NoProfile -ExecutionPolicy Bypass -File $PSCommandPath @fwd; exit $LASTEXITCODE } }
 
 # The 72 fuel, switch, rotation and spawn cases of this mod's production C# (Source/CompFireOverlaySouthExtinguishable.cs), run against
 # test doubles of the RimWorld, Verse and Unity names (Tests/BehaviourHarness.cs). Its own subject, apart from Rule-OwnValues: it
