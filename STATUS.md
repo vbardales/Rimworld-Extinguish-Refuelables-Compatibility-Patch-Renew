@@ -22,7 +22,7 @@ dependencies: declared
 showcase:     complete, recomposed and visually verified 2026-09-13
 tested_on:
 workshop:     3806767177 (private, created 2026-09-23 by the 0.1.0 prepublication)
-automated_tests: rerun 2026-10-30 at c20b846 from Tests/ (scripts moved there, Audit confirmed they stay local, LOCAL_SCRIPTS.md rows updated at b64c066): Test-Xml PASS (16 combinations); Test-Behaviour PASS (72 cases); Test-InstalledMods PASS; earlier rerun 2026-10-13 at 8a57b14: Test-Xml PASS (16 combinations); Test-Behaviour PASS (72 cases); Test-InstalledMods PASS (12 targets without Ideology, 13 with it, Medieval Overhaul installed); build 0 warnings, 0 errors, DLL unchanged
+automated_tests: converted 2026-11-07 (mission 2026-11-05): Test-Xml, Test-InstalledMods, Test-Behaviour deleted; Tests/Rule-OwnValues.ps1 PASS (About, files, guards, 16 fixture combinations, installed 1.6 defs, DLL types) and Tests/Rule-Behaviour.ps1 PASS (72 cases), one mutation proof; generated Tests/Test-Mod.ps1 + fresh .github asked of CI/CD via TM, LOCAL_SCRIPTS rows await Audit stamp; before that: rerun 2026-10-30 at c20b846 from Tests/ (scripts moved there, Audit confirmed they stay local, LOCAL_SCRIPTS.md rows updated at b64c066): Test-Xml PASS (16 combinations); Test-Behaviour PASS (72 cases); Test-InstalledMods PASS; earlier rerun 2026-10-13 at 8a57b14: Test-Xml PASS (16 combinations); Test-Behaviour PASS (72 cases); Test-InstalledMods PASS (12 targets without Ideology, 13 with it, Medieval Overhaul installed); build 0 warnings, 0 errors, DLL unchanged
 pickle_suite: written 2026-09-28, repaired 2026-10-11 (Check-Steps: all patterns compile, every step line resolves; 10 features, 5 passes plus gallery); runs of 2026-10-14/15 (report folders deleted 2026-10-19, none worth keeping; one line each in docs/runs/): sans-facultatifs 2 passed + 30 skipped, all others no report (startup hang with the three target mods; Processor Framework added to the maps 2026-10-15, 5e204ce); avec-facultatifs ticket 20261017-233257-182-27f4 (filed 2026-10-17 at 085360e) ended exit 3 on 2026-10-18 with no evidence folder copied (log: startup "Terminated", no report; Processor Framework was already in the map, so the hang is not explained); refiled 2026-10-25 at 7dbfa84 as 20261025-153143-002-1c7e, -NoBatch, evidence to Tests/Pickle/Inbox/diag-avec-facultatifs-3, waiting (TM wakes this session, owner local_3a5d40b5); if it hangs again, next step is a bisect-* map pass
 build:        passed 2026-09-28, Release net48, 0 warnings and 0 errors, DLL unchanged
 remaining:
@@ -37,7 +37,7 @@ remaining:
   - defect: `.github` drifts from the Release-Admin template (`Check-CiTemplate.ps1`, 2026-10-13: Check-Translations.ps1, steam-page.mjs, steam-publish.mjs, steam-page.test.mjs); fix is `generate-publish-workflow.sh --regenerate` by the CI/CD session, relayed through the Ticket Manager
   - unverified: 1.0.0 needs prepublished-stage checks (PUBLICATION.md, description source, thank-you comments) before any publish
 session:      local_3a5d40b5-036d-4b95-bb25-572e9bfd1a82 (code ERCP; registered with TM 2026-10-25)
-updated:      2026-11-07, resume: bisect-core read green, Preview rendered with the new Preview.config.json schema; 2026-10-30, replay-audit moved back to writeTests (test scripts missing), then forward to playTests[1.0.0] once the scripts were moved under Tests/ and the three tests rerun green (c20b846); 1c7e ended exit 3 with no report; earlier 2026-10-25, Preview regenerated (ModIcon badge bottom-right in Art/Preview.config.json) and validated by the owner at 7dbfa84; avec-facultatifs refiled as 20261025-153143-002-1c7e: workflow_stage playTests[1.0.0]. The owner moved Tests/Test-*.ps1, BehaviourHarness.cs and TEST_SCENARIOS.md under Tests/ (uncommitted, hers; paths in this file and scripts/LOCAL_SCRIPTS.md still name the old ones)
+updated:      2026-11-07, local tests converted to Rule-OwnValues + Rule-Behaviour; resume: bisect-core read green, Preview rendered with the new Preview.config.json schema; 2026-10-30, replay-audit moved back to writeTests (test scripts missing), then forward to playTests[1.0.0] once the scripts were moved under Tests/ and the three tests rerun green (c20b846); 1c7e ended exit 3 with no report; earlier 2026-10-25, Preview regenerated (ModIcon badge bottom-right in Art/Preview.config.json) and validated by the owner at 7dbfa84; avec-facultatifs refiled as 20261025-153143-002-1c7e: workflow_stage playTests[1.0.0]. The owner moved Tests/Test-*.ps1, BehaviourHarness.cs and TEST_SCENARIOS.md under Tests/ (uncommitted, hers; paths in this file and scripts/LOCAL_SCRIPTS.md still name the old ones)
 protocols_read_sha: f0219f10b948804b3bfd2586c5fca74bf45c3805
 ---
 # Re-audit against AUDIT.md — 2026-10-11
@@ -100,19 +100,19 @@ About.xml `url` field and actual description text.
 
 - Manual: `TEST_SCENARIOS.md` has 17 scenarios (0-16), with actions,
   expected outcomes, failure clues. None has recorded game run. `tested_on` remains empty.
-- Automated XML: `pwsh -NoProfile -File Tests/Test-Xml.ps1` passed 2026-09-13.
+- Automated XML: `Tests/Rule-OwnValues.ps1` (was Test-Xml.ps1) passed 2026-11-07.
   Tests apply supported patch operations using .NET XPath to independent contract fixtures,
   across all 8 target-mod combinations with and without Ideology. Check all 13 targets,
   single switches, comp order, overlay replacements, preserved size/offset and existing comps,
   untouched unrelated definitions, mod guards, DLC guards, core metadata.
 - Build: `dotnet build -c Release Source/ExtinguishRefuelablesPatch.csproj --no-restore`
   passed 2026-09-13 with 0 warnings, 0 errors.
-- Installed mods: `Tests/Test-InstalledMods.ps1` passed against local Steam 1.6 definitions
+- Installed mods: `Tests/Rule-OwnValues.ps1` (was Test-InstalledMods.ps1, second half) passed against local Steam 1.6 definitions
   2026-09-13, 12 targets without Ideology and 13 with it. Exact mod-name guards,
   original overlay classes, single added switches, preservation of existing comp data pass.
   All three replacement types exist in shipped DLL metadata. No target name overlaps
   Continued's installed patch XML.
-- C#: `Tests/Test-Behaviour.ps1` compiles actual production source with minimal test
+- C#: `Tests/Rule-Behaviour.ps1` (was Test-Behaviour.ps1) compiles actual production source with minimal test
   doubles, passes 72 fuel/switch/rotation/spawn cases, including absent comps, north-only
   rendering, height offset, delayed growth start, preservation of existing timer.
 - Release rebuild: 0 warnings, 0 errors; shipped DLL hash unchanged after rebuild.
