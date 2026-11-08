@@ -39,7 +39,7 @@ remaining:
   - unverified: 1.0.0 needs prepublished-stage checks (PUBLICATION.md, description source, thank-you comments) before any publish
 session:      local_3a5d40b5-036d-4b95-bb25-572e9bfd1a82 (code ERCP; registered with TM 2026-10-25)
 updated:      2026-11-07, local tests converted to Rule-OwnValues + Rule-Behaviour; resume: bisect-core read green, Preview rendered with the new Preview.config.json schema; 2026-10-30, replay-audit moved back to writeTests (test scripts missing), then forward to playTests[1.0.0] once the scripts were moved under Tests/ and the three tests rerun green (c20b846); 1c7e ended exit 3 with no report; earlier 2026-10-25, Preview regenerated (ModIcon badge bottom-right in Art/Preview.config.json) and validated by the owner at 7dbfa84; avec-facultatifs refiled as 20261025-153143-002-1c7e: workflow_stage playTests[1.0.0]. The owner moved Tests/Test-*.ps1, BehaviourHarness.cs and TEST_SCENARIOS.md under Tests/ (uncommitted, hers; paths in this file and scripts/LOCAL_SCRIPTS.md still name the old ones)
-protocols_read_sha: 6ee2b0a2e3406123b953adf5b957ade901e44f30
+protocols_read_sha: a95086f2b1c3b3d1df3d0bb4b62e789ea0561c85
 ---
 # Re-audit against AUDIT.md — 2026-10-11
 
