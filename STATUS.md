@@ -222,6 +222,8 @@ PiI Steam Workshop search, 2026-11-13 (AUDIT 8.0), full table in the protocols r
 - Base 2864470385: dead (1.5). Continued 3772905265 (our hard dependency): keep.
 - No other 1.6 patch of the base found (only comment and remap mentions).
 - Translations of the original: zh 3069572809, RU 3534127682 (data only, none used).
+- Root pass "Extinguish Refuelables" (all variants), 2026-11-13, PiI 93ac900, same md: no rival alive on 1.6 (LightsOut, Turn It On and Off, Toggle Refuelable do other jobs); no mod patches, retextures or links the root or Continued (only a commented MayRequire in Just Candles and an id remap in No Version Warning); none touches the Medieval Overhaul / VFE fires. Continued conflicts per comments: Better pyromania, Niilo's QoL campfire option.
+- Open check for playTests: Torches and Braziers (Continued), Workshop 3658303543 (PiI suggestion, not yet looked at or tested).
 
 # History
 
