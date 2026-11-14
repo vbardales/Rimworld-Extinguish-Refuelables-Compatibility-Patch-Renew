@@ -1,3 +1,5 @@
 # Bisection of the avec-facultatifs startup hang (2026-10-14): the game stalls before any mod logs. One target mod at a time. Ids as in wsl-deps.avec-facultatifs.map.
-DankPyon.Medieval.Overhaul                  3219596926
+# 2026-11-14: tickets e924 and 6ac7 (and 4d41 without our mod) stalled because this map lacked Vanilla Expanded Framework Core (2023507013), a hard dependency of Medieval Overhaul (its About.xml; FullzoonCookiesRenew's avec-medieval map plays with it). Order: dependencies first.
+OskarPotocki.VanillaFactionsExpanded.Core   2023507013
 syrchalis.processor.framework               2633514537
+DankPyon.Medieval.Overhaul                  3219596926
