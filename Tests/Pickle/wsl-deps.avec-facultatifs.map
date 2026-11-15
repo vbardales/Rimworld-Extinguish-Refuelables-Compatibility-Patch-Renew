@@ -1,10 +1,11 @@
 # The pass with the three target mods, in the order they need each other. Ids and packageIds read
 # from each mod's own About.xml on 2026-09-28. Vanilla Expanded Framework is a hard dependency of
 # Classical and Medieval 2 (the staging copies only the tested mod's own dependencies, so it is named here).
-# Medieval Overhaul hard-depends on syrchalis.processor.framework (read from its About.xml 2026-10-15; the About names
-# 3210544395 but the WSL cache holds the mod as 2633514537). Left out, the game stalled at startup (2026-10-14; suspected cause, to confirm by a run).
+# 2026-11-16: Harmony 2009463077 added (first in Medieval Overhaul loadAfter) and Processor Framework 3210544395 as named by its About.xml:
+# bisect-mo with these two played green (ticket e95e), the same map without Harmony and with 2633514537 stalled on azure and hetzner (6ac7, 4d41, ea81, 96fc, 5ad7).
+brrainz.harmony                             2009463077
 OskarPotocki.VanillaFactionsExpanded.Core   2023507013
 OskarPotocki.VFE.Classical                  2787850474
 OskarPotocki.VFE.Medieval2                  3444347874
+syrchalis.processor.framework               3210544395
 DankPyon.Medieval.Overhaul                  3219596926
-syrchalis.processor.framework               2633514537
