@@ -1,0 +1,4 @@
+# Control for the lane test of 2026-11-14: map of ticket ea81 (stalled on azure), without Harmony and with Processor Framework 2633514537. Played pinned to hetzner to separate lane from map. Compare with bisect-mo (e95e, green on hetzner).
+OskarPotocki.VanillaFactionsExpanded.Core   2023507013
+syrchalis.processor.framework               2633514537
+DankPyon.Medieval.Overhaul                  3219596926
