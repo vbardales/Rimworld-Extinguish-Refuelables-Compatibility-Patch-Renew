@@ -1,11 +1,9 @@
 @requires:DankPyon.Medieval.Overhaul
 Feature: The switch puts the flame out, and the state survives a save
 
-  # First run, expected adjustments (none of this has been played): the cell (60, 60) must be free on
-  # the "test-colony" map, the label "ancient brazier" is Medieval Overhaul's own (read from its 1.6
-  # defs on 2026-09-13), and the gizmo label "Toggle power" is vanilla's default for CompFlickable
-  # (CommandTogglePowerLabel, Core 1.6). Extinguish Refuelables Continued may relabel it; the first
-  # failure message prints what the selection actually offers.
+  # The cell (60, 60) must be free on the "test-colony" map. Run 1537 (2026-11-16) showed that
+  # `I select "ancient brazier"` finds no selectable thing with that label, so the switch is driven
+  # and read by this suite's own steps, as in 05, not through the selection and the gizmo.
   #
   # The brazier is the sharpest case: it has no fuel to stop, so the drawn flame is most of what there
   # is to see, and it is drawn by the overlay comp this mod swaps. The captures are @review: a green
@@ -18,12 +16,14 @@ Feature: The switch puts the flame out, and the state survives a save
     When I spawn a "DankPyon_Brazier1x1c" at (60, 60)
     And I move the camera to (60, 60)
     And I zoom all the way in
-    And I select "ancient brazier"
-    And I take a screenshot "brazier-lit"
-    And I click gizmo "Toggle power"
-    And I take a screenshot "brazier-switched-off"
-    And I click gizmo "Toggle power"
-    And I take a screenshot "brazier-lit-again"
+    Then Extinguish Refuelables Patch: the "DankPyon_Brazier1x1c" at (60, 60) is switched on
+    When I take a screenshot "brazier-lit"
+    And Extinguish Refuelables Patch: I switch the "DankPyon_Brazier1x1c" at (60, 60) off
+    Then Extinguish Refuelables Patch: the "DankPyon_Brazier1x1c" at (60, 60) is switched off
+    When I take a screenshot "brazier-switched-off"
+    And Extinguish Refuelables Patch: I switch the "DankPyon_Brazier1x1c" at (60, 60) on
+    Then Extinguish Refuelables Patch: the "DankPyon_Brazier1x1c" at (60, 60) is switched on
+    When I take a screenshot "brazier-lit-again"
     Then no errors were logged
 
   @review
@@ -33,12 +33,11 @@ Feature: The switch puts the flame out, and the state survives a save
     When I spawn a "DankPyon_Brazier1x1c" at (60, 60)
     And I move the camera to (60, 60)
     And I zoom all the way in
-    And I select "ancient brazier"
-    And I click gizmo "Toggle power"
+    And Extinguish Refuelables Patch: I switch the "DankPyon_Brazier1x1c" at (60, 60) off
     And I save and reload
     And I move the camera to (60, 60)
-    And I select "ancient brazier"
     And I take a screenshot "brazier-off-after-reload"
-    Then a "DankPyon_Brazier1x1c" exists
+    Then Extinguish Refuelables Patch: the "DankPyon_Brazier1x1c" at (60, 60) is switched off
+    And a "DankPyon_Brazier1x1c" exists
     And the save round trips
     And no errors were logged
