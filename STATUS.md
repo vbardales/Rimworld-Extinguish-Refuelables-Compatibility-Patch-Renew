@@ -225,6 +225,7 @@ PiI Steam Workshop search, 2026-11-13 (AUDIT 8.0), full table in the protocols r
 - No other 1.6 patch of the base found (only comment and remap mentions).
 - Translations of the original: zh 3069572809, RU 3534127682 (data only, none used).
 - Root pass "Extinguish Refuelables" (all variants), 2026-11-13, PiI 93ac900, same md: no rival alive on 1.6 (LightsOut, Turn It On and Off, Toggle Refuelable do other jobs); no mod patches, retextures or links the root or Continued (only a commented MayRequire in Just Candles and an id remap in No Version Warning); none touches the Medieval Overhaul / VFE fires. Continued conflicts per comments: Better pyromania, Niilo's QoL campfire option.
+- `ecosystem-links` block added by PiI 2026-11-18 (parents 3109675320 and 3772905265; linked base 2864470385 and the three patched mods; translations zh 3069572809, RU 3534127682). VFE Classical and VFE Medieval 2 list 1.7 support, Medieval Overhaul stops at 1.6: matters for the 1.7 pass.
 - Open check for playTests: Torches and Braziers (Continued), Workshop 3658303543 (PiI suggestion, not yet looked at or tested).
 
 # History
