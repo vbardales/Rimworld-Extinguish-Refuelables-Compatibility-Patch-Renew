@@ -47,7 +47,7 @@ manual check to tick: each is automated and green, or listed here as not applica
 | 12 | One target mod at a time | Not applicable: pass 2 names each def, so a failing file is already identified. |
 | 13 | No collision with Continued | Pickle 01 last scenario: Continued still patches its own building. Two switches on one building is asserted offline (single switches, no shared defName). |
 | 14 | Save, reload, state holds | Pickle 02 second scenario, `@review`. |
-| 15 | Adding the mod to a save in progress | Pickle 06: a strip step removes the switch comp from standing buildings, the save written next is the file a game without this mod would have written, and the reload with the patches active must give one switch, on. Emulates the file, not the changed mod list, which is the engine's. |
+| 15 | Adding the mod to a save in progress | Not applicable (owner, 2026-11-06, AUDIT 8.i): loading a save with the mod active is what Pickle does; testing it tests Pickle. Feature 06 deleted 2026-11-19. Only the removal (16) has its own test. |
 | 16 | Removing the mod from a save in progress | Pickle 07, two launches under one lock: write with the mod, read with it taken out (`-Then` and `-ThenWithout`). The companion no longer depends on the mod, so it survives. Asserts what the mod page only reasoned: the buildings lose their switch. |
 
 The open rows, and the unrun passes above, are what stands between this mod and `tested`.

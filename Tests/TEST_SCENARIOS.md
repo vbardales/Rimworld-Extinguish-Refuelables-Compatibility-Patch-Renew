@@ -189,7 +189,7 @@ Beeswax **candle stand** deliberately not on list. Exists only in Medieval Overh
 
 **Why it matters.** `CompFlickable` saves own state, so should be free. But comp added by patch rather than declared in def, and flame drawn from comp field only filled on spawn is classic thing to get wrong across load.
 
-## 15. Adding it to a game already in progress
+## 15. Adding it to a game already in progress (not applicable, owner 2026-11-06: tests Pickle itself; no scenario, no fixture)
 
 **Do.** Save made without this mod, holding some of thirteen buildings already built. Add mod. Load.
 
